@@ -1,4 +1,4 @@
-    // https://kevinhufnagl.com/wp-content/themes/lightisol/dist/js/min/lightisol-gradient.min.js?ver=1.0
+// https://kevinhufnagl.com/wp-content/themes/lightisol/dist/js/min/lightisol-gradient.min.js?ver=1.0
 //
 // Since the original CodePen https://codepen.io/kevinhufnagl/pen/YzwBemd,
 // seems to have been removed by the author I restored this version from
@@ -724,3 +724,5 @@ class Gradient {
 			.map(normalizeColor);
 	}
 }
+
+export default Gradient;
