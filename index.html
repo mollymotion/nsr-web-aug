@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSR – Post-Punk NYC</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="text-white">
+  <canvas id="gradient-canvas" data-transition-in></canvas>
+
+  <!-- Hero Section -->
+  <section class="h-screen w-full relative">
+    <img class="hero-image" alt="Hero Image">
+    <div id="slice-mask"></div>
+    
+    <!-- Logo container -->
+    <div id="logo-container" class="absolute top-5 w-full z-10">
+    <video id="logo-video" autoplay muted playsinline class="w-[400%] -ml-[150%] h-auto" style="opacity: 0;">
+      <source src="images/logo-ani2.webm" type="video/webm">
+    </video>
+    <img id="logo-svg" src="images/logo.svg" alt="NSR Logo"
+      class="absolute top-0 left-0 w-full h-full object-contain opacity-0 transition-opacity duration-1000 px-5" />
+  </div>
+  </section>
+
+<!-- Press Section -->
+<section class="py-20 px-4 max-w-5xl mx-auto">
+  <h2 class="text-3xl mb-8 font-bold text-white">Press</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+      "Blistering and beautiful" – DIY Mag
+    </div>
+    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+      "A noise wall that thinks" – The Fader
+    </div>
+    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+      "Goth done right" – Brooklyn Vegan
+    </div>
+  </div>
+</section>
+
+<!-- Merch Section -->
+<section class="py-20 px-4 max-w-5xl mx-auto">
+  <h2 class="text-3xl mb-8 font-bold text-white">Merch</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+      T-shirt Placeholder
+    </div>
+    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+      Cassette Placeholder
+    </div>
+    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+      Sticker Pack Placeholder
+    </div>
+  </div>
+</section>
+
+<!-- Shows Section -->
+<section class="py-20 px-4 max-w-5xl mx-auto">
+  <h2 class="text-3xl mb-8 font-bold text-white">Upcoming Shows</h2>
+  <div id="shows-list" class="space-y-4">
+    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+      05/25 – Saint Vitus, Brooklyn
+    </div>
+    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+      06/02 – Elsewhere, NYC
+    </div>
+  </div>
+</section>
+
+
+
+
+  <!-- Footer -->
+  <footer class="text-center py-10 text-gray-500">
+    &copy; 2025 NSR – All rights reserved.
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="js/slice-animation.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gradient.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+          const gradient = new Gradient();
+          gradient.freqX = 7e-5;
+          gradient.freqY = 14e-5;
+          gradient.activeColors = [
+              1.0,    // First color (purple) - full presence
+              0.8,    // Second color (red) - reduced presence
+              1.0,    // Third color (dark purple) - strong presence
+              1.0     // Fourth color (burgundy) - medium presence
+          ];
+          gradient.initGradient('#gradient-canvas');
+      });
+  </script>
+
+  
+</body>
+</html>
