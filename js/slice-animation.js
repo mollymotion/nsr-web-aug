@@ -11,12 +11,12 @@ class SliceTransition {
 
   async init() {
     try {
-      console.log('SliceTransition init started');
+//      console.log('SliceTransition init started');
       await this.createMask();
       this.isReady = true;
-      console.log('SliceTransition initialized', this.triangles);
+//      console.log('SliceTransition initialized', this.triangles);
     } catch (error) {
-      console.error('SliceTransition init error:', error);
+//      console.error('SliceTransition init error:', error);
     }
   }
 
@@ -78,7 +78,7 @@ class SliceTransition {
 
     // Call it on window resize
     window.addEventListener('resize', updateMaskSize);
-    console.log('resize listener added');
+//    console.log('resize listener added');
   }
 
   isInitialized() {
