@@ -1,4 +1,3 @@
-import Gradient from './gradient.js';
 import SliceTransition from './slice-animation.js';
 import Gradient from './gradient.js';
 
