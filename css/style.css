@@ -38,7 +38,11 @@ html, body {
 }
 
 .tri {
-  fill: rgba(255,255,255,0.1);
+  fill: rgba(255,255,255,0.5);
+  stroke: rgba(0,0,0,0.5);
+  stroke-width: 2;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
 }
 
 /* Gradient background */

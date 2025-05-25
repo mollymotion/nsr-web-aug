@@ -35,8 +35,8 @@ function generateUniformTriangles(numTriangles, gridSizeX, gridSizeY, triangleSi
 const polygonsMobile = (viewportWidth, viewportHeight) => {
   const gridSizeX = viewportWidth * 1.5; // Example: Make it slightly larger than the viewport
   const gridSizeY = viewportHeight * 2.5; // Example: Make it slightly larger than the viewport
-  const triangleSize = viewportWidth / 2; // Example: Adjust triangle size relative to viewport
-  const numTriangles = 100;
+  const triangleSize = viewportWidth * 0.5; // Example: Adjust triangle size relative to viewport
+  const numTriangles = 128;
   return generateUniformTriangles(numTriangles, gridSizeX, gridSizeY, triangleSize);
 };
 

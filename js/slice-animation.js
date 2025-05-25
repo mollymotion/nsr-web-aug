@@ -26,10 +26,6 @@ class SliceTransition {
     console.log('Initial viewBox removed');
 
     const defs = document.createElementNS(this.svgNS, "defs");
-    const style = document.createElementNS(this.svgNS, "style");
-    style.textContent = `.tri { fill: rgba(255,255,255,0.5); }`;
-    defs.appendChild(style);
-
     const mask = document.createElementNS(this.svgNS, "mask");
     mask.setAttribute("id", "slice-transition-mask");
 
@@ -41,6 +37,12 @@ class SliceTransition {
       const polygon = document.createElementNS(this.svgNS, "polygon");
       polygon.setAttribute("class", "tri");
       polygon.setAttribute("points", points);
+      polygon.setAttribute("fill", "rgba(255,255,255,0.25)");
+      polygon.setAttribute("stroke", "rgba(0,0,0,0.5)");
+      const randomStrokeWidth = Math.floor(Math.random() * 13); // Random number between 0 and 15
+      polygon.setAttribute("stroke-width", randomStrokeWidth.toString());
+      polygon.setAttribute("stroke-dasharray", "1000");
+      polygon.setAttribute("stroke-dashoffset", "1000");
       mask.appendChild(polygon);
     });
 
@@ -61,14 +63,11 @@ class SliceTransition {
 
     // Function to update the mask size
     const updateMaskSize = () => {
-      console.log('updateMaskSize called');
       const width = heroImage.offsetWidth;
       const height = heroImage.offsetHeight;
 
-      console.log('heroImage dimensions:', width, height);
+      // svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
 
-      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      console.log('viewBox updated to:', `0 0 ${width} ${height}`);
     };
 
     // Delay initial call to updateMaskSize
@@ -97,15 +96,17 @@ class SliceTransition {
     return new Promise(resolve => {
       gsap.to(this.triangles, {
         opacity: show ? 1 : 0,
-        duration: 0.4,
+        strokeDashoffset: show ? 1 : 1000,
+        duration: 0.5,
         x: () => (show ? 0 : (Math.random() - 0.5) * 200), // Random x offset
         y: () => (show ? 0 : (Math.random() - 0.5) * 200), // Random y offset
         rotation: () => (show ? 0 : (Math.random() - 0.5) * 360), // Random rotation
         stagger: {
           each: 0.008,
-          from: "random"
+          from: "center"
         },
-        ease: "power2.inOut",
+        ease: "ease.inOut",
+
         onComplete: () => {
           this.isAnimating = false;
           resolve();
@@ -113,13 +114,13 @@ class SliceTransition {
           // Add breathing animation
           if (show) {
             gsap.to(this.triangles, {
-              scale: () => 1 + (Math.random() - 0.5) * 0.5, // More scale variation
-              duration: 2,
+              scale: () => 1 + (Math.random() - .5), // More scale variation
+              duration: 10,
               yoyo: true,
               repeat: -1,
               ease: "sine.inOut",
               stagger: {
-                each: 0.1,
+                each: 0.03,
                 from: "random"
               }
             });
