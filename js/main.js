@@ -66,6 +66,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+  // Gradient handling
+  const gradient = new Gradient();
+  gradient.freqX = 7e-5;
+  gradient.freqY = 14e-5;
+  gradient.activeColors = [
+      1.0,    // First color (purple) - full presence
+      0.8,    // Second color (red) - reduced presence
+      1.0,    // Third color (dark purple) - strong presence
+      1.0     // Fourth color (burgundy) - medium presence
+  ];
+  await gradient.initGradient('#gradient-canvas');
+
   try {
     console.log('Starting initialization...');
     updateImage();
@@ -96,16 +108,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (error) {
     console.error('Initialization error:', error);
   }
-
-  // Gradient handling
-  const gradient = new Gradient();
-  gradient.freqX = 7e-5;
-  gradient.freqY = 14e-5;
-  gradient.activeColors = [
-      1.0,    // First color (purple) - full presence
-      0.8,    // Second color (red) - reduced presence
-      1.0,    // Third color (dark purple) - strong presence
-      1.0     // Fourth color (burgundy) - medium presence
-  ];
-  gradient.initGradient('#gradient-canvas');
 });
