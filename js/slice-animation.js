@@ -11,12 +11,12 @@ class SliceTransition {
 
   async init() {
     try {
-      console.log('SliceTransition init started');
+//      console.log('SliceTransition init started');
       await this.createMask();
       this.isReady = true;
-      console.log('SliceTransition initialized', this.triangles);
+//      console.log('SliceTransition initialized', this.triangles);
     } catch (error) {
-      console.error('SliceTransition init error:', error);
+ //     console.error('SliceTransition init error:', error);
     }
   }
 
@@ -66,7 +66,7 @@ class SliceTransition {
       const width = heroImage.offsetWidth;
       const height = heroImage.offsetHeight;
 
-      // svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
 
     };
 
