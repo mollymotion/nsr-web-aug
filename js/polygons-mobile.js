@@ -33,28 +33,11 @@ function generateUniformTriangles(numTriangles, gridSizeX, gridSizeY, triangleSi
 }
 
 const polygonsMobile = (viewportWidth, viewportHeight) => {
-  const numberOfTriangles = 35;
-  const minSize = Math.min(viewportWidth, viewportHeight) * 0.1;
-  const maxSize = Math.min(viewportWidth, viewportHeight) * 0.4;
-
-  let polygons = [];
-
-  for (let i = 0; i < numberOfTriangles; i++) {
-    let x1 = Math.random() * viewportWidth;
-    let y1 = Math.random() * viewportHeight;
-
-    let size = minSize + Math.random() * (maxSize - minSize);
-
-    let x2 = x1 + (Math.random() - 0.5) * size;
-    let y2 = y1 + (Math.random() - 0.5) * size;
-
-    let x3 = x1 + (Math.random() - 0.5) * size;
-    let y3 = y1 + (Math.random() - 0.5) * size;
-
-    polygons.push(`${x1},${y1} ${x2},${y2} ${x3},${y3}`);
-  }
-
-  return polygons;
+  const gridSizeX = viewportWidth * 1.5; // Example: Make it slightly larger than the viewport
+  const gridSizeY = viewportHeight * 2.5; // Example: Make it slightly larger than the viewport
+  const triangleSize = viewportWidth * 0.5; // Example: Adjust triangle size relative to viewport
+  const numTriangles = 128;
+  return generateUniformTriangles(numTriangles, gridSizeX, gridSizeY, triangleSize);
 };
 
 export default polygonsMobile;
