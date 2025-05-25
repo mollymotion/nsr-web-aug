@@ -66,8 +66,7 @@ class SliceTransition {
       const width = heroImage.offsetWidth;
       const height = heroImage.offsetHeight;
 
-      // svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
     };
 
     // Delay initial call to updateMaskSize
