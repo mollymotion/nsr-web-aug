@@ -1,52 +1,126 @@
 import Gradient from './gradient.js';
 import SliceTransition from './slice-animation.js';
-import StickyNav from './sticky-nav.js';
+import Gradient from './gradient.js';
 
-class App {
-  constructor() {
-    this.gradient = new Gradient();
-    this.sliceTransition = new SliceTransition();
-    this.stickyNav = new StickyNav();
-    this.heroImage = document.querySelector('.hero-image');
-    this.transitioning = false;
-    this.imageCount = 5; // Update image count
-    this.init();
+document.addEventListener('DOMContentLoaded', async () => {
+  console.log('DOM Content Loaded');
+  
+  // Logo animation handling
+  const video = document.getElementById('logo-video');
+  const svg = document.getElementById('logo-svg');
+  
+  if (video && svg) {
+    // Fade in video on page load
+    video.style.transition = 'opacity 1s ease';
+    requestAnimationFrame(() => {
+      video.style.opacity = 1;
+    });
+
+    // Convert 6:07 @30fps to seconds
+    const fadeOutTime = (6 * 30 + 7) / 30; // ≈ 6.233 seconds
+
+    // At 6.233s, fade out video and fade in SVG
+    setTimeout(() => {
+      video.style.opacity = 0;
+      svg.classList.remove('opacity-0');
+      svg.classList.add('opacity-100');
+    }, fadeOutTime * 1000);
   }
 
-  async init() {
-    this.setHeroImage();
-    // Initial transition-in animation
-    const gradientCanvas = document.getElementById('gradient-canvas');
-    if (gradientCanvas && gradientCanvas.dataset.transitionIn !== undefined) {
-      await this.gradient.animate(true);
-      await this.sliceTransition.animate(true);
-    }
+  // Slideshow handling
+  const sliceTransition = new SliceTransition();
+  const heroImage = document.querySelector('.hero-image');
+  
+  if (!heroImage) {
+    console.error('Hero image element not found!');
+    return;
+  }
+  
+  // Define array of image paths
+  const images = [
+    'images/hero/hero-1.png',
+    'images/hero/hero-2.png',
+    'images/hero/hero-4.png',
+    'images/hero/hero-7.png'  
+  ];
+  
+  let currentImageIndex = 0;
 
-    // Set up transition interval
-    setInterval(() => {
-      this.transition();
-    }, 5000);
+  function updateImage() {
+    // console.log('Updating image to:', images[currentImageIndex]);
+    heroImage.onerror = () => console.error('Failed to load image:', images[currentImageIndex]);
+    heroImage.onload = () => console.log('Image loaded successfully');
+    heroImage.src = images[currentImageIndex];
   }
 
-  async transition() {
-    if (this.transitioning) return;
-    this.transitioning = true;
-
+  async function cycleImages() {
     try {
-      await this.sliceTransition.animate(false);
-      this.setHeroImage();
-      await this.sliceTransition.animate(true);
+      await sliceTransition.animate(false); // Animate out
+      
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      
+      updateImage();
+      
+      await sliceTransition.animate(true); // Animate in
+      
+      setTimeout(cycleImages, 3000);
+
     } catch (error) {
-      console.error('Transition error:', error);
-    } finally {
-      this.transitioning = false;
+        console.error('Animation error:', error);
     }
   }
 
-  setHeroImage() {
-    const imageIndex = Math.floor(Math.random() * this.imageCount) + 1;
-    this.heroImage.src = `images/hero-${imageIndex}.png`; // Update image extension
-  }
-}
+  // Gradient handling
+  const gradient = new Gradient();
+  gradient.freqX = 7e-5;
+  gradient.freqY = 14e-5;
+  gradient.activeColors = [
+      1.0,    // First color (purple) - full presence
+      0.8,    // Second color (red) - reduced presence
+      1.0,    // Third color (dark purple) - strong presence
+      1.0     // Fourth color (burgundy) - medium presence
+  ];
+  await gradient.initGradient('#gradient-canvas');
 
-new App();
+  try {
+    console.log('Starting initialization...');
+    updateImage();
+
+    await new Promise((resolve, reject) => {
+      const maxAttempts = 50;
+      let attempts = 0;
+      
+      const checkInit = () => {
+        console.log('Checking init, attempt:', attempts);
+        if (sliceTransition.isInitialized()) {
+          console.log('Initialization successful');
+          resolve();
+        } else if (attempts >= maxAttempts) {
+          reject(new Error('SliceTransition initialization timeout'));
+        } else {
+          attempts++;
+          setTimeout(checkInit, 100);
+        }
+      };
+      
+      checkInit();
+    });
+
+    console.log('Starting animations...');
+    await sliceTransition.animate(true);
+    setTimeout(cycleImages, 3000);
+  } catch (error) {
+    console.error('Initialization error:', error);
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar-nav');
+
+  if (window.scrollY > 100) {
+    navbar.classList.add('fixed');
+  } else {
+    navbar.classList.remove('fixed');
+  }
+
+});
