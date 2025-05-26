@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar-nav');
 
-  if (window.scrollY > 100) {
+  if (window.scrollY > 600) {
     navbar.classList.add('fixed');
   } else {
     navbar.classList.remove('fixed');

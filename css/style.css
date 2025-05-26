@@ -196,16 +196,25 @@ section {
   &.fixed {
     height: auto;
     background-color: rgba(0,0,0,0.5);
-   backdrop-filter: blur(10px);
-    .logo {
-      max-width: 300px;
+    backdrop-filter: blur(10px);
+    
+    #logo-container {
+      transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
+      width: 100%;
       margin: 0 auto;
+      svg {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }
 
 .navbar-nav-- {}
-.navbar-nav--logo {}
+.navbar-nav--logo {
+  width: 100%;
+  margin: 0 auto;
+}
 
 .navbar-nav--links {
   display: flex;
