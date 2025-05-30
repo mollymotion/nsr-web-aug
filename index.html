@@ -113,49 +113,64 @@
 </section>
 
 <!-- Press Section -->
-<section id="press" class="py-20 px-4 max-w-5xl mx-auto">
-  <h2 class="text-3xl mb-8 font-bold text-white">Press</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      "Blistering and beautiful" – DIY Mag
-    </div>
-    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      "A noise wall that thinks" – The Fader
-    </div>
-    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      "Goth done right" – Brooklyn Vegan
+<section id="press" class="w-screen relative bg-black/50 backdrop-blur-lg">
+  <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
+    <h2 class="text-3xl font-semibold tracking-wide mb-12">Press</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+        <p class="text-base leading-snug italic">"Blistering and beautiful"</p>
+        <span class="block mt-2 text-sm text-white/60">— DIY Mag</span>
+      </div>
+
+      <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+        <p class="text-base leading-snug italic">"A noise wall that thinks"</p>
+        <span class="block mt-2 text-sm text-white/60">— The Fader</span>
+      </div>
+
+      <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+        <p class="text-base leading-snug italic">"Goth done right"</p>
+        <span class="block mt-2 text-sm text-white/60">— Brooklyn Vegan</span>
+      </div>
     </div>
   </div>
 </section>
+
+
 
 <!-- Merch Section -->
-<section id="merch" class="py-20 px-4 max-w-5xl mx-auto">
-  <h2 class="text-3xl mb-8 font-bold text-white">Merch</h2>
+<section id="merch" class="w-screen relative bg-black/50 backdrop-blur-lg">
+  <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
+    <h2 class="text-3xl font-semibold tracking-wide mb-12">Merch</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      T-shirt Placeholder
+      Coaster Set
+      <img src="./images/merch/coasters.webp">
     </div>
     <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      Cassette Placeholder
+      Outdoor Speaker
+      <img src="./images/merch/speaker.jpg">
     </div>
     <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      Sticker Pack Placeholder
+      Business Card Holder
+      <img src="./images/merch/business-card-holder.jpg">
     </div>
   </div>
 </section>
 
-<!-- Shows Section -->
-<section id="shows" class="py-20 px-4 max-w-5xl mx-auto">
-  <h2 class="text-3xl mb-8 font-bold text-white">Upcoming Shows</h2>
-  <div id="shows-list" class="space-y-4">
-    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      05/25 – Saint Vitus, Brooklyn
+<section id="shows" class="w-screen relative bg-black/50 backdrop-blur-lg">
+  <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
+    <h2 class="text-3xl font-semibold tracking-wide mb-12">Upcoming Shows</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-4 rounded-xl text-gray-100 col-span-full" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+        <div id="bit-widget"></div>
+      </div>
     </div>
-    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      06/02 – Elsewhere, NYC
-    </div>
+    
   </div>
 </section>
+
+
 
 
 
@@ -171,6 +186,25 @@
   <script type="module" src="js/slice-animation.js"></script>
 
   <script type="module" src="js/main.js"></script>
+<script src="https://widget.bandsintown.com/main.min.js"></script>
+<script>
+  console.log("Running Bandsintown widget…");
+
+  new Bandsintown.Widget({
+    artist: "None Shall Remain",
+    container: "#bit-widget",
+    app_id: "noneshallremain-site",
+    display_limit: 5,
+    theme: "dark",
+    text_color: "#ffffff",
+    background_color: "transparent",
+    date_format: "MMM D, YYYY",
+    tracking: true,
+    primary_color: "#F93943"
+  });
+</script>
+
+
    
   
 </body>

@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // Define array of image paths
   const images = [
-    'images/hero/hero-1.png',
-    'images/hero/hero-2.png',
-    'images/hero/hero-3.png',
-    'images/hero/hero-4.png',
-    'images/hero/hero-5.png',  
+    './images/hero/hero-1.png',
+    './images/hero/hero-2.png',
+    './images/hero/hero-3.png',
+    './images/hero/hero-4.png',
+    './images/hero/hero-5.png',  
   ];
   
   let currentImageIndex = 0;
@@ -124,3 +124,5 @@ window.addEventListener('scroll', () => {
   }
 
 });
+
+
