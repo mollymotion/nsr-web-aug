@@ -126,3 +126,42 @@ window.addEventListener('scroll', () => {
 });
 
 
+
+// Bandsintown API integration
+// Pulls upcoming shows for None Shall Remain and injects them into #shows-grid
+
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("shows-grid");
+  if (!container) return;
+
+  fetch("https://rest.bandsintown.com/artists/None%20Shall%20Remain/events?app_id=6284b825fee359c4a992c4533a3499f5")
+    .then((res) => res.json())
+    .then((data) => {
+      if (Array.isArray(data) && data.length > 0) {
+        data.forEach((event) => {
+          const div = document.createElement("div");
+          div.className = "p-4 rounded-xl text-gray-100";
+          div.style =
+            "background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);";
+
+          const date = new Date(event.datetime);
+          const formattedDate = date.toLocaleDateString(undefined, {
+            month: "2-digit",
+            day: "2-digit",
+          });
+
+          div.innerHTML = `
+            ${formattedDate} – ${event.venue.name}, ${event.venue.city}
+            <br><a href="${event.url}" class="text-red-400 underline text-sm" target="_blank">Get Tickets</a>
+          `;
+
+          container.appendChild(div);
+        });
+      } else {
+        container.innerHTML = `<p class="text-white/60 col-span-full">No upcoming shows listed.</p>`;
+      }
+    })
+    .catch(() => {
+      container.innerHTML = `<p class="text-white/60 col-span-full">Error loading shows. Try again later.</p>`;
+    });
+});
