@@ -163,22 +163,7 @@
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="p-4 rounded-xl text-gray-100 col-span-full" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-        <section id="shows" class="w-screen relative bg-black/50 backdrop-blur-lg">
-  <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
-    <h2 class="text-3xl font-semibold tracking-wide mb-12">Upcoming Shows</h2>
-    
-    <div class="p-4 rounded-xl text-gray-100 col-span-full" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      <iframe
-        src="https://widget.bandsintown.com/main/artist?app_id=noneshallremain-site&artist=none%20shall%20remain"
-        style="border: none; width: 100%; min-height: 500px;"
-        title="Bandsintown Upcoming Shows"
-        loading="lazy"
-      ></iframe>
-    </div>
-    
-  </div>
-</section>
-
+        <div id="bit-widget"></div>
       </div>
     </div>
     
@@ -201,7 +186,23 @@
   <script type="module" src="js/slice-animation.js"></script>
 
   <script type="module" src="js/main.js"></script>
+<script src="https://widget.bandsintown.com/main.min.js"></script>
+<script>
+  console.log("Running Bandsintown widget…");
 
+  new Bandsintown.Widget({
+    artist: "None Shall Remain",
+    container: "#bit-widget",
+    app_id: "noneshallremain-site",
+    display_limit: 5,
+    theme: "dark",
+    text_color: "#ffffff",
+    background_color: "transparent",
+    date_format: "MMM D, YYYY",
+    tracking: true,
+    primary_color: "#F93943"
+  });
+</script>
 
 
    
