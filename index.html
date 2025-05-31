@@ -104,6 +104,11 @@
 </svg>
       </div>
 
+      <!-- Add social media links -->
+      <div id="socials" class="social-links flex justify-center gap-6 py-4">
+
+      </div>
+
       <nav class="navbar-nav--links mx-auto w-full backdrop-blur-lg bg-gray-900 bg-opacity-50">
           <a href="#press">Press</a>
           <a href="#merch">Merch</a>
@@ -116,20 +121,20 @@
 <section id="press" class="w-screen relative bg-black/50 backdrop-blur-lg">
   <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
     <h2 class="text-3xl font-semibold tracking-wide mb-12">Press</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-        <p class="text-base leading-snug italic">"Blistering and beautiful"</p>
-        <span class="block mt-2 text-sm text-white/60">— DIY Mag</span>
-      </div>
-
-      <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-        <p class="text-base leading-snug italic">"A noise wall that thinks"</p>
-        <span class="block mt-2 text-sm text-white/60">— The Fader</span>
-      </div>
-
-      <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-        <p class="text-base leading-snug italic">"Goth done right"</p>
-        <span class="block mt-2 text-sm text-white/60">— Brooklyn Vegan</span>
+    <div class="grid">
+      <div class="press-card rounded-xl">
+        <div class="press-content">
+          <div class="press-left">
+            <a target="_blank" href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/"><img src="./images/press/mf-site.png" alt="Performance at Dark Room"></a>
+            <div class="press-text">
+              <a target="_blank" href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/"><h3 style="font-size: 2.5rem !important; line-height: 1.2 !important; font-weight: 600 !important;">None Shall Remain Dazzle at Dark Room, Brooklyn</h3></a>
+            </div>
+          </div>
+          <div class="press-right">
+            <a target="_blank" href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/"><img src="./images/press/darkroom.png" alt="Dark Room venue"></a>
+            <p class="mt-4">4/5/25 – Dark Room – Brooklyn, NY ©Alice Teeple</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -160,14 +165,30 @@
 <section id="shows" class="w-screen relative bg-black/50 backdrop-blur-lg">
   <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
     <h2 class="text-3xl font-semibold tracking-wide mb-12">Upcoming Shows</h2>
-    <div id="shows-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div id="shows-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Event cards will be injected here -->
     </div>
+    <template id="tpl_shows">
+      <div class="p-4 rounded-xl text-gray-100 shadow-lg bg-black" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
+        <img src="${artistImage}" class="w-full rounded-t-lg"/>
+        <p class="text-sm text-gray-400">${date} ${time}</p>
+        <p class="text-sm text-gray-400">${venueName} - ${venueCity}</p>
+        <p class="mt-2 text-sm">${desc}</p>
+        <br>
+        <a href="${url}" class="text-red-400 underline text-sm" target="_blank">Get Tickets</a>
+      </div>
+    </template>
+
   </div>
 </section>
 
-
-
+<template id="tpl_social">        
+  <a href="${url}" target="_blank" class="text-white hover:text-red-400 transition-colors">
+    <svg class="w-6 h-6" fill="currentColor">
+      <use href="images/social-icons-sprite.svg#icon-${name}"/>
+    </svg>
+  </a>
+</template>
 
 
   <!-- Footer -->

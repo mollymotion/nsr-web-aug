@@ -244,6 +244,103 @@ section {
   background-color: rgba(0, 0, 0, 0.4); /* Darker black background */
   backdrop-filter: blur(20px); /* Increased blur effect */
   -webkit-backdrop-filter: blur(20px); /* For Safari support */
+
+  .grid {
+    max-width: 1440px; /* Increased from 1280px for slightly wider cards */
+    margin: 0 auto;
+  
+  }
+
+  .press-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    padding: 2rem;
+    background-color: #0d1f2d;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+  }
+
+  .press-content {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .press-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    a {
+      display: block;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.02);
+
+        img {
+          filter: brightness(1.1);
+        }
+
+        h3 {
+          text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+      }
+    }
+  }
+
+  .press-left img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  .press-right {
+    flex-shrink: 0;
+    width: 40%; /* Changed from fixed 433px to be more responsive */
+
+    a {
+      display: block;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.02);
+
+        img {
+          filter: brightness(1.1);
+        }
+      }
+    }
+
+    p {
+      text-align: right;
+    }
+  }
+
+  .press-right img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  .press-text {
+    h3 {
+      font-size: 3rem !important;
+      line-height: 1.2 !important;
+      font-weight: 600 !important;
+      color: #fff !important;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+  }
+
+  /* Remove/overwrite previous styles */
+  .top-image,
+  .content-row,
+  .side-image {
+    display: none;
+  }
 }
 
 /* Merch section */

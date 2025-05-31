@@ -132,36 +132,122 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("shows-grid");
-  if (!container) return;
+  const template = document.getElementById("tpl_shows");
+  
+  if (!container || !template) {
+    console.error("Required DOM elements not found");
+    return;
+  }
 
-  fetch("https://rest.bandsintown.com/artists/None%20Shall%20Remain/events?app_id=6284b825fee359c4a992c4533a3499f5")
-    .then((res) => res.json())
-    .then((data) => {
-      if (Array.isArray(data) && data.length > 0) {
-        data.forEach((event) => {
-          const div = document.createElement("div");
-          div.className = "p-4 rounded-xl text-gray-100";
-          div.style =
-            "background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);";
+  // Show data loading and rendering
+  async function loadShows() {
+    // Add loading state
+    container.innerHTML = '<div class="text-center">Loading shows...</div>';
 
-          const date = new Date(event.datetime);
-          const formattedDate = date.toLocaleDateString(undefined, {
-            month: "2-digit",
-            day: "2-digit",
-          });
+    try {
+      const response = await fetch('https://rest.bandsintown.com/artists/None%20Shall%20Remain/events?app_id=6284b825fee359c4a992c4533a3499f5');
+      if (!response.ok) throw new Error('Network response was not ok');
 
-          div.innerHTML = `
-            ${formattedDate} – ${event.venue.name}, ${event.venue.city}
-            <br><a href="${event.url}" class="text-red-400 underline text-sm" target="_blank">Get Tickets</a>
-          `;
-
-          container.appendChild(div);
-        });
-      } else {
-        container.innerHTML = `<p class="text-white/60 col-span-full">No upcoming shows listed.</p>`;
+      const data = await response.json();
+      if (!Array.isArray(data) || data.length === 0) {
+        throw new Error('No events found');
       }
-    })
-    .catch(() => {
-      container.innerHTML = `<p class="text-white/60 col-span-full">Error loading shows. Try again later.</p>`;
+
+      console.dir( data); // Log the entire data structure for debugging
+      // Clear loading state
+      container.innerHTML = '';
+
+      data.forEach((event) => {
+        const fragment = template.content.cloneNode(true);
+        const datetime = new Date(event.datetime);
+
+        // Helper function to capitalize each word in a sentence after line breaks
+        const toSentenceCase = (str) => {
+          return str.split('\n')
+                   .map(line => line
+                     .split(' ')
+                     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                     .join(' ')
+                   )
+                   .map((line, idx, arr) => idx < arr.length - 1 ? line + ' &bullet; ' : line)
+                   .join('');
+        };
+
+        const __newdata = {
+          date: datetime.toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'}),
+          time: datetime.toLocaleTimeString('en-US', {hour: 'numeric', hour12: true}).toUpperCase(),
+          desc: toSentenceCase(event.description || 'No description available'),
+          venueName: event.venue.name,
+          venueCity: event.venue.city,
+          url: event.url,
+          artistImage: event.artist.image_url || 'https://placehold.co/400'
+        };
+
+        console.log('Template HTML:', fragment.firstElementChild.innerHTML);
+        console.log('Data:', __newdata);
+
+        const html = fragment.firstElementChild.innerHTML
+          .replace('${date}', __newdata.date)
+          .replace('${time}', __newdata.time)
+          .replace('${desc}', __newdata.desc) 
+          .replace('${venueName}', __newdata.venueName)
+          .replace('${venueCity}', __newdata.venueCity)
+          .replace('${artistImage}', __newdata.artistImage )
+          .replace('${url}', __newdata.url);
+
+        fragment.firstElementChild.innerHTML = html;
+        container.appendChild(fragment);
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      container.innerHTML = `<p class="text-white/60 col-span-full">
+        ${error.message === 'No events found' ? 'No upcoming shows listed.' : 'Error loading shows. Try again later.'}
+      </p>`;
+    }
+  }
+
+  loadShows();
+});
+
+// Smooth scroll behavior
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Improved navbar sticky behavior
+const navbar = document.querySelector('.navbar-nav');
+let lastScroll = 0;
+
+function handleScroll() {
+  const currentScroll = window.pageYOffset;
+  
+  // Add/remove fixed class based on scroll direction
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    navbar.classList.add('fixed');
+  } else if (currentScroll < lastScroll && currentScroll < 100) {
+    navbar.classList.remove('fixed'); 
+  }
+
+  lastScroll = currentScroll;
+}
+
+// Throttle scroll handler for better performance
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      handleScroll();
+      ticking = false;
     });
+    ticking = true;
+  }
 });
