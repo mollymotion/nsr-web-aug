@@ -1,8 +1,13 @@
 import SliceTransition from './slice-animation.js';
 import Gradient from './gradient.js';
+import BandsInTown from './bandsintown.js';
+import Nav from './sticky-nav.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('DOM Content Loaded');
+  
+  // Initialize StickyNav
+  const stickyNav = new Nav();
   
   // Logo animation handling
   const video = document.getElementById('logo-video');
@@ -114,99 +119,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-window.addEventListener('scroll', () => {
-  const navbar = document.querySelector('.navbar-nav');
-
-  if (window.scrollY > 600) {
-    navbar.classList.add('fixed');
-  } else {
-    navbar.classList.remove('fixed');
-  }
-
-});
-
-
-
-// Bandsintown API integration
-// Pulls upcoming shows for None Shall Remain and injects them into #shows-grid
-
+// Bandsintown Integration
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("shows-grid");
-  const template = document.getElementById("tpl_shows");
-  
-  if (!container || !template) {
-    console.error("Required DOM elements not found");
-    return;
-  }
-
-  // Show data loading and rendering
-  async function loadShows() {
-    // Add loading state
-    container.innerHTML = '<div class="text-center">Loading shows...</div>';
-
-    try {
-      const response = await fetch('https://rest.bandsintown.com/artists/None%20Shall%20Remain/events?app_id=6284b825fee359c4a992c4533a3499f5');
-      if (!response.ok) throw new Error('Network response was not ok');
-
-      const data = await response.json();
-      if (!Array.isArray(data) || data.length === 0) {
-        throw new Error('No events found');
-      }
-
-      console.dir( data); // Log the entire data structure for debugging
-      // Clear loading state
-      container.innerHTML = '';
-
-      data.forEach((event) => {
-        const fragment = template.content.cloneNode(true);
-        const datetime = new Date(event.datetime);
-
-        // Helper function to capitalize each word in a sentence after line breaks
-        const toSentenceCase = (str) => {
-          return str.split('\n')
-                   .map(line => line
-                     .split(' ')
-                     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                     .join(' ')
-                   )
-                   .map((line, idx, arr) => idx < arr.length - 1 ? line + ' &bullet; ' : line)
-                   .join('');
-        };
-
-        const __newdata = {
-          date: datetime.toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'}),
-          time: datetime.toLocaleTimeString('en-US', {hour: 'numeric', hour12: true}).toUpperCase(),
-          desc: toSentenceCase(event.description || 'No description available'),
-          venueName: event.venue.name,
-          venueCity: event.venue.city,
-          url: event.url,
-          artistImage: event.artist.image_url || 'https://placehold.co/400'
-        };
-
-        console.log('Template HTML:', fragment.firstElementChild.innerHTML);
-        console.log('Data:', __newdata);
-
-        const html = fragment.firstElementChild.innerHTML
-          .replace('${date}', __newdata.date)
-          .replace('${time}', __newdata.time)
-          .replace('${desc}', __newdata.desc) 
-          .replace('${venueName}', __newdata.venueName)
-          .replace('${venueCity}', __newdata.venueCity)
-          .replace('${artistImage}', __newdata.artistImage )
-          .replace('${url}', __newdata.url);
-
-        fragment.firstElementChild.innerHTML = html;
-        container.appendChild(fragment);
-      });
-    } catch (error) {
-      console.error('Error:', error);
-      container.innerHTML = `<p class="text-white/60 col-span-full">
-        ${error.message === 'No events found' ? 'No upcoming shows listed.' : 'Error loading shows. Try again later.'}
-      </p>`;
-    }
-  }
-
-  loadShows();
+  const bandsInTown = new BandsInTown();
+  bandsInTown.init();
 });
 
 // Smooth scroll behavior
@@ -221,33 +137,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       });
     }
   });
-});
-
-// Improved navbar sticky behavior
-const navbar = document.querySelector('.navbar-nav');
-let lastScroll = 0;
-
-function handleScroll() {
-  const currentScroll = window.pageYOffset;
-  
-  // Add/remove fixed class based on scroll direction
-  if (currentScroll > lastScroll && currentScroll > 100) {
-    navbar.classList.add('fixed');
-  } else if (currentScroll < lastScroll && currentScroll < 100) {
-    navbar.classList.remove('fixed'); 
-  }
-
-  lastScroll = currentScroll;
-}
-
-// Throttle scroll handler for better performance
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      handleScroll();
-      ticking = false;
-    });
-    ticking = true;
-  }
 });
