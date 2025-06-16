@@ -9,28 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize StickyNav
   const stickyNav = new Nav();
   
-  // Logo animation handling
-  const video = document.getElementById('logo-video');
-  const svg = document.getElementById('logo-svg');
-  
-  if (video && svg) {
-    // Fade in video on page load
-    video.style.transition = 'opacity 1s ease';
-    requestAnimationFrame(() => {
-      video.style.opacity = 1;
-    });
-
-    // Convert 6:07 @30fps to seconds
-    const fadeOutTime = (6 * 30 + 7) / 30; // ≈ 6.233 seconds
-
-    // At 6.233s, fade out video and fade in SVG
-    setTimeout(() => {
-      video.style.opacity = 0;
-      svg.classList.remove('opacity-0');
-      svg.classList.add('opacity-100');
-    }, fadeOutTime * 1000);
-  }
-
   // Slideshow handling
   const sliceTransition = new SliceTransition();
   const heroImage = document.querySelector('.hero-image');

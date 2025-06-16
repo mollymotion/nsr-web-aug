@@ -14,6 +14,7 @@ a {
 
 a:hover {
   transform: scale(1.05);
+  text-decoration: none;
 }
 
 html {
@@ -63,18 +64,6 @@ body {
 }
 
 /* Gradient background */
-/* #gradient-canvas {
-  width: 100%;
-  height: 100%;
-  --gradient-color-1: #051016;
-  --gradient-color-2: #d2973b;
-  --gradient-color-3: #2f586e;
-  --gradient-color-4: #0d1f2d;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}*/
 #gradient-canvas {
   width: 100%;
   height: 100%;
@@ -168,7 +157,7 @@ section {
     text-transform: uppercase;
     
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
 
   }
@@ -197,6 +186,20 @@ section {
 
 .hidden {
   display: none;
+}
+
+
+/* Glowing ticket link */
+.ticket-link {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 0 5px #0d4658;
+  transition: all 0.3s ease;
+}
+
+.ticket-link:hover {
+  color: #0d4658;
+  text-shadow: 0 0 10px #0d4658;
 }
 
 
@@ -268,10 +271,6 @@ section {
       transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
       width: 100%;
       margin: 0 auto;
-      svg {
-        width: 100%;
-        height: auto;
-      }
     }
   }
 }
