@@ -5,8 +5,8 @@ class StickyNav {
     this.heroSection = document.querySelector('.h-screen');
     // Get reference to navigation bar
     this.navBar = document.querySelector('.navbar-nav');
-    // Set scroll threshold to 75% of hero section height
-    this.threshold = this.heroSection.offsetHeight * 0.75;
+    // Set scroll threshold to 80% of hero section height
+    this.threshold = this.heroSection.offsetHeight * 0.80;
     // Track if nav is currently stuck
     this.isStuck = false;
     // Start listening for scroll events
@@ -40,10 +40,8 @@ class StickyNav {
   stickNav() {
     this.isStuck = true;
     // These classes control the sticky positioning:
-    this.navBar.classList.add('fixed', 'top-[100px]');  // Adjust this value to match your logo height
+    this.navBar.classList.add('fixed', 'top-[300px]');  // Increased from 100px to 200px
     this.navBar.classList.remove('absolute', 'bottom-0');
-
-    
 
     console.log('stickNav called');
   }
@@ -52,10 +50,9 @@ class StickyNav {
   unstickNav() {
     this.isStuck = false;
     // These classes control the default positioning:
-    this.navBar.classList.remove('fixed', 'top-[100px]');  // Make sure to update here too
-    this.navBar.classList.add('absolute', 'bottom-0');  // Places nav at bottom
+    this.navBar.classList.remove('fixed', 'top-[300px]');  // Updated to match
+    this.navBar.classList.add('absolute', 'bottom-0');
 
-   
     console.log('unstickNav called');
   }
 }

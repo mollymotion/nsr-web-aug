@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,166 +8,240 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="text-white relative">
-  <canvas id="gradient-canvas" data-transition-in></canvas>
 
+<body class="text-white relative">
   <!-- Hero Section -->
   <section class="h-screen w-full relative">
 
     <img class="hero-image" alt="Hero Image">
     <div id="slice-mask"></div>
-    
+
 
     <div class="z-10 navbar-nav z-10 w-full absolute flex flex-col justify-between top-0">
       <!-- Logo container -->
       <div id="logo-container" class="w-full px-12 py-8">
-<img src="./images/logo.png" alt="NSR Logo" class="w-32 h-auto mx-auto">
+        <img src="./images/logo-splat.svg" alt="NSR Logo" class="w-32 h-auto mx-auto">
       </div>
-  <!-- Add social media links -->
-       <svg xmlns="http://www.w3.org/2000/svg" class="d-none" style="display;none !important">
-  <symbol id="icon-instagram" viewBox="0 0 24 24">
-    <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/>
-  </symbol>
-  
-  <symbol id="icon-twitter" viewBox="0 0 24 24">
-    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
-  </symbol>
+      <!-- Add social media links -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="hidden" style="display: none !important">
+        <symbol id="icon-instagram" viewBox="0 0 24 24">
+          <path fill-rule="evenodd"
+            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+            clip-rule="evenodd" />
+        </symbol>
 
-  <symbol id="icon-facebook" viewBox="0 0 24 24">
-    <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
-  </symbol>
+        <symbol id="icon-twitter" viewBox="0 0 24 24">
+          <path
+            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+        </symbol>
 
-  <symbol id="icon-youtube" viewBox="0 0 24 24">
-    <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.507 2.507 0 0 1 1.768-1.768C5.746 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"/>
-  </symbol>
+        <symbol id="icon-facebook" viewBox="0 0 24 24">
+          <path fill-rule="evenodd"
+            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+            clip-rule="evenodd" />
+        </symbol>
 
-  <symbol id="icon-shazam" viewBox="0 0 24 24">
-    <path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.466 15.257a.5.5 0 0 1-.707 0L12 10.5l-4.759 4.757a.5.5 0 0 1-.707-.707L11.293 9.79a.5.5 0 0 1 .707 0l4.76 4.76a.5.5 0 0 1 0 .707zm0-6.514a.5.5 0 0 1-.707 0L12 3.986l-4.759 4.757a.5.5 0 1 1-.707-.707l4.76-4.76a.5.5 0 0 1 .707 0l4.76 4.76a.5.5 0 0 1 0 .707z" clip-rule="evenodd"/>
-  </symbol>
+        <symbol id="icon-youtube" viewBox="0 0 24 24">
+          <path fill-rule="evenodd"
+            d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.507 2.507 0 0 1 1.768-1.768C5.746 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
+            clip-rule="evenodd" />
+        </symbol>
 
-  <symbol id="icon-spotify" viewBox="0 0 24 24">
-    <path fill-rule="evenodd" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.371-.721.53-1.07.29-3.179-1.94-7.17-2.38-11.881-1.31-.459.101-.91-.21-1.02-.67-.101-.46.21-.91.67-1.02 5.151-1.19 9.561-.67 13.091 1.52.361.22.49.721.27 1.091zm1.47-3.27c-.301.459-.921.67-1.381.37-3.639-2.24-9.18-2.89-13.481-1.58-.539.15-1.11-.15-1.26-.69-.15-.54.15-1.11.69-1.26 4.901-1.49 11.021-.8 15.21 1.78.45.301.67.91.37 1.381zm.129-3.401c-4.371-2.59-11.561-2.84-15.721-1.57-.659.19-1.361-.21-1.54-.87-.19-.66.21-1.361.87-1.54 4.81-1.461 12.81-1.18 17.851 1.82.59.35.779 1.11.419 1.711-.349.51-1.119.7-1.709.35z" clip-rule="evenodd"/>
-  </symbol>
-</svg>
-      
+        <symbol id="icon-shazam" viewBox="0 0 24 24">
+          <path fill-rule="evenodd"
+            d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.466 15.257a.5.5 0 0 1-.707 0L12 10.5l-4.759 4.757a.5.5 0 0 1-.707-.707L11.293 9.79a.5.5 0 0 1 .707 0l4.76 4.76a.5.5 0 0 1 0 .707zm0-6.514a.5.5 0 0 1-.707 0L12 3.986l-4.759 4.757a.5.5 0 1 1-.707-.707l4.76-4.76a.5.5 0 0 1 .707 0l4.76 4.76a.5.5 0 0 1 0 .707z"
+            clip-rule="evenodd" />
+        </symbol>
+
+        <symbol id="icon-itunes" viewBox="0 0 32 32">
+          <path fill="currentColor"
+            d="M31.995 8.167c0-0.984-0.083-1.964-0.318-2.922-0.422-1.745-1.417-3.078-2.906-4.057-0.766-0.5-1.609-0.807-2.505-0.969-0.688-0.125-1.385-0.182-2.083-0.198-0.052-0.005-0.109-0.016-0.167-0.021h-16.031c-0.203 0.016-0.406 0.026-0.609 0.036-0.995 0.057-1.984 0.161-2.922 0.536-1.781 0.703-3.068 1.932-3.818 3.703-0.26 0.599-0.391 1.234-0.484 1.88-0.078 0.521-0.12 1.047-0.135 1.573 0 0.042-0.010 0.083-0.010 0.125v16.297c0.010 0.188 0.021 0.375 0.031 0.563 0.068 1.089 0.208 2.167 0.667 3.167 0.865 1.891 2.318 3.135 4.313 3.734 0.557 0.172 1.141 0.25 1.724 0.302 0.74 0.073 1.479 0.083 2.219 0.083h14.708c0.698 0 1.396-0.047 2.094-0.135 1.099-0.141 2.13-0.464 3.063-1.078 1.12-0.74 1.964-1.719 2.505-2.943 0.25-0.563 0.391-1.161 0.495-1.766 0.151-0.901 0.182-1.813 0.182-2.724-0.005-5.063 0-10.125-0.005-15.188zM23.432 13.484v7.615c0 0.557-0.078 1.104-0.328 1.609-0.385 0.786-1.010 1.281-1.849 1.521-0.464 0.135-0.943 0.208-1.427 0.229-1.266 0.063-2.365-0.797-2.589-2.047-0.193-1.031 0.302-2.167 1.385-2.698 0.427-0.208 0.891-0.333 1.354-0.427 0.505-0.109 1.010-0.208 1.51-0.323 0.37-0.083 0.609-0.307 0.682-0.688 0.021-0.083 0.026-0.172 0.026-0.255 0-2.422 0-4.844 0-7.26 0-0.083-0.016-0.167-0.036-0.245-0.052-0.203-0.198-0.323-0.406-0.313-0.214 0.010-0.422 0.047-0.63 0.089-1.016 0.198-2.031 0.401-3.042 0.609l-4.932 0.995c-0.021 0.005-0.047 0.016-0.068 0.016-0.37 0.104-0.5 0.271-0.516 0.656-0.005 0.057 0 0.115 0 0.172-0.005 3.469 0 6.938-0.005 10.406 0 0.563-0.063 1.115-0.286 1.635-0.37 0.854-1.026 1.391-1.911 1.646-0.469 0.135-0.948 0.214-1.438 0.229-1.276 0.047-2.339-0.802-2.557-2.057-0.188-1.083 0.307-2.25 1.536-2.771 0.479-0.198 0.974-0.307 1.479-0.411 0.38-0.078 0.766-0.156 1.146-0.234 0.51-0.109 0.776-0.432 0.802-0.953v-0.198c0-3.948 0-7.896 0-11.844 0-0.167 0.021-0.333 0.057-0.495 0.094-0.38 0.365-0.599 0.729-0.688 0.339-0.089 0.688-0.151 1.031-0.224 0.979-0.198 1.953-0.396 2.932-0.589l3.026-0.615c0.896-0.177 1.786-0.359 2.682-0.536 0.292-0.057 0.589-0.12 0.885-0.141 0.411-0.036 0.698 0.224 0.74 0.641 0.010 0.099 0.016 0.198 0.016 0.297 0 2.547 0 5.094 0 7.641z" />
+        </symbol>
+
+        <symbol id="icon-spotify" viewBox="0 0 24 24">
+          <path fill-rule="evenodd"
+            d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.371-.721.53-1.07.29-3.179-1.94-7.17-2.38-11.881-1.31-.459.101-.91-.21-1.02-.67-.101-.46.21-.91.67-1.02 5.151-1.19 9.561-.67 13.091 1.52.361.22.49.721.27 1.091zm1.47-3.27c-.301.459-.921.67-1.381.37-3.639-2.24-9.18-2.89-13.481-1.58-.539.15-1.11-.15-1.26-.69-.15-.54.15-1.11.69-1.26 4.901-1.49 11.021-.8 15.21 1.78.45.301.67.91.37 1.381zm.129-3.401c-4.371-2.59-11.561-2.84-15.721-1.57-.659.19-1.361-.21-1.54-.87-.19-.66.21-1.361.87-1.54 4.81-1.461 12.81-1.18 17.851 1.82.59.35.779 1.11.419 1.711-.349.51-1.119.7-1.709.35z"
+            clip-rule="evenodd" />
+        </symbol>
+      </svg>
+
+
+
+      <template id="tpl_social">
+        <a href="${url}" target="_blank" class="text-white hover:text-red-400 transition-colors">
+          <svg class="w-6 h-6" fill="currentColor">
+            <use href="./images/social-icons-sprite.svg#icon-${type}" />
+          </svg>
+        </a>
+      </template>
 
       <div id="socials" class="social-links flex justify-center gap-6 py-4 mt-auto">
+        <!-- Social media links will be injected here -->
       </div>
 
       <nav class="navbar-nav--links relative mx-auto w-full backdrop-blur-lg bg-gray-900 bg-opacity-50">
-          <a href="#press">Press</a>
-          <a href="#merch">Merch</a>
-          <a href="#shows">Shows</a>
+        <a href="#press">Press</a>
+        <a href="#merch">Merch</a>
+        <a href="#shows">Shows</a>
       </nav>
-  </div>
-</section>
+    </div>
+  </section>
 
-<!-- Press Section -->
-<section id="press" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
-  <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto" >
-    <h2 class="text-3xl font-semibold tracking-wide mb-12">Press</h2>
-    <div class="grid gap-8">
-      <div class="rounded-xl p-6 shadow-lg" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-        <div class="flex flex-col lg:flex-row gap-8">
-          <!-- Left Column -->
-          <div class="lg:w-2/3 space-y-6">
-            <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/" target="_blank" 
-               class="block">
-              <img src="./images/press/mf-site.png" alt="Performance at Dark Room" 
-                   class="w-full rounded-lg">
-            </a>
-            <div>
-              <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/" 
-                 target="_blank"
-                 class="text-2xl md:text-4xl font-semibold leading-tight">
-                None Shall Remain Dazzle at Dark Room, Brooklyn
+
+
+  <template id="tpl_shows">
+      <div class="grid-">
+      <a href="${url}" class="ticket-link grid-card relative flex items-start gap-6 w-100" target="_blank">
+
+          <img src="${artistImage}" alt="Show Image" class="grid-card--img object-cover flex-shrink-0 w-40 h-40" />
+
+        <div class="flex-1 flex flex-col justify-between h-40">
+          <div>
+            <div class="text-xl font-semibold">${date} ${time}</div>
+            <div class="grid-card--title">${venueName} - ${venueCity}</div>
+            <div class="text-sm text-gray-500 mt-1">${desc}</div>
+          </div>
+          <span class="ticket-link--text">Get Tickets</span>
+        </div>
+      
+    </a>
+    </div>
+  </template>
+
+  <section id="shows" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
+    <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
+      <h2 class="text-3xl font-semibold tracking-wide mb-12 text-center">Upcoming Shows</h2>
+      <div id="shows-grid" class="flex flex-col items-center">
+        <!-- Shows will be injected here as individual cards -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Merch Section -->
+  <section id="merch" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
+    <div class="sm:px-12 text-white max-w-7xl mx-auto">
+      <h2 class="text-3xl font-semibold tracking-wide mb-12 text-center">Merch</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-5/4 mx-auto">
+
+        <div class="grid-card">
+          <h3 class="grid-card--title">Coaster Set</h3>
+          <img src="./images/merch/coasters.webp" class="w-24 h-24 object-cover mx-auto grid-card--img">
+        </div>
+
+        <div class="grid-card">
+          <h3 class="grid-card--title">Outdoor Speaker</h3>
+          <img src="./images/merch/speaker.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img ">
+        </div>
+
+        <div class="grid-card">
+          <h3 class="grid-card--title">Business Card Holder</h3>
+          <img src="./images/merch/business-card-holder.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Press Section -->
+  <section id="press" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
+    <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
+      <h2 class="text-3xl font-semibold tracking-wide mb-12 text-center">Press</h2>
+
+      <div class="flex flex-col items-center">
+        <!-- First press card -->
+        <div class="text-gray-100 mb-8 w-3/4 grid-card">
+          <div class="py-4">
+            <div class="flex items-start gap-4">
+              <div class="flex-1 flex flex-col justify-between h-60 text-right">
+                <div>
+                  <div class="text-lg font-semibold mb-2">
+                    <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/"
+                      target="_blank" class="hover:underline">
+                      <img src="./images/press/mf-site.png" alt="Music Fiends"
+                        class="h-16 w-auto object-contain inline" />
+                    </a>
+                  </div>
+                  <div class="mb-2">
+                    <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/"
+                      target="_blank">
+                      <span class="grid-card--title">
+                        None Shall Remain Dazzle at Dark Room, Brooklyn
+                      </span>
+
+                    </a>
+                  </div>
+                </div>
+                <div class="text-xs text-gray-500">
+                  Photo Credit: Alice Teeple
+                </div>
+              </div>
+              <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/" target="_blank">
+                <img src="./images/press/darkroom.png" alt="Performance at Dark Room"
+                  class="w-60 h-60 object-cover flex-shrink-0" />
               </a>
             </div>
           </div>
+        </div>
 
-          <!-- Right Column -->
-          <div class="lg:w-1/3 space-y-4">
-            <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/" 
-               target="_blank"
-               class="block">
-              <img src="./images/press/darkroom.png" alt="Dark Room venue" 
-                   class="w-full rounded-lg shadow-md">
-            </a>
-            <p class="text-sm text-gray-400">4/5/25 – Dark Room – Brooklyn, NY ©Alice Teeple</p>
+        <!-- Second press card -->
+        <div class="text-gray-100 w-3/4 grid-card">
+          <div class="py-4">
+            <div class="flex items-start gap-4">
+              <div class="flex-1 flex flex-col justify-between h-60 text-right">
+                <div>
+                  <div class="text-lg font-semibold mb-2">
+                    <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
+                      target="_blank" class="hover:underline">
+                      <img src="./images/press/postpunkglow.webp" alt="Post-Punk.com"
+                        class="h-16 w-auto object-contain inline" />
+                    </a>
+                  </div>
+                  <div class="mb-2">
+                    <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
+                      target="_blank" class="hover:underline">
+                      <span class="grid-card--title">
+                        None Shall Remain Debut Animated Lyric Video for Macabre Gothic Rock Anthem "Dancin' On My Own Grave"</span>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+              <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
+                target="_blank">
+                <img src="./images/press/dancin-still.png" alt="Debut Animated Lyric Video for Dancin' On My Own Grave"
+                  class="dancin w-60 h-60 object-cover flex-shrink-0" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-
-
-<!-- Merch Section -->
-<section id="merch" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
-  <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
-    <h2 class="text-3xl font-semibold tracking-wide mb-12">Merch</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      Coaster Set
-      <img src="./images/merch/coasters.webp">
-    </div>
-    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      Outdoor Speaker
-      <img src="./images/merch/speaker.jpg">
-    </div>
-    <div class="p-4 rounded-xl text-gray-100" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-      Business Card Holder
-      <img src="./images/merch/business-card-holder.jpg">
-    </div>
-  </div>
-</section>
-
-<section id="shows" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
-  <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
-    <h2 class="text-3xl font-semibold tracking-wide mb-12">Upcoming Shows</h2>
-    <div id="shows-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Event cards will be injected here -->
-    </div>
-    <template id="tpl_shows">
-      <div class="p-4 rounded-xl text-gray-100 shadow-lg bg-black" style="background-color: #0d1f2d; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);">
-        <img src="${artistImage}" class="w-full rounded-t-lg"/>
-        <p class="text-sm text-gray-400">${date} ${time}</p>
-        <p class="text-sm text-gray-400">${venueName} - ${venueCity}</p>
-        <p class="mt-2 text-sm">${desc}</p>
-        <br>
-        <a href="${url}" class="ticket-link" target="_blank">Get Tickets</a>
-      </div>
-    </template>
-
-  </div>
-</section>
-
-<template id="tpl_social">        
-  <a href="${url}" target="_blank" class="text-white hover:text-red-400 transition-colors">
-    <svg class="w-6 h-6" fill="currentColor">
-      <use href="./images/social-icons-sprite.svg#icon-${type}"/>
-    </svg>
-  </a>
-</template>
+  </section>
 
 
   <!-- Footer -->
-  <footer class="text-center py-10 text-gray-500">
-    &copy; 2025 NSR – All rights reserved.
+  <footer class="relative py-20 pb-96 text-gray-500">
+    <div class="absolute bottom-0 left-0 w-3/4">
+      <img src="./images/band-collage-footer.svg" alt="Band Collage" class="w-3/4" />
+    </div>
+    <div class="absolute bottom-0 right-0 p-4">
+      &copy; 2025 NSR – All rights reserved.
+    </div>
   </footer>
 
+  <!-- Parallax Silhouette -->
+  <div class="parallax-silhouette">
+    <img src="./images/silhouettes/silhouette-long.svg" alt="Silhouette" />
+  </div>
 
-
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-   <script type="module" src="js/gradient.js"></script> 
+  <script type="module" src="js/gradient.js"></script>
   <script type="module" src="js/slice-animation.js"></script>
-
   <script type="module" src="js/main.js"></script>
-
-
-   
-  
 </body>
+
 </html>

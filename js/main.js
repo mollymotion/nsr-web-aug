@@ -1,13 +1,16 @@
 import SliceTransition from './slice-animation.js';
-import Gradient from './gradient.js';
 import BandsInTown from './bandsintown.js';
 import Nav from './sticky-nav.js';
+import ParallaxController from './parallax.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('DOM Content Loaded');
   
   // Initialize StickyNav
   const stickyNav = new Nav();
+  
+  // Initialize Parallax
+  const parallax = new ParallaxController();
   
   // Slideshow handling
   const sliceTransition = new SliceTransition();
@@ -53,18 +56,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Gradient handling
-  const gradient = new Gradient();
-  gradient.freqX = 7e-5;
-  gradient.freqY = 14e-5;
-  gradient.activeColors = [
-      1.0,    // First color (purple) - full presence
-      0.8,    // Second color (red) - reduced presence
-      1.0,    // Third color (dark purple) - strong presence
-      1.0     // Fourth color (burgundy) - medium presence
-  ];
-  await gradient.initGradient('#gradient-canvas');
-
   try {
     console.log('Starting initialization...');
     updateImage();
@@ -103,6 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
   bandsInTown.init();
 });
 
+// Smooth scroll behavior
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
 // Smooth scroll behavior
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {

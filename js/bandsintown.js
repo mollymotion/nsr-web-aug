@@ -33,7 +33,7 @@ export default class BandsInTown {
             
             if (socials && Array.isArray(artist.links)) {
                 socials.forEach(link => {
-                    if (link.url && link.type) {
+                    if (link.url && link.type && link.type.toLowerCase() !== 'website') {
                       this.addSocialLink(link.type, link.url);
                     }
                 });
@@ -49,10 +49,12 @@ export default class BandsInTown {
         
         const fragment = this.socialTemplate.content.cloneNode(true);
         const element = fragment.firstElementChild;
+
         element.href = url;
         
         // Fix: Uncomment and ensure the SVG use element's href is set
         const useElement = element.querySelector('use');
+
         if (useElement) {
             useElement.setAttribute('href', `#icon-${type.toLowerCase()}`);
         }
@@ -73,32 +75,50 @@ export default class BandsInTown {
     }
 
     async loadShows() {
-        this.container.innerHTML = '<div class="text-center">Loading shows...</div>';
+        this.container.innerHTML = '<div class="text-center text-gray-400">Loading shows...</div>';
 
         try {
-            const response = await fetch(`https://rest.bandsintown.com/artists/${ARTIST_NAME}/events?app_id=${API_KEY}`);
+            // Get all shows and filter on client side
+            const response = await fetch(`https://rest.bandsintown.com/artists/${ARTIST_NAME}/events?app_id=${API_KEY}&date=all`);
             if (!response.ok) throw new Error('Network response was not ok');
 
             const data = await response.json();
-            console.log('Shows Response:', data);
+            console.log('All shows:', data);
 
             if (!Array.isArray(data) || data.length === 0) {
                 throw new Error('No events found');
             }
 
+            // Filter for upcoming shows only
+            const now = new Date();
+            const upcomingShows = data
+                .filter(event => {
+                    const eventDate = new Date(event.datetime);
+                    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    const eventDay = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+                    return eventDay >= today;
+                })
+                .sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+
+            console.log('Filtered upcoming shows:', upcomingShows);
+            
+            if (upcomingShows.length === 0) {
+                throw new Error('No upcoming shows');
+            }
+
             this.container.innerHTML = '';
-            this.renderShows(data);
+            this.renderShows(upcomingShows);
 
         } catch (error) {
             console.error('Error:', error);
-            this.container.innerHTML = `<p class="text-white/60 col-span-full">
-                ${error.message === 'No events found' ? 'No upcoming shows listed.' : 'Error loading shows. Try again later.'}
-            </p>`;
+            this.container.innerHTML = `<div class="text-center text-gray-400">
+                ${error.message === 'No upcoming shows' ? 'No upcoming shows listed.' : 'Error loading shows. Try again later.'}
+            </div>`;
         }
     }
 
     renderShows(shows) {
-        shows.forEach((event) => {
+        shows.forEach((event, index) => {
             const fragment = this.template.content.cloneNode(true);
             const datetime = new Date(event.datetime);
 
@@ -109,8 +129,13 @@ export default class BandsInTown {
                 venueName: event.venue.name,
                 venueCity: event.venue.city,
                 url: event.url,
-                artistImage: event.artist.image_url || 'https://placehold.co/400'
+                artistImage: event?.artist?.image_url || './images/hero/hero-1.png'
             };
+
+            // Wrap each show in its own card with 75% width
+            // const cardDiv = document.createElement('div');
+            // cardDiv.className = `p-6 pt-6 text-gray-100 w-3/4 position-relative ${index < shows.length - 1 ? 'mb-8' : ''}`;
+            // cardDiv.style.backgroundColor = '#0e0e0e';
 
             const html = fragment.firstElementChild.innerHTML
                 .replace('${date}', showData.date)
@@ -122,6 +147,7 @@ export default class BandsInTown {
                 .replace('${url}', showData.url);
 
             fragment.firstElementChild.innerHTML = html;
+            // cardDiv.appendChild(fragment);
             this.container.appendChild(fragment);
         });
     }
