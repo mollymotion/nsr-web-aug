@@ -255,6 +255,7 @@ section {
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
+    height: 100vh;
   }
 
   /* Adjust animation duration for slice-transition-mask on smaller screens to improve performance */
