@@ -249,13 +249,23 @@ section {
 
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
-  /* Mobile background fixes */
+  /* Mobile background fixes - Use pseudo-element for fixed background */
   body {
-    background-position: center center;
-    background-size: cover;
-    background-attachment: fixed;
+    background: none;
     min-height: 100vh;
+    height: auto;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
     height: 100vh;
+    background: url('../images/pink-bg.svg') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
   }
 
   /* Adjust animation duration for slice-transition-mask on smaller screens to improve performance */
