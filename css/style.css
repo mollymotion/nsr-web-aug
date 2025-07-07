@@ -204,6 +204,7 @@ section {
     background: rgba(0,0,0,0.7);
     backdrop-filter: blur(12px);
     height: auto;
+    width: inherit;
     
     #logo-container {
       transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
@@ -301,7 +302,7 @@ section {
 
 .grid-card {
   box-shadow: 4px 4px 0px #ff2c8b;
-  background-color: rgba(14, 14, 14, 1); /* Matches press section opacity */
+  background-color: rgba(14, 14, 14, 1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 1;
@@ -309,15 +310,17 @@ section {
   width: 100%;
   margin: 1rem 0;
   transition: transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  overflow: hidden; /* Ensure content doesn't spill outside */
+  box-sizing: border-box; /* Include padding in width calculations */
   
   * {
     transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
 
-
   &:hover {
     box-shadow: 2px 2px 0 0 #ff2c8b;
     transform: scale(1.025);
+    overflow: visible; /* Allow slight overflow on hover for shadow effects */
 
     .grid-card--title {
       /* transform: scale(0.95); */
@@ -341,6 +344,21 @@ section {
       transform: scale(1.025);
     }
   }
+}
+
+/* Remove or comment out this rule that's breaking the iframe */
+/*
+.grid-card iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+*/
+
+/* Replace with this instead */
+.grid-card iframe {
+  max-width: 100%;
+  display: block;
 }
 
 .grid-card--title {

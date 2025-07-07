@@ -95,7 +95,7 @@
       <h2 class="text-3xl font-semibold tracking-wide mb-12 text-center">Videos</h2>
       <div class="flex justify-center">
         <div class="text-gray-100 w-3/4 grid-card">
-          <div class="py-4 flex justify-center">
+          <div class="py-8 flex justify-center">
             <iframe width="720" height="405" src="https://www.youtube.com/embed/KUpWpuhXKCA?si=Ii3cfk9LKoiAkg5j"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -244,9 +244,20 @@
 
 
    <!-- player -->
-  <div style="position: fixed; bottom: 100px; right: 30px; z-index: 50; width: 400px; max-width: 100vw; z-index: 9000;">
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5XcT5IutzltNXExMv4J2e7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <div id="spotify-player" style="position: fixed; bottom: 100px; right: 30px; z-index: 9000; width: 320px; max-width: 100vw; transition: all 0.3s ease;">
+    <div style="background: rgba(14, 14, 14, 0.9); border-radius: 12px; padding: 10px; box-shadow: 4px 4px 0px #ff2c8b;">
+      <!-- Close button -->
+      <button id="close-player" style="position: absolute; top: 5px; right: 10px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; z-index: 1; padding: 5px;">×</button>
+      
+      <!-- Spotify iframe -->
+      <div id="player-content">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5XcT5IutzltNXExMv4J2e7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
     </div>
+    
+    <!-- Minimized state button (hidden by default) -->
+    <button id="open-player" style="display: none; background: rgba(14, 14, 14, 0.9); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">Music</button>
+  </div>
 
 
   <!-- Footer -->
@@ -271,6 +282,47 @@
   <script type="module" src="js/gradient.js"></script>
   <script type="module" src="js/slice-animation.js"></script>
   <script type="module" src="js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    // Spotify player toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const openBtn = document.getElementById('open-player');
+      const closeBtn = document.getElementById('close-player');
+      const playerContent = document.getElementById('player-content');
+      const playerContainer = document.getElementById('spotify-player');
+
+      closeBtn.addEventListener('click', function() {
+        playerContainer.style.width = '80px';
+        playerContainer.style.transform = 'translateX(20px)';
+        openBtn.style.display = 'block';
+        closeBtn.style.display = 'none';
+        playerContent.style.display = 'none';
+      });
+
+      openBtn.addEventListener('click', function() {
+        playerContainer.style.width = '320px';
+        playerContainer.style.transform = 'translateX(0)';
+        openBtn.style.display = 'none';
+        closeBtn.style.display = 'block';
+        playerContent.style.display = 'block';
+      });
+    });
+  </script>
 </body>
 
 </html>
