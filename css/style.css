@@ -249,6 +249,14 @@ section {
 
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
+  /* Mobile background fixes */
+  body {
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
   /* Adjust animation duration for slice-transition-mask on smaller screens to improve performance */
   .slice-transition-mask {
     animation-duration: 0.1s; /* Reduced duration for smoother experience on smaller screens */
@@ -506,5 +514,16 @@ footer {
 
 #spotify-player:hover {
   transform: scale(1.025);
+}
+
+/* Listen button hover effects */
+#open-player {
+  transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955) !important;
+}
+
+#open-player:hover {
+  color: white !important;
+  text-shadow: 3px 3px 0px #ff2c8b !important;
+  transform: translateY(-50%) scale(1.025) !important;
 }
 

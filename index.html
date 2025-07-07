@@ -244,9 +244,9 @@
    <!-- player -->
   <div id="spotify-player" style="position: fixed; bottom: 100px; right: 30px; z-index: 9000; width: 320px; max-width: 100vw; transition: all 0.3s ease;">
     <!-- Close button tab -->
-    <button id="close-player" style="position: absolute; top: -22px; right: -2px; background: rgba(14, 14, 14, 0.9); border: none; color: #fff; font-size: 16px; cursor: pointer; z-index: 2; padding: 4px 12px; border-radius: 8px 8px 0 0; box-shadow: 2px 2px 0px #ff2c8b;">×</button>
+    <button id="close-player" style="position: absolute; top: -22px; right: -2px; background: rgba(14, 14, 14, 1); border: none; color: #fff; font-size: 16px; cursor: pointer; z-index: 2; padding: 4px 12px; border-radius: 8px 8px 0 0; box-shadow: 2px 2px 0px #ff2c8b;">×</button>
     
-    <div style="background: rgba(14, 14, 14, 0.9); border-radius: 12px; padding: 10px; box-shadow: 4px 4px 0px #ff2c8b;">
+    <div style="background: rgba(14, 14, 14, 1); border-radius: 12px; padding: 10px; box-shadow: 4px 4px 0px #ff2c8b;">
       <!-- Spotify iframe -->
       <div id="player-content">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5XcT5IutzltNXExMv4J2e7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -254,7 +254,7 @@
     </div>
     
     <!-- Minimized state button (hidden by default) -->
-    <button id="open-player" style="display: none; background: rgba(14, 14, 14, 0.9); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">Listen</button>
+    <button id="open-player" style="display: none; background: rgba(14, 14, 14, 1); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%;">Listen</button>
   </div>
 
 
@@ -304,12 +304,17 @@
       const playerContent = document.getElementById('player-content');
       const playerContainer = document.getElementById('spotify-player');
 
+      // Set initial transform for the button
+      openBtn.style.transform = 'translateY(-50%)';
+
       closeBtn.addEventListener('click', function() {
-        playerContainer.style.width = '80px';
+        playerContainer.style.width = '60px';
         playerContainer.style.transform = 'translateX(20px)';
         openBtn.style.display = 'block';
         closeBtn.style.display = 'none';
         playerContent.style.display = 'none';
+        // Reset transform to allow CSS hover to work
+        openBtn.style.transform = 'translateY(-50%)';
       });
 
       openBtn.addEventListener('click', function() {
