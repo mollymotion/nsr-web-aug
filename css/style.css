@@ -45,7 +45,8 @@ h2 {
 
 #shows,
 #merch,
-#press {
+#press,
+#videos {
   h2 {
     background-size: contain;
     background-repeat: no-repeat;
@@ -55,6 +56,11 @@ h2 {
 }
 
 /* section h2 with tape backgrounds */
+
+#videos h2 {
+  background-image: url('../images/tape/tape-merch.png');
+}
+
 #shows h2 {
   background-image: url('../images/tape/tape-shows.png');
 }
