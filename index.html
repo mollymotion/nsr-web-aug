@@ -175,7 +175,11 @@
         <div class="text-gray-100 mb-8 w-3/4 grid-card">
           <div class="py-4">
             <div class="flex items-start gap-4">
-              <div class="flex-1 flex flex-col justify-between h-60 text-right">
+              <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/" target="_blank">
+                <img src="./images/press/darkroom.png" alt="Performance at Dark Room"
+                  class="w-60 h-60 object-cover flex-shrink-0" />
+              </a>
+              <div class="flex-1 flex flex-col justify-between h-60 text-left">
                 <div>
                   <div class="text-lg font-semibold mb-2">
                     <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/"
@@ -190,7 +194,6 @@
                       <span class="grid-card--title">
                         None Shall Remain Dazzle at Dark Room, Brooklyn
                       </span>
-
                     </a>
                   </div>
                 </div>
@@ -198,10 +201,6 @@
                   Photo Credit: Alice Teeple
                 </div>
               </div>
-              <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/" target="_blank">
-                <img src="./images/press/darkroom.png" alt="Performance at Dark Room"
-                  class="w-60 h-60 object-cover flex-shrink-0" />
-              </a>
             </div>
           </div>
         </div>
@@ -210,7 +209,12 @@
         <div class="text-gray-100 w-3/4 grid-card">
           <div class="py-4">
             <div class="flex items-start gap-4">
-              <div class="flex-1 flex flex-col justify-between h-60 text-right">
+              <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
+                target="_blank">
+                <img src="./images/press/dancin-still.png" alt="Debut Animated Lyric Video for Dancin' On My Own Grave"
+                  class="dancin w-60 h-60 object-cover flex-shrink-0" />
+              </a>
+              <div class="flex-1 flex flex-col justify-between h-60 text-left">
                 <div>
                   <div class="text-lg font-semibold mb-2">
                     <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
@@ -227,13 +231,7 @@
                     </a>
                   </div>
                 </div>
-
               </div>
-              <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
-                target="_blank">
-                <img src="./images/press/dancin-still.png" alt="Debut Animated Lyric Video for Dancin' On My Own Grave"
-                  class="dancin w-60 h-60 object-cover flex-shrink-0" />
-              </a>
             </div>
           </div>
         </div>
@@ -245,10 +243,10 @@
 
    <!-- player -->
   <div id="spotify-player" style="position: fixed; bottom: 100px; right: 30px; z-index: 9000; width: 320px; max-width: 100vw; transition: all 0.3s ease;">
+    <!-- Close button tab -->
+    <button id="close-player" style="position: absolute; top: -22px; right: -2px; background: rgba(14, 14, 14, 0.9); border: none; color: #fff; font-size: 16px; cursor: pointer; z-index: 2; padding: 4px 12px; border-radius: 8px 8px 0 0; box-shadow: 2px 2px 0px #ff2c8b;">×</button>
+    
     <div style="background: rgba(14, 14, 14, 0.9); border-radius: 12px; padding: 10px; box-shadow: 4px 4px 0px #ff2c8b;">
-      <!-- Close button -->
-      <button id="close-player" style="position: absolute; top: 5px; right: 10px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; z-index: 1; padding: 5px;">×</button>
-      
       <!-- Spotify iframe -->
       <div id="player-content">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5XcT5IutzltNXExMv4J2e7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -256,7 +254,7 @@
     </div>
     
     <!-- Minimized state button (hidden by default) -->
-    <button id="open-player" style="display: none; background: rgba(14, 14, 14, 0.9); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">Music</button>
+    <button id="open-player" style="display: none; background: rgba(14, 14, 14, 0.9); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">Listen</button>
   </div>
 
 

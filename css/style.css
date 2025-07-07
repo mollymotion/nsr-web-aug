@@ -290,6 +290,65 @@ section {
   .press-right p {
     order: 4;
   }
+
+  /* Press section mobile fixes */
+  #press .grid-card {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  #press .grid-card .py-4 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  #press .grid-card .flex {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #press .grid-card img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  #press .grid-card .flex-1 {
+    height: auto;
+    text-align: center;
+  }
+
+  #press .grid-card .h-60 {
+    height: auto;
+  }
+
+  /* Shows section mobile fixes */
+  #shows .grid-card {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  #shows .grid-card .flex {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #shows .grid-card img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  #shows .grid-card .flex-1 {
+    height: auto;
+    text-align: center;
+  }
+
+  #shows .grid-card .h-40 {
+    height: auto;
+  }
 }
 
 .dancin {
@@ -438,5 +497,14 @@ footer {
   color: #0e0e0e !important;
   pointer-events: none;
   z-index: 8;
+}
+
+/* Spotify player hover effects */
+#spotify-player {
+  transition: transform 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+#spotify-player:hover {
+  transform: scale(1.025);
 }
 
