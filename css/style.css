@@ -515,6 +515,13 @@ section {
   #videos .grid-card {
     width: 95%; /* Slightly narrower on mobile */
   }
+
+  /* Mobile shows header background */
+  #shows {
+    h2 {
+      background-image: url('../images/poly-header-tall.png');
+    }
+  }
 }
 
 .dancin {
