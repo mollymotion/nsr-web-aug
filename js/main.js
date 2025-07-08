@@ -24,10 +24,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // Define array of media with types
   const media = [
-    { src: './images/hero/heroclip-peter.mp4', type: 'video' },
-    { src: './images/hero/heroclip-stas.mp4', type: 'video' },
-    { src: './images/hero/heroclip-cesar.mp4', type: 'video' },
-    { src: './images/hero/heroclip-matt.mp4', type: 'video' },
+  // { src: './images/hero/heroclip-peter.mp4', type: 'video' },
+  //  { src: './images/hero/heroclip-stas.mp4', type: 'video' },
+  //  { src: './images/hero/heroclip-cesar.mp4', type: 'video' },
+  //  { src: './images/hero/heroclip-matt.mp4', type: 'video' },
+    { src: './images/hero/hero-1.png', type: 'image' },
+    { src: './images/hero/hero-2.png', type: 'image' },
+    { src: './images/hero/hero-3.png', type: 'image' },
+    { src: './images/hero/hero-4.png', type: 'image' },
+    { src: './images/hero/hero-5.png', type: 'image' },
   ];
   
   let currentImageIndex = 0;
