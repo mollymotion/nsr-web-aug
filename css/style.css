@@ -52,7 +52,7 @@ a {
 
 h2 {
   color: rgb(224, 224, 224);
-  text-shadow: 3px 3px 0 rgb(var(--primary-color-rgb));
+  text-shadow: 3px 3px 0 #0e0e0e; /* Changed from rgb(var(--primary-color-rgb)) to #0e0e0e */
   font-family: var(--font-family-content); /* Changed from heading to content */
   font-size: 3.5rem; /* Reduced from 5rem */
   font-weight: 700; /* Add bold weight */
@@ -64,6 +64,18 @@ h2 {
 #videos {
   h2 {
     text-transform: uppercase;
+    background-image: url('../images/poly-header.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 5rem 0;
+  }
+}
+
+#shows {
+  h2 {
+    text-transform: uppercase;
+    background-image: url('../images/poly-header-wide.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

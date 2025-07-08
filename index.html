@@ -258,6 +258,7 @@
     <!-- Minimized state button (visible by default) -->
     <button id="open-player" style="display: block; background: rgba(14, 14, 14, 1); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
       <div id="speaker-icon" style="width:40px; height:40px; cursor:pointer;"></div>
+      Listen
     </button>
   </div>
 
@@ -307,6 +308,9 @@
       const playerContent = document.getElementById('player-content');
       const playerContainer = document.getElementById('spotify-player');
 
+      // Detect if desktop (wider than 768px)
+      const isDesktop = window.innerWidth > 768;
+
       // Load Lottie animation for speaker icon
       const speakerIcon = document.getElementById('speaker-icon');
       const animation = lottie.loadAnimation({
@@ -316,6 +320,23 @@
         autoplay: true,
         path: './js/speaker.json'
       });
+
+      // Set default state based on device type
+      if (isDesktop) {
+        // Desktop: start open
+        playerContainer.style.width = '320px';
+        playerContainer.style.transform = 'translateX(0)';
+        openBtn.style.display = 'none';
+        closeBtn.style.display = 'block';
+        playerContent.style.display = 'block';
+      } else {
+        // Mobile: start closed (existing default state)
+        playerContainer.style.width = '60px';
+        playerContainer.style.transform = 'translateX(35px)';
+        openBtn.style.display = 'block';
+        closeBtn.style.display = 'none';
+        playerContent.style.display = 'none';
+      }
 
       closeBtn.addEventListener('click', function() {
         playerContainer.style.width = '60px';
