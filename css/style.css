@@ -4,7 +4,7 @@
   --primary-color: rgb(var(--primary-color-rgb), var(--opacity, 1));
   --secondary-color-rgb: 14, 14, 14;
   --secondary-color: rgba( var(--secondary-color-rgb), var( --opacity, 1));
-  --white: rgb(255, 255, 255);
+  --white: #e0e0e0;
   --charcoal: rgb(44, 44, 44);
   --font-protest-guerrilla: 'Protest Guerrilla', sans-serif;
   --font-family-heading: var(--font-protest-guerrilla);
@@ -37,7 +37,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: #e0e0e0;
   /* transform: scale(1); */
   transition: transform 0.2s ease-in-out;
 
@@ -263,7 +263,7 @@ section {
     transition: all 0.3s ease;
 
     &:hover {
-      color: rgba(255, 255, 255, 1);
+      color: #e0e0e0;
       text-decoration: none;
     }
   }
@@ -272,6 +272,28 @@ section {
 
 
 /* Media queries for responsiveness */
+
+/* Tablet and mobile sizes - iPad and below */
+@media (max-width: 1024px) {
+  /* Press section text size reduction for tablet and mobile */
+  #press .grid-card--title {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  #press .grid-card .text-lg {
+    font-size: 1rem;
+  }
+
+  #press .grid-card {
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
 @media (max-width: 768px) {
   /* Mobile background fixes - Use pseudo-element for fixed background */
   body {
@@ -338,16 +360,22 @@ section {
   #press .grid-card {
     padding: 1rem;
     min-height: auto;
+    overflow: hidden !important; /* Force content containment */
+    word-wrap: break-word; /* Break long words */
+    word-break: break-word; /* Additional word breaking */
   }
 
   #press .grid-card .py-4 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    overflow: hidden; /* Ensure content stays within */
   }
 
   #press .grid-card .flex {
     flex-direction: column;
     gap: 1rem;
+    align-items: center; /* Center align all items */
+    overflow: hidden; /* Prevent flex child overflow */
   }
 
   #press .grid-card img {
@@ -355,26 +383,48 @@ section {
     height: auto;
     max-width: 300px;
     margin: 0 auto;
+    flex-shrink: 0; /* Prevent image compression */
   }
 
   #press .grid-card .flex-1 {
     height: auto;
     text-align: center;
+    overflow: hidden; /* Contain text content */
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed container */
   }
 
   #press .grid-card .h-60 {
     height: auto;
+    overflow: hidden;
+  }
+
+  /* Ensure press titles and text don't overflow */
+  #press .grid-card--title {
+    font-size: 1.2rem !important; /* Smaller on mobile */
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  #press .grid-card .text-lg {
+    font-size: 1rem;
   }
 
   /* Shows section mobile fixes */
   #shows .grid-card {
     padding: 1rem;
     min-height: auto;
+    margin: 0.5rem 0;
+    display: flex; /* Only on mobile */
+    flex-direction: column; /* Only on mobile */
   }
 
   #shows .grid-card .flex {
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
+    text-align: center;
   }
 
   #shows .grid-card img {
@@ -382,15 +432,35 @@ section {
     height: auto;
     max-width: 200px;
     margin: 0 auto;
+    order: 1; /* Photo on top */
   }
 
   #shows .grid-card .flex-1 {
     height: auto;
     text-align: center;
+    width: 100%;
+    order: 2; /* Text content below photo */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   #shows .grid-card .h-40 {
     height: auto;
+  }
+
+  #shows .grid-card .text-xl {
+    font-size: 1.125rem;
+  }
+
+  #shows .grid-card--title {
+    font-size: 1.5rem;
+  }
+
+  /* Stack the ticket link at the bottom */
+  #shows .grid-card .ticket-link--text {
+    margin-top: 1rem;
+    order: 3;
   }
 
   /* Mobile silhouette replacement */
@@ -426,6 +496,7 @@ section {
   transition: all 0.2s ease-in;
   overflow: hidden; /* Ensure content doesn't spill outside */
   box-sizing: border-box; /* Include padding in width calculations */
+  min-height: fit-content; /* Ensure background stretches to content */
   
   * {
     transition: all 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -455,6 +526,20 @@ section {
     .grid-card--img {
       transform: scale(1.025);
     }
+  }
+
+  /* Ensure nested flex containers work properly */
+  .flex {
+    flex: 1; /* Allow flex children to grow */
+    min-height: 0; /* Allow flex children to shrink */
+  }
+
+  /* Ensure content areas expand properly */
+  .py-4, .py-8 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
