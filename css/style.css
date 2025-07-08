@@ -7,7 +7,9 @@
   --white: #e0e0e0;
   --charcoal: rgb(44, 44, 44);
   --font-protest-guerrilla: 'Protest Guerrilla', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
   --font-family-heading: var(--font-protest-guerrilla);
+  --font-family-content: var(--font-montserrat);
 }
 
 /* Reset and base styles */
@@ -31,6 +33,7 @@ body {
   overflow-y: auto;
   background: url('../images/pink-bg.svg') no-repeat center center fixed;
   background-size: cover;
+  background-color: #e0e0e0;
   margin: 0;
   padding: 0;
 }
@@ -50,8 +53,9 @@ a {
 h2 {
   color: rgb(224, 224, 224);
   text-shadow: 3px 3px 0 rgb(var(--primary-color-rgb));
-  font-family: var(--font-family-heading);
-  font-size: 5rem;
+  font-family: var(--font-family-content); /* Changed from heading to content */
+  font-size: 3.5rem; /* Reduced from 5rem */
+  font-weight: 700; /* Add bold weight */
 }
 
 #shows,
@@ -292,6 +296,17 @@ section {
     word-wrap: break-word;
     word-break: break-word;
   }
+
+  /* Further reduce h2 size for tablets */
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  /* Videos section tablet adjustments */
+  #videos .grid-card iframe {
+    max-width: 600px;
+    height: 337px; /* 16:9 ratio for 600px width */
+  }
 }
 
 @media (max-width: 768px) {
@@ -476,6 +491,18 @@ section {
   footer .absolute.bottom-0.left-0 img {
     width: 100%;
   }
+
+  /* Videos section mobile adjustments */
+  #videos .grid-card iframe {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 200px;
+  }
+
+  #videos .grid-card {
+    width: 95%; /* Slightly narrower on mobile */
+  }
 }
 
 .dancin {
@@ -556,6 +583,16 @@ section {
 .grid-card iframe {
   max-width: 100%;
   display: block;
+  margin: 0 auto; /* Center the iframe */
+}
+
+/* Videos section specific styling */
+#videos .grid-card iframe {
+  width: 100%;
+  max-width: 720px; /* Ensure it doesn't exceed this width */
+  height: auto;
+  aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+  margin: 0 auto;
 }
 
 .grid-card--title {
@@ -655,5 +692,15 @@ footer {
   color: white !important;
   text-shadow: 3px 3px 0px rgb(var(--primary-color-rgb)) !important;
   transform: translateY(-50%) scale(1.025) !important;
+}
+
+/* Reduce space between videos and press sections */
+#press {
+  margin-top: -80px; /* Pull press section up by 75px */
+}
+
+/* Reduce space between press and shows sections */
+#shows {
+  margin-top: -20px; /* Pull shows section up by 25px */
 }
 
