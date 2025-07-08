@@ -5,21 +5,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NSR – Post-Punk NYC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="text-white relative">
   <!-- Hero Section -->
-  <section class="h-screen w-full relative">
+  <section class="h-screen w-full relative hero">
 
     <img class="hero-image" alt="Hero Image">
-    <div id="slice-mask"></div>
+
+    <div id="slice-mask" class="hero-mask"></div>
 
 
     <div class="z-10 navbar-nav z-10 w-full absolute flex flex-col justify-between top-0">
       <!-- Logo container -->
-      <div id="logo-container" class="w-full px-12 py-8">
+      <div id="logo-container">
         <img src="./images/logo-splat.svg" alt="NSR Logo" class="w-32 h-auto mx-auto">
       </div>
       <!-- Add social media links -->
@@ -65,8 +70,6 @@
         </symbol>
       </svg>
 
-
-
       <template id="tpl_social">
         <a href="${url}" target="_blank" class="text-white hover:text-red-400 transition-colors">
           <svg class="w-6 h-6" fill="currentColor">
@@ -79,7 +82,7 @@
         <!-- Social media links will be injected here -->
       </div>
 
-      <nav class="navbar-nav--links relative mx-auto w-full backdrop-blur-lg bg-gray-900 bg-opacity-50">
+      <nav class="navbar-nav--links relative mx-auto w-full backdrop-blur-lg bg-gray-900">
         <a href="#videos">Videos</a>
         <a href="#shows">Shows</a>
         <a href="#press">Press</a>
@@ -91,8 +94,8 @@
 
   <!-- Videos Section -->
   <section id="videos" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
-    <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
-      <h2 class="text-3xl font-semibold tracking-wide mb-12 text-center">Videos</h2>
+    <div class="px-6 sm:px-12 text-white max-w-7xl mx-auto">
+      <h2 class="tracking-wide mb-12 text-center">Videos</h2>
       <div class="flex justify-center">
         <div class="text-gray-100 w-3/4 grid-card">
           <div class="py-8 flex justify-center">
@@ -130,7 +133,7 @@
 
   <section id="shows" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
     <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
-      <h2 class="text-3xl font-semibold tracking-wide mb-12 text-center">Upcoming Shows</h2>
+      <h2 class="tracking-wide mb-12 text-center">Upcoming Shows</h2>
       <div id="shows-grid" class="flex flex-col items-center">
         <!-- Shows will be injected here as individual cards -->
       </div>
@@ -141,7 +144,7 @@
   <!-- Merch Section 
   <section id="merch" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
     <div class="sm:px-12 text-white max-w-7xl mx-auto">
-      <h2 class="text-3xl font-semibold tracking-wide mb-12 text-center">Merch</h2>
+      <h2 class="tracking-wide mb-12 text-center">Merch</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-5/4 mx-auto">
 
@@ -168,7 +171,7 @@
   <!-- Press Section -->
   <section id="press" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
     <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
-      <h2 class="text-3xl font-semibold tracking-wide mb-12 text-center">Press</h2>
+      <h2 class="tracking-wide mb-12 text-center">Press</h2>
 
       <div class="flex flex-col items-center">
         <!-- First press card -->
@@ -240,22 +243,6 @@
 
   </section>
 
-
-   <!-- player -->
-  <div id="spotify-player" style="position: fixed; bottom: 100px; right: 30px; z-index: 9000; width: 320px; max-width: 100vw; transition: all 0.3s ease;">
-    <!-- Close button tab -->
-    <button id="close-player" style="position: absolute; top: -22px; right: -2px; background: rgba(14, 14, 14, 1); border: none; color: #fff; font-size: 16px; cursor: pointer; z-index: 2; padding: 4px 12px; border-radius: 8px 8px 0 0; box-shadow: 2px 2px 0px #ff2c8b;">×</button>
-    
-    <div style="background: rgba(14, 14, 14, 1); border-radius: 12px; padding: 10px; box-shadow: 4px 4px 0px #ff2c8b;">
-      <!-- Spotify iframe -->
-      <div id="player-content">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5XcT5IutzltNXExMv4J2e7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
-    </div>
-    
-    <!-- Minimized state button (hidden by default) -->
-    <button id="open-player" style="display: none; background: rgba(14, 14, 14, 1); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%;">Listen</button>
-  </div>
 
 
   <!-- Footer -->

@@ -24,12 +24,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // Define array of media with types
   const media = [
-   // { src: './heroclip-cesar.mp4', type: 'video' },
-    { src: './images/hero/hero-1.png', type: 'image' },
-    { src: './images/hero/hero-2.png', type: 'image' },
-    { src: './images/hero/hero-3.png', type: 'image' },
-    { src: './images/hero/hero-4.png', type: 'image' },
-    { src: './images/hero/hero-5.png', type: 'image' },
+    { src: './images/hero/heroclip-cesar.mp4', type: 'video' },
+    { src: './images/hero/heroclip-matt.mp4', type: 'video' },
+    { src: './images/hero/heroclip-peter.mp4', type: 'video' },
+    { src: './images/hero/heroclip-stas.mp4', type: 'video' },
   ];
   
   let currentImageIndex = 0;
@@ -132,19 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
   bandsInTown.init();
 });
 
-// Smooth scroll behavior
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
 // Smooth scroll behavior
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {

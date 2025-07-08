@@ -1,3 +1,15 @@
+:root {
+  --opacity: 0.9;
+  --primary-color-rgb: 255, 44, 139;
+  --primary-color: rgb(var(--primary-color-rgb), var(--opacity, 1));
+  --secondary-color-rgb: 14, 14, 14;
+  --secondary-color: rgba( var(--secondary-color-rgb), var( --opacity, 1));
+  --white: rgb(255, 255, 255);
+  --charcoal: rgb(44, 44, 44);
+  --font-protest-guerrilla: 'Protest Guerrilla', sans-serif;
+  --font-family-heading: var(--font-protest-guerrilla);
+}
+
 /* Reset and base styles */
 * {
   margin: 0;
@@ -36,11 +48,10 @@ a {
 }
 
 h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #e0e0e0;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 0 #ff2c8b;
+  color: rgb(224, 224, 224);
+  text-shadow: 3px 3px 0 rgb(var(--primary-color-rgb));
+  font-family: var(--font-family-heading);
+  font-size: 5rem;
 }
 
 #shows,
@@ -48,16 +59,18 @@ h2 {
 #press,
 #videos {
   h2 {
+    text-transform: uppercase;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 2rem;
+    padding: 5rem 0;
   }
 }
 
 /* section h2 with tape backgrounds */
 
-#videos h2 {
+/* #videos h2 {
+  display: none;
   background-image: url('../images/tape/tape-merch.png');
 }
 
@@ -71,7 +84,7 @@ h2 {
 
 #press h2 {
   background-image: url('../images/tape/tape-press.png');
-}
+} */
 
 
 
@@ -90,6 +103,7 @@ section {
 }
 
 /* Content blocks */
+
 .bg-gray-800 {
   background-color: rgba(31, 41, 55, 0.7);
   backdrop-filter: blur(8px);
@@ -153,6 +167,7 @@ section {
   margin: 0;
   padding: 0;
 }
+
 /*
 #slice-mask {
   position: absolute;
@@ -183,13 +198,22 @@ section {
 /* Logo container */
 #logo-container {
   width: 95%;
-  margin: 0 auto;
+  margin: 2rem auto;
   background-color: transparent;
 
   img {
     width: 100%;
     height: auto;
     max-height: 200px;
+    margin: 0 auto;
+  }
+
+  &.fixed {
+    width: 101%;
+
+    .navbar-nav.fixed & {
+      position: static!important;      
+    }
   }
 }
 
@@ -208,7 +232,7 @@ section {
     
     #logo-container {
       transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
-      width: 100%;
+      width: 50%;
       margin: 0 auto;
     }
   }
@@ -379,43 +403,39 @@ section {
 }
 
 .grid-card {
-  box-shadow: 4px 4px 0px #ff2c8b;
+  box-shadow: 6px 6px 0px rgb(var(--primary-color-rgb));
   background-color: rgba(14, 14, 14, 1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(20px);
   z-index: 1;
   padding: 1.5rem;
   width: 100%;
   margin: 1rem 0;
-  transition: transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: all 0.2s ease-in;
   overflow: hidden; /* Ensure content doesn't spill outside */
   box-sizing: border-box; /* Include padding in width calculations */
   
   * {
-    transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition: all 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition-delay: .1s;
   }
 
   &:hover {
-    box-shadow: 2px 2px 0 0 #ff2c8b;
+    box-shadow: 3px 3px 0 0 var(--primary-color-rgb);
     transform: scale(1.025);
     overflow: visible; /* Allow slight overflow on hover for shadow effects */
 
     .grid-card--title {
       /* transform: scale(0.95); */
       color: white;
-      text-shadow: 3px 3px 0px #ff2c8b;
+      text-shadow: 
+        3px 3px 0px var(--primary-color);
     }
 
     .ticket-link--text {
       text-shadow: 
-        2px 2px 0 #000, 
-        3px 3px 0 #ff2c8b,
-        4px 4px 0 #000,
-        5px 5px 0 #ff2c8b,
-        6px 6px 0 #000,
-        7px 7px 0 #ff2c8b,
-        8px 8px 0 #000,
-        9px 9px 0 #ff2c8b;
+        2px 2px 0 var(--primary-color), 
+        4px 4px 0 var(--primary-color),
+        6px 6px 0 var(--primary-color),
+        8px 8px 0 var(--primary-color);
     }
 
     .grid-card--img {
@@ -440,11 +460,11 @@ section {
 }
 
 .grid-card--title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #ff2c8b;
-  text-shadow: 2px 2px 0 #000000;
-
+  /* font-size: 1rem;
+  font-weight: 700; */
+  color: rgb(var(--primary-color-rgb));
+  font-size: 2.5rem;
+  /* font-family: var(--font-protest-guerrilla); */
 }
 
 .grid-card--img {
@@ -467,7 +487,7 @@ section {
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
   z-index: 4;
-  /* filter: drop-shadow(4px 4px 0px #ff2c8b); */
+  /* filter: drop-shadow(4px 4px 0px rgb(var(--primary-color-rgb))); */
 
 
   .grid > div {
@@ -534,7 +554,7 @@ footer {
 
 #open-player:hover {
   color: white !important;
-  text-shadow: 3px 3px 0px #ff2c8b !important;
+  text-shadow: 3px 3px 0px rgb(var(--primary-color-rgb)) !important;
   transform: translateY(-50%) scale(1.025) !important;
 }
 
