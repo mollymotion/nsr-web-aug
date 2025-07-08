@@ -246,7 +246,7 @@
 
 
   <!-- Spotify Player -->
-  <div id="spotify-player" style="position: fixed; bottom: 100px; right: 30px; z-index: 9000; width: 60px; max-width: 100vw; transition: all 0.3s ease; transform: translateX(20px);">
+  <div id="spotify-player" style="position: fixed; bottom: 100px; right: 30px; z-index: 9000; width: 60px; max-width: 100vw; transition: all 0.3s ease; transform: translateX(35px);">
     <!-- Close button tab -->
     <button id="close-player" style="display: none; position: absolute; top: -22px; right: -2px; background: rgba(14, 14, 14, 1); border: none; color: #fff; font-size: 16px; cursor: pointer; z-index: 2; padding: 4px 12px; border-radius: 8px 8px 0 0; box-shadow: 2px 2px 0px #ff2c8b;">×</button>
     
@@ -321,7 +321,7 @@
 
       closeBtn.addEventListener('click', function() {
         playerContainer.style.width = '60px';
-        playerContainer.style.transform = 'translateX(20px)';
+        playerContainer.style.transform = 'translateX(35px)';
         openBtn.style.display = 'block';
         closeBtn.style.display = 'none';
         playerContent.style.display = 'none';
