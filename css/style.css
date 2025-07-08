@@ -64,18 +64,7 @@ h2 {
 #videos {
   h2 {
     text-transform: uppercase;
-    background-image: url('../images/poly-header.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 5rem 0;
-  }
-}
-
-#shows {
-  h2 {
-    text-transform: uppercase;
-    background-image: url('../images/poly-header-wide.png');
+    background-image: url('../images/h2.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -515,13 +504,6 @@ section {
   #videos .grid-card {
     width: 95%; /* Slightly narrower on mobile */
   }
-
-  /* Mobile shows header background */
-  #shows {
-    h2 {
-      background-image: url('../images/poly-header-tall.png');
-    }
-  }
 }
 
 .dancin {
@@ -715,6 +697,13 @@ footer {
 
 /* Reduce space between videos and press sections */
 #press {
+  margin-top: -80px; /* Pull press section up by 75px */
+}
+
+/* Reduce space between press and shows sections */
+#shows {
+  margin-top: -20px; /* Pull shows section up by 25px */
+}
   margin-top: -80px; /* Pull press section up by 75px */
 }
 
