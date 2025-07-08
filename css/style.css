@@ -392,6 +392,20 @@ section {
   #shows .grid-card .h-40 {
     height: auto;
   }
+
+  /* Mobile silhouette replacement */
+  .parallax-silhouette img {
+    content: url('../images/silhouettes/silhouette-long-mobile-2.svg');
+  }
+
+  /* Mobile footer fixes */
+  footer .absolute.bottom-0.left-0 {
+    width: 100%;
+  }
+
+  footer .absolute.bottom-0.left-0 img {
+    width: 100%;
+  }
 }
 
 .dancin {
