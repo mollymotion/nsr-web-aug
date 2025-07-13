@@ -99,10 +99,10 @@
       <div class="flex justify-center">
         <div class="text-gray-100 w-3/4 grid-card">
           <div class="py-8 flex justify-center">
-            <iframe width="720" height="405" src="https://www.youtube.com/embed/KUpWpuhXKCA?si=Ii3cfk9LKoiAkg5j"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <!-- YouTube embed temporarily removed for load testing -->
+            <div class="w-[720px] h-[405px] bg-gray-800 flex items-center justify-center">
+              <p class="text-gray-400">YouTube video placeholder</p>
+            </div>
           </div>
         </div>
       </div>
@@ -135,7 +135,12 @@
     <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
       <h2 class="tracking-wide mb-12 text-center">Shows</h2>
       <div id="shows-grid" class="flex flex-col items-center">
-        <!-- Shows will be injected here as individual cards -->
+        <!-- Bandsintown API integration temporarily removed for load testing -->
+        <div class="text-gray-100 w-3/4 grid-card">
+          <div class="py-8 flex justify-center">
+            <p class="text-gray-400">Show listings placeholder - API integration disabled for load testing</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -243,21 +248,24 @@
 
 
 
-  <!-- Spotify Player -->
-  <div id="spotify-player" style="position: fixed; bottom: 100px; right: 30px; z-index: 9000; width: 60px; max-width: 100vw; transition: all 0.3s ease; transform: translateX(35px);">
+  <!-- Spotify Player (Temporarily removed for load testing) -->
+  <div id="spotify-player" class="fixed bottom-[100px] right-[30px] z-[9000] w-[60px] max-w-screen transition-all duration-300 ease-in-out transform translate-x-[35px]">
     <!-- Close button tab -->
-    <button id="close-player" style="display: none; position: absolute; top: -22px; right: -2px; background: rgba(14, 14, 14, 1); border: none; color: #fff; font-size: 16px; cursor: pointer; z-index: 2; padding: 4px 12px; border-radius: 8px 8px 0 0; box-shadow: 2px 2px 0px #ff2c8b;">×</button>
+    <button id="close-player" class="hidden absolute top-[-22px] right-[-2px] bg-[rgba(14,14,14,1)] border-0 text-white text-base cursor-pointer z-[2] py-1 px-3 rounded-t-lg shadow-[2px_2px_0px_#ff2c8b]">×</button>
     
-    <div style="background: rgba(14, 14, 14, 1); border-radius: 12px; padding: 10px; box-shadow: 4px 4px 0px #ff2c8b;">
-      <!-- Spotify iframe -->
-      <div id="player-content" style="display: none;">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5XcT5IutzltNXExMv4J2e7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <div class="bg-[rgba(14,14,14,1)] rounded-xl p-2.5 shadow-[4px_4px_0px_#ff2c8b]">
+      <!-- Spotify iframe (removed for load testing) -->
+      <div id="player-content" class="hidden">
+        <!-- Spotify iframe placeholder -->
+        <div class="bg-gray-800 w-full h-[352px] flex items-center justify-center">
+          <p class="text-gray-400">Spotify player placeholder</p>
+        </div>
       </div>
     </div>
     
     <!-- Minimized state button (visible by default) -->
-    <button id="open-player" style="display: block; background: rgba(14, 14, 14, 1); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
-      <div id="speaker-icon" style="width:40px; height:40px; cursor:pointer;"></div>
+    <button id="open-player" class="block bg-[rgba(14,14,14,1)] border-0 text-white py-2.5 px-4 rounded-l-xl cursor-pointer shadow-[4px_4px_0px_#ff2c8b] absolute right-0 top-1/2 transform -translate-y-1/2">
+      <div id="speaker-icon" class="w-10 h-10 cursor-pointer"></div>
       Listen
     </button>
   </div>
@@ -281,8 +289,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script type="module" src="js/gradient.js"></script>
-  <script type="module" src="js/slice-animation.js"></script>
   <script type="module" src="js/main.js"></script>
 
 
