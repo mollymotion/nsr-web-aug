@@ -201,20 +201,15 @@ section {
 
 
 /* Logo container */
-#logo-container {
-  width: 95%;
-  margin: 2rem auto;
-  background-color: transparent;
-
-  img {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
-    margin: 0 auto;
-  }
-
+.logo-container {
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  
   &.fixed {
-    width: 101%;
+    margin: 0 auto;
 
     .navbar-nav.fixed & {
       position: static!important;      
@@ -222,6 +217,13 @@ section {
   }
 }
 
+.logo-container--logo {
+  position: relative;
+  width: 90vw;
+  max-height: 400px;
+  margin: 0 auto;
+  display: block;
+}
 
 /* In-page Navigation */
 .navbar {}
@@ -234,13 +236,7 @@ section {
     backdrop-filter: blur(12px);
     height: auto;
     width: inherit;
-    
-    #logo-container {
-      transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
-      width: 50%;
-      margin: 0 auto;
     }
-  }
 }
 
 .navbar-nav--logo {
