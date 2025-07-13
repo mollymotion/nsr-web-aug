@@ -478,7 +478,7 @@ section {
   /* Mobile silhouette replacement */
   .parallax-silhouette img {
     content: url('../images/silhouettes/silhouette-long-mobile.svg');
-    width: 104%; /* Increased from 100% to ensure edge-to-edge coverage */
+    width: 100%; 
     /* The width is inherited from the parent rule above - width: 100% */
     /* No width override specified here, so it uses the desktop width: 100% */
   }
@@ -502,6 +502,17 @@ section {
 
   #videos .grid-card {
     width: 95%; /* Slightly narrower on mobile */
+  }
+
+  /* Mobile parallax container adjustment */
+  .parallax-silhouette {
+    height: 400vh; /* Increase height for mobile to accommodate longer SVG */
+  }
+
+  /* Mobile footer gap reduction */
+  footer {
+    padding-top: 9rem !important; /* Reduce from py-20 (5rem) to 2rem */
+    padding-bottom: 8rem !important; /* Reduce from pb-96 (24rem) to 8rem */
   }
 }
 
@@ -648,7 +659,8 @@ section {
   position: fixed;
   top: 130vh;
   left: 0;
-  width: 100vw; /* This sets the container width for both desktop and mobile */
+  width: 100vw;
+  height: 300vh; /* Add explicit height for desktop */
   pointer-events: none;
   z-index: -1;
   will-change: transform;
@@ -657,8 +669,8 @@ section {
 }
 
 .parallax-silhouette img {
-  width: 100%; /* This sets the image width for desktop */
-  height: 100%;
+  width: 100%;
+  height: auto; /* Change from 100% to auto to preserve aspect ratio */
   object-fit: contain;
   opacity: 1;
   margin: 0 auto;
