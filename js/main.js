@@ -27,12 +27,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   // Define array of media with types - use mobile videos on mobile, full videos on desktop
   const media = isMobile ? [
-    { src: './images/hero/hero-1.png', type: 'image' },
-    { src: './images/hero/hero-2.png', type: 'image' },
-    { src: './images/hero/hero-3.png', type: 'image' },
-    { src: './images/hero/hero-4.png', type: 'image' },
-    { src: './images/hero/hero-5.png', type: 'image' },
-    { src: './images/hero/hero-6.png', type: 'image' },
+    // { src: './images/hero/hero-1.png', type: 'image' },
+    // { src: './images/hero/hero-2.png', type: 'image' },
+    // { src: './images/hero/hero-3.png', type: 'image' },
+    // { src: './images/hero/hero-4.png', type: 'image' },
+    // { src: './images/hero/hero-5.png', type: 'image' },
+    // { src: './images/hero/hero-6.png', type: 'image' },
+    { src: './images/hero/mobile-clip-peter.gif', type: 'image' },
+    { src: './images/hero/mobile-clip-stas.gif', type: 'image' },
+    { src: './images/hero/mobile-clip-cesar.gif', type: 'image' },
+    { src: './images/hero/mobile-clip-matt.gif', type: 'image' },
   ] : [
     { src: './images/hero/heroclip-peter.mp4', type: 'video' },
     { src: './images/hero/heroclip-stas.mp4', type: 'video' },
