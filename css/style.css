@@ -478,6 +478,9 @@ section {
   /* Mobile silhouette replacement */
   .parallax-silhouette img {
     content: url('../images/silhouettes/silhouette-long-mobile.svg');
+    width: 104%; /* Increased from 100% to ensure edge-to-edge coverage */
+    /* The width is inherited from the parent rule above - width: 100% */
+    /* No width override specified here, so it uses the desktop width: 100% */
   }
 
   /* Mobile footer fixes */
@@ -645,8 +648,7 @@ section {
   position: fixed;
   top: 130vh;
   left: 0;
-  width: 100vw;
-  /* height: 300vh; */
+  width: 100vw; /* This sets the container width for both desktop and mobile */
   pointer-events: none;
   z-index: -1;
   will-change: transform;
@@ -655,7 +657,7 @@ section {
 }
 
 .parallax-silhouette img {
-  width: 100%;
+  width: 100%; /* This sets the image width for desktop */
   height: 100%;
   object-fit: contain;
   opacity: 1;
