@@ -33,10 +33,14 @@ function generateUniformTriangles(numTriangles, gridSizeX, gridSizeY, triangleSi
 }
 
 const polygonsMobile = (viewportWidth, viewportHeight) => {
-  const gridSizeX = viewportWidth * 1.5; // Example: Make it slightly larger than the viewport
-  const gridSizeY = viewportHeight * 2.5; // Example: Make it slightly larger than the viewport
-  const triangleSize = viewportWidth * 0.5; // Example: Adjust triangle size relative to viewport
-  const numTriangles = 128;
+  const gridSizeX = viewportWidth * 1.5; // Make it slightly larger than the viewport
+  const gridSizeY = viewportHeight * 2.5; // Make it slightly larger than the viewport
+  const triangleSize = viewportWidth * 0.5; // Adjust triangle size relative to viewport
+  
+  // Dynamically set number of triangles based on viewport width
+  const isMobile = viewportWidth <= 768;
+  const numTriangles = isMobile ? 184 : 128; // 184 triangles for mobile, 128 for desktop
+  
   return generateUniformTriangles(numTriangles, gridSizeX, gridSizeY, triangleSize);
 };
 
