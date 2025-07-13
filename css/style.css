@@ -1,9 +1,9 @@
 :root {
   --opacity: 0.9;
-  --primary-color-rgb: 255, 44, 139;
-  --primary-color: rgb(var(--primary-color-rgb), var(--opacity, 1));
-  --secondary-color-rgb: 14, 14, 14;
-  --secondary-color: rgba( var(--secondary-color-rgb), var( --opacity, 1));
+  --primary-color-rgb: rgb(255, 44, 139);
+  --primary-color: rgba(255, 44, 139, 0.9);
+  --secondary-color-rgb: rgb(14, 14, 14);
+  --secondary-color: rgba(14, 14, 14, 0.9);
   --white: #e0e0e0;
   --charcoal: rgb(44, 44, 44);
   --font-protest-guerrilla: 'Protest Guerrilla', sans-serif;

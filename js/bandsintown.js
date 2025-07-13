@@ -30,9 +30,34 @@ export default class BandsInTown {
             const socials = artist.links || [];
             console.log('socialssss:', socials);
             
+            // Manually add Bandcamp link
+            const bandcampLink = {
+                type: 'bandcamp',
+                url: 'https://noneshallremain.bandcamp.com'
+            };
+            socials.push(bandcampLink);
             
-            if (socials && Array.isArray(artist.links)) {
-                socials.forEach(link => {
+            // Define preferred order for social media icons
+            const preferredOrder = ['bandcamp', 'spotify', 'itunes', 'shazam', 'instagram', 'facebook', 'youtube' ];
+
+            // Sort socials by preferred order
+            const sortedSocials = socials.sort((a, b) => {
+                const aIndex = preferredOrder.indexOf(a.type.toLowerCase());
+                const bIndex = preferredOrder.indexOf(b.type.toLowerCase());
+                
+                // If both are in preferred order, sort by index
+                if (aIndex !== -1 && bIndex !== -1) {
+                    return aIndex - bIndex;
+                }
+                // If only one is in preferred order, prioritize it
+                if (aIndex !== -1) return -1;
+                if (bIndex !== -1) return 1;
+                // If neither is in preferred order, maintain original order
+                return 0;
+            });
+            
+            if (sortedSocials && Array.isArray(sortedSocials)) {
+                sortedSocials.forEach(link => {
                     if (link.url && link.type && link.type.toLowerCase() !== 'website') {
                       this.addSocialLink(link.type, link.url);
                     }
