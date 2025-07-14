@@ -33,12 +33,12 @@ export default class BandsInTown {
             // Manually add Bandcamp link
             const bandcampLink = {
                 type: 'bandcamp',
-                url: 'https://noneshallremain.bandcamp.com'
+                url: 'http://none-shall-remain.bandcamp.com'
             };
             socials.push(bandcampLink);
             
             // Define preferred order for social media icons
-            const preferredOrder = ['bandcamp', 'spotify', 'itunes', 'shazam', 'instagram', 'facebook', 'youtube' ];
+            const preferredOrder = ['bandcamp', 'spotify', 'itunes', 'instagram', 'facebook', 'youtube' ];
 
             // Sort socials by preferred order
             const sortedSocials = socials.sort((a, b) => {
