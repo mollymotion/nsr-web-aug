@@ -58,7 +58,7 @@ export default class BandsInTown {
             
             if (sortedSocials && Array.isArray(sortedSocials)) {
                 sortedSocials.forEach(link => {
-                    if (link.url && link.type && link.type.toLowerCase() !== 'website') {
+                    if (link.url && link.type && link.type.toLowerCase() !== 'website' && link.type.toLowerCase() !== 'shazam') {
                       this.addSocialLink(link.type, link.url);
                     }
                 });
