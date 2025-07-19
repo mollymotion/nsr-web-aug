@@ -3,12 +3,13 @@ const ARTIST_NAME = 'None%20Shall%20Remain';
 
 export default class BandsInTown {
     constructor() {
-        this.container = document.getElementById("shows-grid");
-        this.template = document.getElementById("tpl_shows");
+        this.container = document.getElementById("shows-container");
+        this.showTemplate = document.getElementById("tpl_shows");
+        this.sectionTemplate = document.getElementById("tpl_shows_section");
         this.socialsContainer = document.getElementById("socials");
         this.socialTemplate = document.getElementById("tpl_social");
 
-        if (!this.container || !this.template) {
+        if (!this.container || !this.showTemplate || !this.sectionTemplate) {
             console.error("Required DOM elements not found");
             return;
         }
@@ -103,36 +104,22 @@ export default class BandsInTown {
         this.container.innerHTML = '<div class="text-center text-gray-400">Loading shows...</div>';
 
         try {
-            // Get all shows and filter on client side
-            const response = await fetch(`https://rest.bandsintown.com/artists/${ARTIST_NAME}/events?app_id=${API_KEY}&date=all`);
+            // Use 'upcoming' to get only future shows - much simpler!
+            const response = await fetch(`https://rest.bandsintown.com/artists/${ARTIST_NAME}/events?app_id=${API_KEY}&date=upcoming`);
             if (!response.ok) throw new Error('Network response was not ok');
 
             const data = await response.json();
-            console.log('All shows:', data);
+            console.log('Upcoming shows:', data);
 
             if (!Array.isArray(data) || data.length === 0) {
-                throw new Error('No events found');
-            }
-
-            // Filter for upcoming shows only
-            const now = new Date();
-            const upcomingShows = data
-                .filter(event => {
-                    const eventDate = new Date(event.datetime);
-                    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-                    const eventDay = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
-                    return eventDay >= today;
-                })
-                .sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-
-            console.log('Filtered upcoming shows:', upcomingShows);
-            
-            if (upcomingShows.length === 0) {
                 throw new Error('No upcoming shows');
             }
 
+            // Data is already filtered by the API, just sort by date
+            const sortedShows = data.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+
             this.container.innerHTML = '';
-            this.renderShows(upcomingShows);
+            this.renderShows(sortedShows);
 
         } catch (error) {
             console.error('Error:', error);
@@ -143,24 +130,38 @@ export default class BandsInTown {
     }
 
     renderShows(shows) {
+        if (shows.length === 0) return;
+
+        // Create the main shows section layout with artist images
+        const sectionFragment = this.sectionTemplate.content.cloneNode(true);
+        const thumbUrl = shows[0]?.artist?.thumb_url || '';
+        const artistImage = shows[0]?.artist?.image_url || '';
+        
+        // Replace both image placeholders in the section template
+        const sectionHtml = sectionFragment.firstElementChild.innerHTML
+            .replace('${thumbUrl}', thumbUrl)
+            .replace('${artistImage}', artistImage);
+        sectionFragment.firstElementChild.innerHTML = sectionHtml;
+
+        // Add the section layout to the container
+        this.container.appendChild(sectionFragment);
+
+        // Now find the shows list container within the newly added section
+        const showsList = this.container.querySelector('#shows-list');
+        
+        // Add individual show cards to the shows list
         shows.forEach((event, index) => {
-            const fragment = this.template.content.cloneNode(true);
+            const fragment = this.showTemplate.content.cloneNode(true);
             const datetime = new Date(event.datetime);
 
             const showData = {
                 date: datetime.toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'}),
-                time: datetime.toLocaleTimeString('en-US', {hour: 'numeric', hour12: true}).toUpperCase(),
-                desc: this.toSentenceCase(event.description || 'No description available'),
+                time: datetime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12: true}).toUpperCase(),
+                desc: this.toSentenceCase(event.description),
                 venueName: event.venue.name,
                 venueCity: event.venue.city,
-                url: event.url,
-                artistImage: event?.artist?.image_url || './images/hero/hero-1.png'
+                url: event.url
             };
-
-            // Wrap each show in its own card with 75% width
-            // const cardDiv = document.createElement('div');
-            // cardDiv.className = `p-6 pt-6 text-gray-100 w-3/4 position-relative ${index < shows.length - 1 ? 'mb-8' : ''}`;
-            // cardDiv.style.backgroundColor = '#0e0e0e';
 
             const html = fragment.firstElementChild.innerHTML
                 .replace('${date}', showData.date)
@@ -168,12 +169,10 @@ export default class BandsInTown {
                 .replace('${desc}', showData.desc)
                 .replace('${venueName}', showData.venueName)
                 .replace('${venueCity}', showData.venueCity)
-                .replace('${artistImage}', showData.artistImage)
                 .replace('${url}', showData.url);
 
             fragment.firstElementChild.innerHTML = html;
-            // cardDiv.appendChild(fragment);
-            this.container.appendChild(fragment);
+            showsList.appendChild(fragment);
         });
     }
 }

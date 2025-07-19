@@ -35,7 +35,6 @@
             clip-rule="evenodd" />
         </symbol>
 
-      
         <symbol id="icon-facebook" viewBox="0 0 24 24">
           <path fill-rule="evenodd"
             d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
@@ -47,7 +46,6 @@
             d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.507 2.507 0 0 1 1.768-1.768C5.746 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
             clip-rule="evenodd" />
         </symbol>
-
 
         <symbol id="icon-itunes" viewBox="0 0 32 32">
           <path fill="currentColor"
@@ -62,6 +60,10 @@
 
         <symbol id="icon-bandcamp" viewBox="0 0 800 800">
           <path fill="currentColor" d="M400,0C179.1,0,0,179.1,0,400s179.1,400,400,400,400-179.1,400-400S620.9,0,400,0ZM530.6,579.9H103.1l166.3-359.8h427.6l-166.3,359.8Z" />
+        </symbol>
+
+        <symbol id="icon-close" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
         </symbol>
       </svg>
 
@@ -92,9 +94,9 @@
     <div class="px-6 sm:px-12 text-white max-w-7xl mx-auto">
       <h2 class="tracking-wide mb-12 text-center">Videos</h2>
       <div class="flex justify-center">
-        <div class="text-gray-100 w-3/4 grid-card">
-          <div class="py-8 flex justify-center">
-            <iframe width="720" height="405" src="https://www.youtube.com/embed/KUpWpuhXKCA?si=Ii3cfk9LKoiAkg5j"
+        <div class="text-gray-100 w-3/4 grid-card no-hover">
+          <div class="flex justify-center">
+            <iframe width="100%" src="https://www.youtube.com/embed/KUpWpuhXKCA?si=Ii3cfk9LKoiAkg5j"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -105,23 +107,29 @@
   </section>
 
 
-  <template id="tpl_shows">
-      <div class="grid-">
-      <a href="${url}" class="ticket-link grid-card relative flex items-start gap-6 w-100" target="_blank">
-
-          <img src="${artistImage}" alt="Show Image" class="grid-card--img object-cover flex-shrink-0 w-40 h-40" />
-
-        <div class="flex-1 flex flex-col justify-between h-40">
-          <div>
-            <div class="text-xl font-semibold">${date} ${time}</div>
-            <div class="grid-card--title">${venueName} - ${venueCity}</div>
-            <div class="text-sm text-gray-500 mt-1">${desc}</div>
-          </div>
-          <span class="ticket-link--text">Get Tickets</span>
+  <template id="tpl_shows_section">
+    <div>
+      <div class="flex flex-col lg:flex-row gap-8 items-start shows-card" style="--bg-image: url('${artistImage}')">
+        <!-- Artist Image Column (Left) -->
+        <div class="grid-card--img lg:w-1/3 w-full flex-shrink-0">
+          <img src="${thumbUrl}" alt="Artist Image" class="w-full h-auto object-cover grid-card--imgreg" />
         </div>
-      
-    </a>
+        <!-- Shows List Column (Right) -->
+        <div class="lg:w-2/3 w-full space-y-4" id="shows-list">
+          <!-- Individual shows will be inserted here -->
+        </div>
+      </div>
     </div>
+  </template>
+
+  <template id="tpl_shows">
+    <a href="${url}" class="ticket-link block grid-card show-card" target="_blank">
+          <div class="text-xl font-semibold">${date} ${time}</div>
+          <h4 class="grid-card--title text-lg">${venueName}</h4>
+          <div class="mt-1 text-gray-300">${venueCity}</div>
+          <div class="mt-1 text-sm text-gray-400">${desc}</div>
+          <span class="ticket-link--text mt-3 inline-block">Get Tickets</span>
+    </a>
   </template>
 
   
@@ -129,17 +137,13 @@
   <section id="shows" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
     <div class="py-20 px-6 sm:px-12 text-white max-w-7xl mx-auto">
       <h2 class="tracking-wide mb-12 text-center">Shows</h2>
-      <div id="shows-grid" class="flex flex-col items-center">
-        <!-- Bandsintown API integration temporarily removed for load testing -->
-        <div class="text-gray-100 w-3/4 grid-card">
-          <div class="py-8 flex justify-center">
-            <p class="text-gray-400">Show listings placeholder - API integration disabled for load testing</p>
-          </div>
-        </div>
+
+      <div id="shows-container">
+        <!-- Shows section layout will be injected here by JavaScript -->
       </div>
     </div>
   </section>
-
+  
   <!-- Merch Section 
   <section id="merch" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
     <div class="sm:px-12 text-white max-w-7xl mx-auto">
@@ -275,30 +279,43 @@
 
 
   <!-- Spotify Player -->
-  <div id="spotify-player" style="position: fixed; bottom: 100px; right: 30px; z-index: 9000; width: 60px; max-width: 100vw; transition: all 0.3s ease; transform: translateX(35px);">
-    <!-- Close button tab -->
-    <button id="close-player" style="display: none; position: absolute; top: -22px; right: -2px; background: rgba(14, 14, 14, 1); border: none; color: #fff; font-size: 16px; cursor: pointer; z-index: 2; padding: 4px 12px; border-radius: 8px 8px 0 0; box-shadow: 2px 2px 0px #ff2c8b;">×</button>
-  
-    <div style="background: rgba(14, 14, 14, 1); border-radius: 12px; padding: 10px; box-shadow: 4px 4px 0px #ff2c8b;">
-      <!-- Spotify iframe -->
-      <div id="player-content" style="display: none;">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5XcT5IutzltNXExMv4J2e7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <div id="spotify-player" class="collapsed spotify-player">
+    <div class="spotify-player--">
+      <button class="spotify-player--btn" id="btn-player-close" style="display: none; z-index: 2;">
+        <svg class="w-6 h-6" fill="currentColor">
+          <use href="#icon-close" />
+        </svg>
+      </button>
+      <!-- Close button tab -->
+
+      <!-- Spotify iframe container -->
+      <div class="spotify-player--content">
+        <iframe id="spotify-content"
+          src="https://open.spotify.com/embed/playlist/5XcT5IutzltNXExMv4J2e7?utm_source=generator&theme=0" 
+          width="100%" 
+          height="400" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy"
+          class="spotify-player--content">
+        </iframe>
       </div>
     </div>
   
     <!-- Minimized state button (visible by default) -->
-    <button id="open-player" style="display: block; background: rgba(14, 14, 14, 1); border: none; color: #fff; padding: 10px 15px; border-radius: 12px 0 0 12px; cursor: pointer; box-shadow: 4px 4px 0px #ff2c8b; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
-      <div id="speaker-icon" style="width:40px; height:40px; cursor:pointer;"></div>
+    <button id="btn-player-open" class="spotify-player--btn">
+      <i id="speaker-icon" aria-hidden="true"></i>
       Listen
     </button>
-  </div>
+  </div>  
 
   <!-- Footer -->
-  <footer class="relative py-20 pb-96 text-gray-500">
+  <footer class="relative">
     <div class="absolute bottom-0 left-0 w-3/4">
       <img src="./images/band-collage-footer.svg" alt="Band Collage" class="w-3/4" />
     </div>
-    <div class="absolute bottom-0 right-0 p-4">
+    <div class="absolute bottom-0 right-0 footer-copyright">
       &copy; 2025 NSR – All rights reserved.
     </div>
 
@@ -317,28 +334,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   <script>
     // Spotify player toggle functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const openBtn = document.getElementById('open-player');
-      const closeBtn = document.getElementById('close-player');
-      const playerContent = document.getElementById('player-content');
       const playerContainer = document.getElementById('spotify-player');
-
-      // Detect if desktop (wider than 768px)
-      const isDesktop = window.innerWidth > 768;
+      const spotifyContent = document.getElementById('spotify-content');
+      const openBtn = document.getElementById('btn-player-open');
+      const closeBtn = document.getElementById('btn-player-close');
 
       // Load Lottie animation for speaker icon
       const speakerIcon = document.getElementById('speaker-icon');
@@ -350,38 +352,36 @@
         path: './js/speaker.json'
       });
 
-      // Set default state based on device type
-      if (isDesktop) {
-        // Desktop: start open
-        playerContainer.style.width = '320px';
-        playerContainer.style.transform = 'translateX(0)';
-        openBtn.style.display = 'none';
-        closeBtn.style.display = 'block';
-        playerContent.style.display = 'block';
-      } else {
-        // Mobile: start closed (existing default state)
-        playerContainer.style.width = '60px';
-        playerContainer.style.transform = 'translateX(35px)';
-        openBtn.style.display = 'block';
-        closeBtn.style.display = 'none';
-        playerContent.style.display = 'none';
+      // Function to toggle Spotify player
+      function toggleSpotifyPlayer() {
+        const isExpanded = playerContainer.classList.contains('expanded');
+        
+        if (isExpanded) {
+          // Collapse the player
+          playerContainer.classList.remove('expanded');
+          playerContainer.classList.add('collapsed');
+          spotifyContent.style.display = 'none';
+          openBtn.style.display = 'block';
+          closeBtn.style.display = 'none';
+        } else {
+          // Expand the player
+          playerContainer.classList.remove('collapsed');
+          playerContainer.classList.add('expanded');
+          spotifyContent.style.display = 'block';
+          openBtn.style.display = 'none';
+          closeBtn.style.display = 'block';
+        }
       }
 
-      closeBtn.addEventListener('click', function() {
-        playerContainer.style.width = '60px';
-        playerContainer.style.transform = 'translateX(35px)';
-        openBtn.style.display = 'block';
-        closeBtn.style.display = 'none';
-        playerContent.style.display = 'none';
-      });
+      // Add event listeners to both buttons
+      openBtn.addEventListener('click', toggleSpotifyPlayer);
+      closeBtn.addEventListener('click', toggleSpotifyPlayer);
 
-      openBtn.addEventListener('click', function() {
-        playerContainer.style.width = '320px';
-        playerContainer.style.transform = 'translateX(0)';
-        openBtn.style.display = 'none';
-        closeBtn.style.display = 'block';
-        playerContent.style.display = 'block';
-      });
+      // Set initial state - collapsed
+      playerContainer.classList.add('collapsed');
+      spotifyContent.style.display = 'none';
+      openBtn.style.display = 'block';
+      closeBtn.style.display = 'none';
     });
   </script>
 
