@@ -607,40 +607,84 @@ section {
 /* ==========================================================================
    PARALLAX EFFECTS
    ========================================================================== */
-.parallax-silhouette {
+.parallax-container {
   position: fixed;
-  top: 130vh;
+  top: 0;
   left: 0;
   width: 100vw;
-  height: 300vh;
+  height: 100vh;
   pointer-events: none;
   z-index: -1;
+}
+
+.parallax-silhouette {
+  position: absolute;
+  width: 30vw; /* Change from 100vw to 20vw */
+  height: auto; /* Change from 100vh to auto */
+  pointer-events: none;
   will-change: transform;
-  margin: 0;
-  padding: 0;
 
   img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+    width: 100%; /* This will now be 100% of the 20vw container */
+    height: auto; /* Change from 100% to auto to maintain aspect ratio */
+    object-fit: contain; /* Change from cover to contain to prevent cropping */
     opacity: 1;
-    margin: 0 auto;
-    padding: 0;
     display: block;
   }
 }
 
-/* Mobile parallax adjustments */
+/* Position each silhouette at different horizontal AND vertical positions */
+/* Position each silhouette at different horizontal AND vertical positions */
+.parallax-silhouette-1 {
+  top: 120vh; /* Around videos header */
+  right: 0; /* Peter at far right of viewport */
+  left: auto;
+}
+
+.parallax-silhouette-2 {
+  top: 230vh; /* Around shows header */
+  left: 0; /* Stas aligned to left of viewport */
+}
+
+.parallax-silhouette-3 {
+  /* Position relative to press section instead of fixed viewport height */
+  right: 0; /* Cesar aligned to right of viewport */
+  left: auto;
+  width: 40vw;
+}
+
+.parallax-silhouette-4 {
+  /* Position relative to press section, below Cesar */
+  left: 0; /* Matt aligned to left of viewport */
+  width: 40vw;
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .parallax-silhouette {
-    height: 400vh;
-    
-    img {
-      content: url('../images/silhouettes/silhouette-long-mobile.svg');
-      width: 100%;
-    }
+    width: 30vw; /* Slightly larger on mobile for visibility */
+  }
+  
+  /* Keep same positioning logic for mobile but adjust if needed */
+  .parallax-silhouette-1 {
+    right: 0;
+    left: auto;
+  }
+  
+  .parallax-silhouette-2 {
+    left: 0;
+  }
+  
+  .parallax-silhouette-3 {
+    right: 0;
+    left: auto; /* Add this line for mobile too */
+  }
+  
+  .parallax-silhouette-4 {
+    left: 0;
   }
 }
+
 
 /* ==========================================================================
    FOOTER
