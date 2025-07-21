@@ -21,17 +21,22 @@ const updateParallax = () => {
   
   this.silhouettes.forEach((silhouette, index) => {
     let parallaxSpeed;
+    let initialOffset = 0;
     
     // Keep Peter and Stas at their current speeds
     if (index === 0 || index === 1) {
       parallaxSpeed = 1.2 + (index * 0.2); // 1.2x, 1.4x (unchanged)
     } 
-    // Give Cesar and Matt slower speeds to prevent overlapping
+    // Give Cesar and Matt slower speeds and account for their positioning
     else {
-      parallaxSpeed = 1.2 + ((index - 2) * 0.1); // 0.8x for Cesar, 0.9x for Matt
+      parallaxSpeed = 1.2 + ((index - 2) * 0.1); // 1.2x for Cesar, 1.3x for Matt
+      
+      // Get their initial top position set by updatePressPositions
+      const currentTop = parseInt(silhouette.style.top) || 0;
+      initialOffset = currentTop;
     }
     
-    const yPos = -(scrolled * parallaxSpeed);
+    const yPos = initialOffset - (scrolled * parallaxSpeed);
     silhouette.style.transform = `translate3d(0, ${yPos}px, 0)`;
   });
   
@@ -62,13 +67,13 @@ const updateParallax = () => {
       // Position Cesar slightly below the press header
     const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
     if (cesarSilhouette) {
-      cesarSilhouette.style.top = `${pressOffset + 120}px`;
+      cesarSilhouette.style.top = `${pressOffset + -900}px`;
     }
     
     // Position Matt below Cesar
     const mattSilhouette = document.querySelector('.parallax-silhouette-4');
     if (mattSilhouette) {
-      mattSilhouette.style.top = `${pressOffset + 200}px`;
+      mattSilhouette.style.top = `${pressOffset + -650}px`;
     }
     }
   }
