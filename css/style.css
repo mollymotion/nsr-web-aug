@@ -662,7 +662,7 @@ section {
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .parallax-silhouette {
-    width: 30vw; /* Slightly larger on mobile for visibility */
+    width: 40vw; /* Change from 30vw to 40vw for mobile */
   }
   
   /* Keep same positioning logic for mobile but adjust if needed */
@@ -677,11 +677,13 @@ section {
   
   .parallax-silhouette-3 {
     right: 0;
-    left: auto; /* Add this line for mobile too */
+    left: auto;
+    width: 50vw; /* Make Cesar even bigger on mobile */
   }
   
   .parallax-silhouette-4 {
     left: 0;
+    width: 50vw; /* Make Matt even bigger on mobile */
   }
 }
 
