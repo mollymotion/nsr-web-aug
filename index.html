@@ -16,10 +16,12 @@
 </head>
 
 <body class="text-white relative">
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
   <!-- Hero Section -->
-  <section class="h-screen w-full relative hero">
+  <section id="hero" class="h-screen w-full relative hero">
 
-    <img class="hero-image" alt="Hero Image" loading="lazy">
+    <img class="hero-image" alt="Hero Image">
 
     <div id="slice-mask" class="hero-mask"></div>
 
@@ -346,9 +348,107 @@
 </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script type="module" src="js/main.js"></script>
-  <script src="js/lenis.min.js"></script>
-  <script src="js/smooth-scroll-lenis.js"></script>
+  <script>
+    // GSAP ScrollTrigger Scroll Spy for Navigation (without ScrollSmoother)
+    document.addEventListener('DOMContentLoaded', function() {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Get all navigation links and sections
+      const navLinks = document.querySelectorAll('.navbar-nav--links a');
+      const sections = document.querySelectorAll('#shows, #videos, #press');
+      const heroSection = document.querySelector('#hero');
+      
+      console.log('Found nav links:', navLinks.length);
+      console.log('Found sections:', sections.length);
+      console.log('Found hero section:', heroSection);
+      
+      // Handle smooth scrolling for navigation links
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          
+          if (targetSection) {
+            // Manually set active state immediately for better UX
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            
+            // Use native smooth scrolling
+            targetSection.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }
+        });
+      });
+      
+      // Set up ScrollTrigger for hero section to reset navigation
+      if (heroSection) {
+        ScrollTrigger.create({
+          trigger: heroSection,
+          start: "top 60%",
+          end: "bottom 40%",
+          onEnter: () => {
+            console.log('Entering hero section - removing all active classes');
+            // Remove active class from all nav links when in hero section
+            navLinks.forEach(link => link.classList.remove('active'));
+          },
+          onEnterBack: () => {
+            console.log('Re-entering hero section - removing all active classes');
+            // Remove active class from all nav links when scrolling back to hero
+            navLinks.forEach(link => link.classList.remove('active'));
+          }
+        });
+      }
+      
+      // Set up ScrollTrigger for each section
+      sections.forEach((section, index) => {
+        const sectionId = section.getAttribute('id');
+        const correspondingNavLink = document.querySelector(`.navbar-nav--links a[href="#${sectionId}"]`);
+        
+        console.log(`Setting up ScrollTrigger for section: ${sectionId}`, correspondingNavLink);
+        
+        if (correspondingNavLink) {
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top 60%",
+            end: "bottom 40%",
+            onEnter: () => {
+              console.log(`Entering section: ${sectionId}`);
+              console.log('Setting active class on:', correspondingNavLink);
+              // Remove active class from all nav links
+              navLinks.forEach(link => link.classList.remove('active'));
+              // Add active class to current section's nav link
+              correspondingNavLink.classList.add('active');
+              console.log('Active classes after update:', Array.from(navLinks).map(link => ({href: link.href, hasActive: link.classList.contains('active')})));
+            },
+            onEnterBack: () => {
+              console.log(`Re-entering section: ${sectionId}`);
+              console.log('Setting active class on:', correspondingNavLink);
+              // Remove active class from all nav links
+              navLinks.forEach(link => link.classList.remove('active'));
+              // Add active class to current section's nav link
+              correspondingNavLink.classList.add('active');
+              console.log('Active classes after update:', Array.from(navLinks).map(link => ({href: link.href, hasActive: link.classList.contains('active')})));
+            },
+            onLeave: () => {
+              console.log(`Leaving section: ${sectionId}`);
+            },
+            onLeaveBack: () => {
+              console.log(`Leaving back section: ${sectionId}`);
+            }
+          });
+        }
+      });
+      
+      // Refresh ScrollTrigger
+      ScrollTrigger.refresh();
+    });
+  </script>
 
 
   <script>
@@ -413,6 +513,8 @@
     setVh();
   </script>
 
+    </div>
+  </div>
 </body>
 
 </html>
