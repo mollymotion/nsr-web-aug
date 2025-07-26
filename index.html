@@ -11,13 +11,15 @@
 
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
 </head>
 
 <body class="text-white relative">
   <!-- Hero Section -->
   <section class="h-screen w-full relative hero">
 
-    <img class="hero-image" alt="Hero Image">
+    <img class="hero-image" alt="Hero Image" loading="lazy">
 
     <div id="slice-mask" class="hero-mask"></div>
 
@@ -25,7 +27,7 @@
     <div class="z-10 navbar-nav z-10 w-full absolute flex flex-col justify-between top-0">
       <!-- Logo container -->
       <div id="logo-container" class="logo-container">
-        <img src="./images/logo-splat.svg" alt="NSR Logo" class="logo-container--logo">
+        <img src="./images/logo-splat.svg" alt="NSR Logo" class="logo-container--logo" loading="lazy">
       </div>
       <!-- Add social media links -->
       <svg xmlns="http://www.w3.org/2000/svg" class="hidden" style="display: none !important">
@@ -94,7 +96,7 @@
       <div class="flex flex-col lg:flex-row gap-8 items-start shows-card" style="--bg-image: url('${artistImage}')">
         <!-- Artist Image Column (Left) -->
         <div class="grid-card--img lg:w-1/3 w-full flex-shrink-0">
-          <img src="${thumbUrl}" alt="Artist Image" class="w-full h-auto object-cover grid-card--imgreg" />
+          <img src="${thumbUrl}" alt="Artist Image" class="w-full h-auto object-cover grid-card--imgreg" loading="lazy" />
         </div>
         <!-- Shows List Column (Right) -->
         <div class="lg:w-2/3 w-full space-y-4" id="shows-list">
@@ -135,17 +137,17 @@
 
         <div class="grid-card">
           <h3 class="grid-card--title">Coaster Set</h3>
-          <img src="./images/merch/coasters.webp" class="w-24 h-24 object-cover mx-auto grid-card--img">
+          <img src="./images/merch/coasters.webp" class="w-24 h-24 object-cover mx-auto grid-card--img" loading="lazy">
         </div>
 
         <div class="grid-card">
           <h3 class="grid-card--title">Outdoor Speaker</h3>
-          <img src="./images/merch/speaker.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img ">
+          <img src="./images/merch/speaker.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img " loading="lazy">
         </div>
 
         <div class="grid-card">
           <h3 class="grid-card--title">Business Card Holder</h3>
-          <img src="./images/merch/business-card-holder.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img">
+          <img src="./images/merch/business-card-holder.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img" loading="lazy">
         </div>
 
       </div>
@@ -162,7 +164,7 @@
             <iframe width="100%" src="https://www.youtube.com/embed/KUpWpuhXKCA?si=Ii3cfk9LKoiAkg5j"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -181,7 +183,7 @@
             <div class="flex items-start gap-4">
               <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/" target="_blank">
                 <img src="./images/press/darkroom.png" alt="Performance at Dark Room"
-                  class="w-60 h-60 object-cover flex-shrink-0" />
+                  class="w-60 h-60 object-cover flex-shrink-0" loading="lazy" />
               </a>
               <div class="flex-1 flex flex-col justify-between h-60 text-left">
                 <div>
@@ -189,7 +191,7 @@
                     <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/"
                       target="_blank" class="hover:underline">
                       <img src="./images/press/mf-site.png" alt="Music Fiends"
-                        class="h-16 w-auto object-contain inline" />
+                        class="h-16 w-auto object-contain inline" loading="lazy" />
                     </a>
                   </div>
                   <div class="mb-2">
@@ -216,7 +218,7 @@
               <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
               target="_blank">
                 <img src="./images/press/dancin-still.png" alt="Debut Animated Lyric Video for Dancin' On My Own Grave"
-                class="dancin w-60 h-60 object-cover flex-shrink-0" />
+                class="dancin w-60 h-60 object-cover flex-shrink-0" loading="lazy" />
               </a>
               <div class="flex-1 flex flex-col justify-between h-60 text-left">
                 <div>
@@ -224,7 +226,7 @@
                     <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
                     target="_blank" class="hover:underline">
                     <img src="./images/press/postpunkglow.webp" alt="Post-Punk.com"
-                    class="h-16 w-auto object-contain inline" />
+                    class="h-16 w-auto object-contain inline" loading="lazy" />
                   </a>
                 </div>
                 <div class="mb-2">
@@ -247,7 +249,7 @@
             <div class="flex items-start gap-4">
               <a href="https://www.mixcloud.com/ensom-kr%C3%A5ke/posts/none-shall-remain-a-hymn-of-decay-a-summoning-of-the-night/" target="_blank">
                 <img src="./images/press/heart-of-goth.png" alt="A Hymn of Decay, A Summoning of the Night"
-                  class="w-60 h-60 object-cover flex-shrink-0" />
+                  class="w-60 h-60 object-cover flex-shrink-0" loading="lazy" />
               </a>
               <div class="flex-1 flex flex-col justify-between h-60 text-left">
                 <div>
@@ -255,7 +257,7 @@
                     <a href="https://www.mixcloud.com/ensom-kr%C3%A5ke/posts/none-shall-remain-a-hymn-of-decay-a-summoning-of-the-night/"
                       target="_blank" class="hover:underline">
                       <img src="./images/press/heart-of-goth-logo.png" alt="Heart of Goth"
-                        class="h-16 w-auto object-contain inline" />
+                        class="h-16 w-auto object-contain inline" loading="lazy" />
                     </a>
                   </div>
                   <div class="mb-2">
@@ -316,7 +318,7 @@
   <!-- Footer -->
   <footer class="relative">
     <div class="absolute bottom-0 left-0 w-3/4">
-      <img src="./images/band-collage-footer.svg" alt="Band Collage" class="w-3/4" />
+      <img src="./images/band-collage-footer.svg" alt="Band Collage" class="w-3/4" loading="lazy" />
     </div>
     <div class="absolute bottom-0 right-0 footer-copyright">
       &copy; 2025 NSR – All rights reserved.
@@ -330,23 +332,23 @@
   <!-- Replace the existing parallax-silhouette section with: -->
 <div class="parallax-container">
   <div class="parallax-silhouette parallax-silhouette-1">
-    <img src="./images/silhouettes/peter.png" alt="Silhouette 1" />
+    <img src="./images/silhouettes/peter.png" alt="Silhouette 1" loading="lazy" />
   </div>
   <div class="parallax-silhouette parallax-silhouette-2">
-    <img src="./images/silhouettes/stas.png" alt="Silhouette 2" />
+    <img src="./images/silhouettes/stas.png" alt="Silhouette 2" loading="lazy" />
   </div>
   <div class="parallax-silhouette parallax-silhouette-3">
-    <img src="./images/silhouettes/cesar.png" alt="Silhouette 3" />
+    <img src="./images/silhouettes/cesar.png" alt="Silhouette 3" loading="lazy" />
   </div>
   <div class="parallax-silhouette parallax-silhouette-4">
-    <img src="./images/silhouettes/matt.png" alt="Silhouette 4" />
+    <img src="./images/silhouettes/matt.png" alt="Silhouette 4" loading="lazy" />
   </div>
 </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script type="module" src="js/main.js"></script>
-
-
+  <script src="js/lenis.min.js"></script>
+  <script src="js/smooth-scroll-lenis.js"></script>
 
 
   <script>
@@ -402,6 +404,14 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.0/lottie.min.js"></script>
 
+  <script>
+    // Set --vh custom property for mobile Safari 100vh fix
+    function setVh() {
+      document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+    }
+    window.addEventListener('resize', setVh);
+    setVh();
+  </script>
 
 </body>
 

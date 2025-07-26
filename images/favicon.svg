@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#000"/>
+  <!-- Splat shape (simplified, stylized for favicon) -->
+  <ellipse cx="32" cy="32" rx="24" ry="20" fill="#ff2c8b"/>
+  <!-- NSR initials, bold and centered -->
+  <text x="32" y="40" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff" letter-spacing="2">NSR</text>
+</svg> 
