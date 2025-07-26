@@ -163,15 +163,19 @@ export default class BandsInTown {
                 url: event.url
             };
 
-            const html = fragment.firstElementChild.innerHTML
+            console.log('Show URL:', showData.url);
+
+            const showElement = fragment.firstElementChild;
+            showElement.href = showData.url;
+
+            const html = showElement.innerHTML
                 .replace('${date}', showData.date)
                 .replace('${time}', showData.time)
                 .replace('${desc}', showData.desc)
                 .replace('${venueName}', showData.venueName)
-                .replace('${venueCity}', showData.venueCity)
-                .replace('${url}', showData.url);
+                .replace('${venueCity}', showData.venueCity);
 
-            fragment.firstElementChild.innerHTML = html;
+            showElement.innerHTML = html;
             showsList.appendChild(fragment);
         });
     }
