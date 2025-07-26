@@ -36,11 +36,45 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  background: url('../images/pink-bg.svg') no-repeat center center fixed;
-  background-size: cover;
+  background: url('../images/pink-bg.svg') no-repeat center center;
+  background-size: 110vw auto; /* Make it 10% wider than viewport */
   background-color: #e0e0e0;
+  background-attachment: fixed;
+  background-position: center center;
   margin: 0;
   padding: 0;
+}
+
+/* Enhanced mobile handling with pseudo-element */
+@media (max-width: 768px) {
+  body {
+    /* Remove the background on mobile to avoid conflicts */
+    background: none;
+    background-color: #e0e0e0;
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+  
+  /* Create a reliable fixed background using pseudo-element */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: -10vw; /* Offset to center the wider background */
+    width: 120vw; /* 20% wider than viewport */
+    height: 100vh;
+    background: url('../images/pink-bg.svg') no-repeat center center;
+    background-size: cover;
+    z-index: -2;
+    pointer-events: none;
+  }
+}
+
+/* For very small screens, make it even wider */
+@media (max-width: 480px) {
+  body::before {
+    left: -15vw;
+    width: 130vw; /* 30% wider for maximum coverage */
+  }
 }
 
 /* ==========================================================================
@@ -214,7 +248,7 @@ section {
   width: 100%;
   gap: 0.5rem;
   /* Add safe area padding for mobile browsers */
-  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  /* padding-bottom: max(0.5rem, env(safe-area-inset-bottom)); */
 
   a {
     display: block;
@@ -240,17 +274,6 @@ section {
   /* Performance optimizations */
   .slice-transition-mask {
     animation-duration: 0.1s;
-  }
-
-  /* Mobile Safari navigation fix */
-  .navbar-nav--links {
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
-    min-height: 60px; /* Ensure minimum touch target size */
-  }
-
-  /* Hero section mobile adjustments */
-  .hero {
-    height: calc(var(--vh, 1vh) * 100);
   }
 
   /* Press content layout adjustments */
