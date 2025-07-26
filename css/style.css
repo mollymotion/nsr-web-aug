@@ -99,6 +99,8 @@ section {
   margin-right: calc(-50vw + 50%);
   left: 0;
   right: 0;
+  /* Use custom --vh property for Safari mobile compatibility */
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 /* Utilities */
@@ -211,6 +213,8 @@ section {
   background-color: rgba(0,0,0,0.7);
   width: 100%;
   gap: 0.5rem;
+  /* Add safe area padding for mobile browsers */
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
 
   a {
     display: block;
@@ -236,6 +240,17 @@ section {
   /* Performance optimizations */
   .slice-transition-mask {
     animation-duration: 0.1s;
+  }
+
+  /* Mobile Safari navigation fix */
+  .navbar-nav--links {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    min-height: 60px; /* Ensure minimum touch target size */
+  }
+
+  /* Hero section mobile adjustments */
+  .hero {
+    height: calc(var(--vh, 1vh) * 100);
   }
 
   /* Press content layout adjustments */
@@ -612,7 +627,7 @@ section {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   pointer-events: none;
   z-index: -1;
 }
