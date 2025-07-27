@@ -36,36 +36,35 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  background: url('../images/pink-bg.svg') no-repeat center center;
-  background-size: 110vw auto; /* Make it 10% wider than viewport */
   background-color: #e0e0e0;
-  background-attachment: fixed;
-  background-position: center center;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
-/* Enhanced mobile handling with pseudo-element */
+/* Universal pseudo-element background for all devices */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: -10vw; /* Offset to center the wider background */
+  width: 120vw; /* 20% wider than viewport */
+  height: 100vh;
+  background: url('../images/pink-bg.svg') no-repeat center center;
+  background-size: cover;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Enhanced mobile handling */
 @media (max-width: 768px) {
   body {
-    /* Remove the background on mobile to avoid conflicts */
-    background: none;
-    background-color: #e0e0e0;
     min-height: calc(var(--vh, 1vh) * 100);
   }
   
-  /* Create a reliable fixed background using pseudo-element */
   body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: -10vw; /* Offset to center the wider background */
-    width: 120vw; /* 20% wider than viewport */
-    height: 100vh;
-    background: url('../images/pink-bg.svg') no-repeat center center;
-    background-size: cover;
-    z-index: -2;
-    pointer-events: none;
+    left: -10vw; /* Keep same offset for mobile */
+    width: 120vw; /* Keep same width for consistency */
   }
 }
 
