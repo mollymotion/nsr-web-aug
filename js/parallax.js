@@ -93,7 +93,7 @@ class ParallaxController {
         
         if (isMobile) {
           // Position Stas slightly higher on mobile
-          stasSilhouette.style.top = `${videosOffset - 200}px`; // 200px above videos header on mobile
+          stasSilhouette.style.top = `${videosOffset - 500}px`; // 500px above videos header on mobile
         } else {
           // Desktop positioning for Stas (original)
           stasSilhouette.style.top = `${videosOffset - 300}px`; // 300px above videos header on desktop
