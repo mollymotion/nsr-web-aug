@@ -81,15 +81,22 @@ class ParallaxController {
       if (mattSilhouette) {
         mattSilhouette.style.top = `${pressOffset - 650}px`;
       }
-    }
+}
+
+// Position Stas relative to videos section
+if (videosSection) {
+  const videosOffset = videosSection.offsetTop;
+  const stasSilhouette = document.querySelector('.parallax-silhouette-2');
+  if (stasSilhouette) {
+    // Check if mobile (768px or less)
+    const isMobile = window.innerWidth <= 768;
     
-    // Position Stas relative to videos section
-    if (videosSection) {
-      const videosOffset = videosSection.offsetTop;
-      const stasSilhouette = document.querySelector('.parallax-silhouette-2');
-      if (stasSilhouette) {
-        stasSilhouette.style.top = `${videosOffset - 300}px`; // Position at videos header
-      }
+    if (isMobile) {
+      // Mobile-specific positioning for Stas
+      stasSilhouette.style.top = `${videosOffset - 150}px`; // Closer to videos header on mobile
+    } else {
+      // Desktop positioning for Stas
+      stasSilhouette.style.top = `${videosOffset - 300}px`; // Further from videos header on desktop
     }
   }
 }
