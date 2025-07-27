@@ -70,16 +70,27 @@ class ParallaxController {
     if (pressSection) {
       const pressOffset = pressSection.offsetTop;
       
+      // Check if mobile (768px or less)
+      const isMobile = window.innerWidth <= 768;
+      
       // Position Cesar slightly below the press header
       const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
       if (cesarSilhouette) {
-        cesarSilhouette.style.top = `${pressOffset - 900}px`;
+        if (isMobile) {
+          cesarSilhouette.style.top = `${pressOffset - 1200}px`; // Closer to press header on mobile
+        } else {
+          cesarSilhouette.style.top = `${pressOffset - 900}px`; // Original desktop position
+        }
       }
       
       // Position Matt below Cesar
       const mattSilhouette = document.querySelector('.parallax-silhouette-4');
       if (mattSilhouette) {
-        mattSilhouette.style.top = `${pressOffset - 650}px`;
+        if (isMobile) {
+          mattSilhouette.style.top = `${pressOffset - 950}px`; // Closer to press header on mobile
+        } else {
+          mattSilhouette.style.top = `${pressOffset - 650}px`; // Original desktop position
+        }
       }
     }
     
@@ -93,7 +104,7 @@ class ParallaxController {
         
         if (isMobile) {
           // Position Stas slightly higher on mobile
-          stasSilhouette.style.top = `${videosOffset - 500}px`; // 500px above videos header on mobile
+          stasSilhouette.style.top = `${videosOffset - 600}px`; // 600px above videos header on mobile
         } else {
           // Desktop positioning for Stas (original)
           stasSilhouette.style.top = `${videosOffset - 300}px`; // 300px above videos header on desktop
