@@ -36,7 +36,7 @@ class ParallaxController {
           }
 
           // Get their initial top position set by updateSilhouettePositions
-          const currentTop = parseInt(silhouette.style.top) || 0;
+          const currentTop = parseFloat(silhouette.style.top) || 0;
           initialOffset = currentTop;
         }
 
