@@ -26,14 +26,14 @@ class ParallaxController {
 
         // Keep Peter at his current speed (index 0)
         if (index === 0) {
-          parallaxSpeed = isMobile ? 0.2 : 1.2; // Much slower on mobile
+          parallaxSpeed = isMobile ? 0.8 : 1.2; // Increased from 0.2 to 0.8 on mobile
         }
         // Give Stas, Cesar and Matt slower speeds and account for their positioning
         else {
           if (index === 1) {
-            parallaxSpeed = isMobile ? 0.1 : 1.4; // Much slower on mobile for Stas
+            parallaxSpeed = isMobile ? 0.6 : 1.4; // Increased from 0.1 to 0.6 for Stas on mobile
           } else {
-            parallaxSpeed = isMobile ? 0.1 : 1.2 + ((index - 2) * 0.1); // Much slower on mobile for Cesar/Matt
+            parallaxSpeed = isMobile ? 0.5 : 1.2 + ((index - 2) * 0.1); // Increased from 0.1 to 0.5 for Cesar/Matt on mobile
           }
 
           // Get their initial top position set by updateSilhouettePositions
