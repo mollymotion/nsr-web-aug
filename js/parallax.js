@@ -18,7 +18,6 @@ class ParallaxController {
     // ...existing code...
     const updateParallax = () => {
       const scrolled = window.pageYOffset;
-      const isMobile = window.innerWidth <= 768;
 
       this.silhouettes.forEach((silhouette, index) => {
         let parallaxSpeed;
@@ -26,22 +25,22 @@ class ParallaxController {
 
         // Keep Peter at his current speed (index 0)
         if (index === 0) {
-          parallaxSpeed = isMobile ? 0.8 : 1.2; // Increased from 0.2 to 0.8 on mobile
+          parallaxSpeed = 1.2; // 1.2x (unchanged)
         }
         // Give Stas, Cesar and Matt slower speeds and account for their positioning
         else {
           if (index === 1) {
-            parallaxSpeed = isMobile ? 0.6 : 1.4; // Increased from 0.1 to 0.6 for Stas on mobile
+            parallaxSpeed = 1.4; // 1.4x for Stas
           } else {
-            parallaxSpeed = isMobile ? 0.5 : 1.2 + ((index - 2) * 0.1); // Increased from 0.1 to 0.5 for Cesar/Matt on mobile
+            parallaxSpeed = 1.2 + ((index - 2) * 0.1); // 1.2x for Cesar, 1.3x for Matt
           }
 
           // Get their initial top position set by updateSilhouettePositions
-          const currentTop = parseFloat(silhouette.style.top) || 0;
+          const currentTop = parseInt(silhouette.style.top) || 0;
           initialOffset = currentTop;
         }
 
-        const yPos = Math.round(initialOffset - (scrolled * parallaxSpeed));
+        const yPos = initialOffset - (scrolled * parallaxSpeed);
         silhouette.style.transform = `translate3d(0, ${yPos}px, 0)`;
       });
 
@@ -78,7 +77,7 @@ class ParallaxController {
       const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
       if (cesarSilhouette) {
         if (isMobile) {
-          cesarSilhouette.style.top = `${pressOffset - 700}px`; // Closer to press header on mobile
+          cesarSilhouette.style.top = `${pressOffset - 1000}px`; // Closer to press header on mobile
         } else {
           cesarSilhouette.style.top = `${pressOffset - 900}px`; // Original desktop position
         }
@@ -88,7 +87,7 @@ class ParallaxController {
       const mattSilhouette = document.querySelector('.parallax-silhouette-4');
       if (mattSilhouette) {
         if (isMobile) {
-          mattSilhouette.style.top = `${pressOffset - 450}px`; // Closer to press header on mobile
+          mattSilhouette.style.top = `${pressOffset - 800}px`; // Closer to press header on mobile
         } else {
           mattSilhouette.style.top = `${pressOffset - 650}px`; // Original desktop position
         }
