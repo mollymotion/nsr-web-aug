@@ -66,6 +66,7 @@ class ParallaxController {
   updateSilhouettePositions() {
     const pressSection = document.getElementById('press');
     const videosSection = document.getElementById('videos');
+    const contactSection = document.getElementById('contact');
     
     if (pressSection) {
       const pressOffset = pressSection.offsetTop;
@@ -82,14 +83,19 @@ class ParallaxController {
           cesarSilhouette.style.top = `${pressOffset - 900}px`; // Original desktop position
         }
       }
+    }
+    
+    // Position Matt relative to contact section
+    if (contactSection) {
+      const contactOffset = contactSection.offsetTop;
+      const isMobile = window.innerWidth <= 768;
       
-      // Position Matt below Cesar
       const mattSilhouette = document.querySelector('.parallax-silhouette-4');
       if (mattSilhouette) {
         if (isMobile) {
-          mattSilhouette.style.top = `${pressOffset - 800}px`; // Closer to press header on mobile
+          mattSilhouette.style.top = `${contactOffset - 600}px`; // Above contact section on mobile
         } else {
-          mattSilhouette.style.top = `${pressOffset - 650}px`; // Original desktop position
+          mattSilhouette.style.top = `${contactOffset - 400}px`; // Above contact section on desktop
         }
       }
     }
