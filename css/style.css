@@ -100,7 +100,8 @@ h2 {
   #shows &,
   #merch &,
   #press &,
-  #videos & {
+  #videos &,
+  #contact & {
     text-transform: uppercase;
     background-image: url('../images/h2.svg');
     background-size: contain;
@@ -243,17 +244,18 @@ section {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0, 0.9);
   width: 100%;
   gap: 0.5rem;
+  padding: 0 1rem;
   /* Add safe area padding for mobile browsers */
-  /* padding-bottom: max(0.5rem, env(safe-area-inset-bottom)); */
 
   a {
     display: block;
+    margin: 0; /* Remove any margin */
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     padding: 0.5rem;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -268,7 +270,6 @@ section {
     &.active {
       color: var(--primary-color, #ff2c8b) !important;
       text-shadow: 2px 2px 0 var(--secondary-color, #0e0e0e) !important;
-      font-weight: 600;
     }
 
     /* Simple hover effect for non-active links only */
@@ -699,6 +700,7 @@ section {
 
 .parallax-silhouette-3 {
   /* Position relative to press section instead of fixed viewport height */
+  top: 350vh; /* Initial fallback position - will be overridden by JavaScript */
   right: 0; /* Cesar aligned to right of viewport */
   left: auto;
   width: 40vw;
@@ -706,6 +708,7 @@ section {
 
 .parallax-silhouette-4 {
   /* Position relative to press section, below Cesar */
+  top: 400vh; /* Initial fallback position - will be overridden by JavaScript */
   left: 0; /* Matt aligned to left of viewport */
   width: 40vw;
 }
