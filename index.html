@@ -83,11 +83,13 @@
         <!-- Social media links will be injected here -->
       </div>
 
-      <nav class="navbar-nav--links relative mx-auto w-full backdrop-blur-lg bg-gray-900">
-        <a href="#shows">Shows</a>
-        <a href="#videos">Videos</a>
-        <a href="#press">Press</a>
-      </nav>
+      <nav class="navbar-nav--links relative mx-auto w-full backdrop-blur-lg bg-gray-900" role="navigation"
+          aria-label="Main navigation">
+          <a href="#shows" aria-label="Go to Shows section">Shows</a>
+          <a href="#videos" aria-label="Go to Videos section">Videos</a>
+          <a href="#press" aria-label="Go to Press section">Press</a>
+          <a href="#contact" aria-label="Go to Contact section">Contact</a>
+        </nav>
     </div>
   </section>
 
@@ -277,6 +279,51 @@
         </div>
       </div>
     </div>
+
+    <!-- Contact Section -->
+        <div class="h-20"></div> <!-- Spacer before contact -->
+        <section id="contact" class="pt-20 sectionbg w-screen relative" role="region" aria-labelledby="contact-heading">
+          <!-- Matt's silhouette -->
+          <div class="parallax-silhouette parallax-silhouette-4" aria-hidden="true"></div>
+
+          <div class="px-6 sm:px-12 text-white max-w-7xl mx-auto">
+            <h2 id="contact-heading" class="tracking-wide mb-12 text-center">Contact</h2>
+
+            <div class="flex flex-col items-center">
+              <div class="text-gray-100 w-3/4 grid-card text-center">
+                <div class="py-8">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 class="grid-card--title mb-3 flex flex-col items-center justify-center gap-2">
+                        <svg class="w-8 h-8" fill="currentColor">
+                          <use href="#icon-calendar" />
+                        </svg>
+                        Booking
+                      </h3>
+                      <a href="mailto:booking@noneshallremain.com" class="text-lg hover:underline">
+                        booking@noneshallremain.com
+                      </a>
+                    </div>
+                    
+                    <div>
+                      <h3 class="grid-card--title mb-3 flex flex-col items-center justify-center gap-2">
+                        <svg class="w-8 h-8" fill="currentColor">
+                          <use href="#icon-mail" />
+                        </svg>
+                        General Contact
+                      </h3>
+                      <a href="mailto:contact@noneshallremain.com" class="text-lg hover:underline">
+                        contact@noneshallremain.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="h-32"></div> <!-- Spacer after contact -->
+      </div>
 
     <!-- Half page spacing after press section -->
     <div style="height: 40vh;"></div>

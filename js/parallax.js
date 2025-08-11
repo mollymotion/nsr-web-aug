@@ -1,6 +1,13 @@
 class ParallaxController {
   constructor() {
     this.silhouettes = document.querySelectorAll('.parallax-silhouette');
+    console.log('ParallaxController initialized, found silhouettes:', this.silhouettes.length);
+    
+    // Debug: Log each silhouette
+    this.silhouettes.forEach((s, i) => {
+      console.log(`Silhouette ${i} classes:`, s.className);
+    });
+    
     this.init();
   }
 
@@ -15,14 +22,13 @@ class ParallaxController {
 
     let ticking = false;
 
-    // ...existing code...
     const updateParallax = () => {
       const scrolled = window.pageYOffset;
 
       this.silhouettes.forEach((silhouette, index) => {
         let parallaxSpeed;
         let initialOffset = 0;
-
+        
         // Keep Peter at his current speed (index 0)
         if (index === 0) {
           parallaxSpeed = 1.2; // 1.2x (unchanged)
@@ -46,7 +52,6 @@ class ParallaxController {
 
       ticking = false;
     };
-    // ...existing code...
 
     window.addEventListener('scroll', () => {
       if (!ticking) {
@@ -68,55 +73,85 @@ class ParallaxController {
     const videosSection = document.getElementById('videos');
     const contactSection = document.getElementById('contact');
     
-    if (pressSection) {
-      const pressOffset = pressSection.offsetTop;
-      
-      // Check if mobile (768px or less)
-      const isMobile = window.innerWidth <= 768;
-      
-      // Position Cesar slightly below the press header
-      const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
-      if (cesarSilhouette) {
-        if (isMobile) {
-          cesarSilhouette.style.top = `${pressOffset - 1000}px`; // Closer to press header on mobile
-        } else {
-          cesarSilhouette.style.top = `${pressOffset - 900}px`; // Original desktop position
-        }
-      }
-    }
-    
-    // Position Matt relative to contact section
-    if (contactSection) {
-      const contactOffset = contactSection.offsetTop;
-      const isMobile = window.innerWidth <= 768;
-      
-      const mattSilhouette = document.querySelector('.parallax-silhouette-4');
-      if (mattSilhouette) {
-        if (isMobile) {
-          mattSilhouette.style.top = `${contactOffset - 600}px`; // Above contact section on mobile
-        } else {
-          mattSilhouette.style.top = `${contactOffset - 400}px`; // Above contact section on desktop
-        }
-      }
-    }
     
     // Position Stas relative to videos section
     if (videosSection) {
       const videosOffset = videosSection.offsetTop;
       const stasSilhouette = document.querySelector('.parallax-silhouette-2');
+      
       if (stasSilhouette) {
         // Check if mobile (768px or less)
         const isMobile = window.innerWidth <= 768;
         
         if (isMobile) {
-          // Position Stas slightly higher on mobile
-          stasSilhouette.style.top = `${videosOffset - 600}px`; // 600px above videos header on mobile
+          // ADJUST HEIGHT HERE for mobile: Increase to move higher, decrease to move lower
+          const newTop = videosOffset - 1000;
+          stasSilhouette.style.top = `${newTop}px`;
         } else {
-          // Desktop positioning for Stas (original)
-          stasSilhouette.style.top = `${videosOffset - 300}px`; // 300px above videos header on desktop
+          // ADJUST HEIGHT HERE for desktop: Increase to move higher, decrease to move lower
+          const newTop = videosOffset - 500; 
+          stasSilhouette.style.top = `${newTop}px`;
+        }
+      } else {
+        console.error('Stas silhouette element not found!');
+      }
+    } else {
+      console.error('Videos section not found!');
+    }
+    
+    // Position Cesar relative to press section
+    if (pressSection) {
+      const pressOffset = pressSection.offsetTop;
+      const isMobile = window.innerWidth <= 768;
+      
+      // Position Cesar lower than before
+      const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
+      if (cesarSilhouette) {
+        if (isMobile) {
+          // Move Cesar lower (decrease the negative offset)
+          cesarSilhouette.style.top = `${pressOffset - 500}px`; // 500px lower than before
+        } else {
+          // Move Cesar lower (decrease the negative offset)
+          cesarSilhouette.style.top = `${pressOffset - 700}px`; // 500px lower than before
         }
       }
     }
+    
+    // Position Matt relative to contact section (not press section)
+    if (contactSection) {
+      const contactOffset = contactSection.offsetTop;
+      const isMobile = window.innerWidth <= 768;
+      
+      console.log('Contact section found, offset:', contactOffset, 'isMobile:', isMobile);
+      
+      // --- DEBUG: Check if Matt element exists ---
+      const mattSilhouette = document.querySelector('.parallax-silhouette-4');
+      console.log('MATT DEBUG: Element found?', mattSilhouette !== null);
+      
+      if (mattSilhouette) {
+        
+        if (!isMobile) {
+          // Position Matt much lower relative to contact section
+          mattSilhouette.style.top = `${contactOffset + 100}px`; // Try 100px (much lower)
+        } else {
+          // Position Matt much lower relative to contact section
+          mattSilhouette.style.top = `${contactOffset + 1600}px`; // Try 1600px (much lower)
+        }
+        
+        // --- DEBUG: Verify if our style was applied ---
+        console.log('MATT DEBUG: Style after setting:', mattSilhouette.style.top);
+        
+        // --- DEBUG: Check computed style after a small delay ---
+        setTimeout(() => {
+          const computed = window.getComputedStyle(mattSilhouette);
+          console.log('MATT DEBUG: Computed top after delay:', computed.top);
+          console.log('MATT DEBUG: Computed position:', computed.position);
+          console.log('MATT DEBUG: Computed transform:', computed.transform);
+        }, 100);
+      }
+    }
+    
+
   }
 }
 
