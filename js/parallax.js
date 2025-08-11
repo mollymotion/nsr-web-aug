@@ -3,12 +3,15 @@ class ParallaxController {
     this.silhouettes = document.querySelectorAll('.parallax-silhouette');
     console.log('ParallaxController initialized, found silhouettes:', this.silhouettes.length);
     
-    // Debug: Log each silhouette
-    this.silhouettes.forEach((s, i) => {
-      console.log(`Silhouette ${i} classes:`, s.className);
-    });
+    // Check if mobile right away
+    this.isMobile = window.innerWidth <= 768;
     
-    this.init();
+    // If mobile, don't interfere with CSS positioning at all
+    if (!this.isMobile) {
+      this.init();
+    } else {
+      console.log("Mobile detected - using CSS for silhouette positioning");
+    }
   }
 
   init() {
@@ -17,23 +20,18 @@ class ParallaxController {
       return;
     }
 
-    // Set dynamic positioning for silhouettes based on their respective sections
+    // Set dynamic positioning for desktop only
     this.updateSilhouettePositions();
 
     let ticking = false;
 
     const updateParallax = () => {
       const scrolled = window.pageYOffset;
-      const isMobile = window.innerWidth <= 768;
-
+      
+      // Skip everything if we're in mobile mode
+      if (window.innerWidth <= 768) return;
+      
       this.silhouettes.forEach((silhouette, index) => {
-        // Skip parallax effect entirely on mobile devices
-        if (isMobile) {
-          // Remove any transform to let silhouettes scroll naturally with the page
-          silhouette.style.transform = 'none';
-          return;
-        }
-        
         // Desktop - apply normal parallax effect
         let parallaxSpeed;
         let initialOffset = 0;
@@ -63,100 +61,53 @@ class ParallaxController {
     };
 
     window.addEventListener('scroll', () => {
-      if (!ticking) {
+      // Only add parallax on desktop
+      if (window.innerWidth > 768 && !ticking) {
         requestAnimationFrame(updateParallax);
         ticking = true;
       }
     });
 
-    // Update positions when window resizes (in case content changes)
+    // Update positions when window resizes
     window.addEventListener('resize', () => {
-      this.updateSilhouettePositions();
+      if (window.innerWidth > 768) {
+        this.updateSilhouettePositions();
+      }
     });
 
     updateParallax();
   }
 
   updateSilhouettePositions() {
-    const videosSection = document.getElementById('videos'); // Stas silhouette
-    const pressSection = document.getElementById('press'); // Cesar silhouette
-    const contactSection = document.getElementById('contact'); // Matt silhouette
-    const isMobile = window.innerWidth <= 768;
+    // DESKTOP ONLY positioning - no mobile code at all
+    const videosSection = document.getElementById('videos');
+    const pressSection = document.getElementById('press');
+    const contactSection = document.getElementById('contact');
 
     // Position Stas relative to videos section
     if (videosSection) {
+      const videosOffset = videosSection.offsetTop;
       const stasSilhouette = document.querySelector('.parallax-silhouette-2');
-      
       if (stasSilhouette) {
-        if (isMobile) {
-          // Find the h2 within the videos section
-          const videosHeader = videosSection.querySelector('h2');
-          if (videosHeader) {
-            // Position silhouette next to the h2
-            const headerTop = videosHeader.getBoundingClientRect().top + window.pageYOffset;
-            stasSilhouette.style.top = `${headerTop}px`;
-          } else {
-            // Fallback if h2 not found
-            const videosOffset = videosSection.offsetTop;
-            stasSilhouette.style.top = `${videosOffset - 1000}px`;
-          }
-        } else {
-          // Desktop positioning unchanged
-          const videosOffset = videosSection.offsetTop;
-          stasSilhouette.style.top = `${videosOffset - 500}px`;
-        }
-      } else {
-        console.error('Stas silhouette element not found!');
+        stasSilhouette.style.top = `${videosOffset - 500}px`;
       }
     }
     
     // Position Cesar relative to press section
     if (pressSection) {
+      const pressOffset = pressSection.offsetTop;
       const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
-      
       if (cesarSilhouette) {
-        if (isMobile) {
-          // Find the h2 within the press section
-          const pressHeader = pressSection.querySelector('h2');
-          if (pressHeader) {
-            // Position silhouette next to the h2
-            const headerTop = pressHeader.getBoundingClientRect().top + window.pageYOffset;
-            cesarSilhouette.style.top = `${headerTop}px`;
-          } else {
-            // Fallback if h2 not found
-            const pressOffset = pressSection.offsetTop;
-            cesarSilhouette.style.top = `${pressOffset - 500}px`;
-          }
-        } else {
-          // Desktop positioning unchanged
-          const pressOffset = pressSection.offsetTop;
-          cesarSilhouette.style.top = `${pressOffset - 700}px`;
-        }
+        cesarSilhouette.style.top = `${pressOffset - 700}px`;
       }
     }
     
     // Position Matt relative to contact section
     if (contactSection) {
+      const contactOffset = contactSection.offsetTop;
       const mattSilhouette = document.querySelector('.parallax-silhouette-4');
-      
       if (mattSilhouette) {
-        if (isMobile) {
-          // Find the h2 within the contact section
-          const contactHeader = contactSection.querySelector('h2');
-          if (contactHeader) {
-            // Position silhouette next to the h2
-            const headerTop = contactHeader.getBoundingClientRect().top + window.pageYOffset;
-            mattSilhouette.style.top = `${headerTop}px`;
-          } else {
-            // Fallback if h2 not found
-            const contactOffset = contactSection.offsetTop;
-            mattSilhouette.style.top = `${contactOffset - 500}px`;
-          }
-        } else {
-          // Desktop positioning unchanged
-          const contactOffset = contactSection.offsetTop;
-          mattSilhouette.style.top = `${contactOffset - 1000}px`;
-        }
+        mattSilhouette.style.top = `${contactOffset - 1000}px`;
       }
     }
   }

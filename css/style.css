@@ -716,28 +716,40 @@ section {
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .parallax-silhouette {
-    width: 40vw; /* Change from 30vw to 40vw for mobile */
+    width: 40vw; /* Base width for mobile silhouettes */
+    transform: none !important; /* Disable parallax effect on mobile */
   }
   
-  /* Keep same positioning logic for mobile but adjust if needed */
+  /* Individual silhouette positioning */
   .parallax-silhouette-1 {
     right: 0;
     left: auto;
+    position: absolute !important;
+    top: 120vh !important; /* Position relative to viewport */
   }
   
   .parallax-silhouette-2 {
     left: 0;
+    position: absolute !important;
+    /* Position next to videos section */
+    top: calc(var(--videos-section-top, 230vh) - 50px) !important;
   }
   
   .parallax-silhouette-3 {
     right: 0;
     left: auto;
-    width: 50vw; /* Make Cesar even bigger on mobile */
+    width: 50vw; /* Make Cesar bigger on mobile */
+    position: absolute !important;
+    /* Position next to press section */
+    top: calc(var(--press-section-top, 350vh) - 50px) !important;
   }
   
   .parallax-silhouette-4 {
     left: 0;
-    width: 50vw; /* Make Matt even bigger on mobile */
+    width: 50vw; /* Make Matt bigger on mobile */
+    position: absolute !important;
+    /* Position next to contact section */
+    top: calc(var(--contact-section-top, 500vh) - 50px) !important;
   }
 }
 
