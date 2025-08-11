@@ -708,7 +708,7 @@ section {
 
 .parallax-silhouette-4 {
   /* Position relative to contact section, below press */
-  top: 400vh; /* Initial fallback position - will be overridden by JavaScript */
+  top: 500vh; /* Initial fallback position - will be overridden by JavaScript */
   left: 0; /* Matt aligned to left of viewport */
   width: 40vw;
 }

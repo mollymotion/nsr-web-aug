@@ -69,11 +69,10 @@ class ParallaxController {
   }
 
   updateSilhouettePositions() {
-    const pressSection = document.getElementById('press');
-    const videosSection = document.getElementById('videos');
-    const contactSection = document.getElementById('contact');
-    
-    
+    const videosSection = document.getElementById('videos'); //  Stas silhouette
+    const pressSection = document.getElementById('press'); //  Cesar silhouette
+    const contactSection = document.getElementById('contact'); //  Matt silhouette
+
     // Position Stas relative to videos section
     if (videosSection) {
       const videosOffset = videosSection.offsetTop;
@@ -95,59 +94,48 @@ class ParallaxController {
       } else {
         console.error('Stas silhouette element not found!');
       }
-    } else {
-      console.error('Videos section not found!');
     }
     
     // Position Cesar relative to press section
     if (pressSection) {
       const pressOffset = pressSection.offsetTop;
-      const isMobile = window.innerWidth <= 768;
-      
-      // Position Cesar lower than before
       const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
+      
       if (cesarSilhouette) {
+        // Check if mobile (768px or less)
+        const isMobile = window.innerWidth <= 768;
+
         if (isMobile) {
-          // Move Cesar lower (decrease the negative offset)
-          cesarSilhouette.style.top = `${pressOffset - 500}px`; // 500px lower than before
+          // ADJUST HEIGHT HERE for mobile: Move Cesar lower (increase the negative offset)
+          const newTop = pressOffset - 500;
+          cesarSilhouette.style.top = `${newTop}px`; // 500px lower than before
         } else {
-          // Move Cesar lower (decrease the negative offset)
-          cesarSilhouette.style.top = `${pressOffset - 700}px`; // 500px lower than before
+          // ADJUST HEIGHT HERE for desktop: Move Cesar lower (increase the negative offset)
+          const newTop = pressOffset - 700;
+          cesarSilhouette.style.top = `${newTop}px`; // 700px lower than before
         }
       }
     }
     
-    // Position Matt relative to contact section (not press section)
+
     if (contactSection) {
       const contactOffset = contactSection.offsetTop;
-      const isMobile = window.innerWidth <= 768;
-      
-      console.log('Contact section found, offset:', contactOffset, 'isMobile:', isMobile);
-      
-      // --- DEBUG: Check if Matt element exists ---
       const mattSilhouette = document.querySelector('.parallax-silhouette-4');
-      console.log('MATT DEBUG: Element found?', mattSilhouette !== null);
       
       if (mattSilhouette) {
-        
-        if (!isMobile) {
-          // Position Matt much lower relative to contact section
-          mattSilhouette.style.top = `${contactOffset + 100}px`; // Try 100px (much lower)
+        // Check if mobile (768px or less)
+        const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+          // ADJUST HEIGHT HERE for mobile: Position Matt much lower relative to contact section
+          const newTop = contactOffset - 500; 
+          mattSilhouette.style.top = `${newTop}px`; 
         } else {
-          // Position Matt much lower relative to contact section
-          mattSilhouette.style.top = `${contactOffset + 1600}px`; // Try 1600px (much lower)
+          // ADJUST HEIGHT HERE for desktop: Position Matt much lower relative to contact section
+          const newTop = contactOffset - 1000;
+          mattSilhouette.style.top = `${newTop}px`;
         }
-        
-        // --- DEBUG: Verify if our style was applied ---
-        console.log('MATT DEBUG: Style after setting:', mattSilhouette.style.top);
-        
-        // --- DEBUG: Check computed style after a small delay ---
-        setTimeout(() => {
-          const computed = window.getComputedStyle(mattSilhouette);
-          console.log('MATT DEBUG: Computed top after delay:', computed.top);
-          console.log('MATT DEBUG: Computed position:', computed.position);
-          console.log('MATT DEBUG: Computed transform:', computed.transform);
-        }, 100);
+
       }
     }
     
