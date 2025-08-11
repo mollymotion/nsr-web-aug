@@ -24,8 +24,17 @@ class ParallaxController {
 
     const updateParallax = () => {
       const scrolled = window.pageYOffset;
+      const isMobile = window.innerWidth <= 768;
 
       this.silhouettes.forEach((silhouette, index) => {
+        // Skip parallax effect entirely on mobile devices
+        if (isMobile) {
+          // Remove any transform to let silhouettes scroll naturally with the page
+          silhouette.style.transform = 'none';
+          return;
+        }
+        
+        // Desktop - apply normal parallax effect
         let parallaxSpeed;
         let initialOffset = 0;
         
@@ -69,27 +78,32 @@ class ParallaxController {
   }
 
   updateSilhouettePositions() {
-    const videosSection = document.getElementById('videos'); //  Stas silhouette
-    const pressSection = document.getElementById('press'); //  Cesar silhouette
-    const contactSection = document.getElementById('contact'); //  Matt silhouette
+    const videosSection = document.getElementById('videos'); // Stas silhouette
+    const pressSection = document.getElementById('press'); // Cesar silhouette
+    const contactSection = document.getElementById('contact'); // Matt silhouette
+    const isMobile = window.innerWidth <= 768;
 
     // Position Stas relative to videos section
     if (videosSection) {
-      const videosOffset = videosSection.offsetTop;
       const stasSilhouette = document.querySelector('.parallax-silhouette-2');
       
       if (stasSilhouette) {
-        // Check if mobile (768px or less)
-        const isMobile = window.innerWidth <= 768;
-        
         if (isMobile) {
-          // ADJUST HEIGHT HERE for mobile: Increase to move higher, decrease to move lower
-          const newTop = videosOffset - 1000;
-          stasSilhouette.style.top = `${newTop}px`;
+          // Find the h2 within the videos section
+          const videosHeader = videosSection.querySelector('h2');
+          if (videosHeader) {
+            // Position silhouette next to the h2
+            const headerTop = videosHeader.getBoundingClientRect().top + window.pageYOffset;
+            stasSilhouette.style.top = `${headerTop}px`;
+          } else {
+            // Fallback if h2 not found
+            const videosOffset = videosSection.offsetTop;
+            stasSilhouette.style.top = `${videosOffset - 1000}px`;
+          }
         } else {
-          // ADJUST HEIGHT HERE for desktop: Increase to move higher, decrease to move lower
-          const newTop = videosOffset - 500; 
-          stasSilhouette.style.top = `${newTop}px`;
+          // Desktop positioning unchanged
+          const videosOffset = videosSection.offsetTop;
+          stasSilhouette.style.top = `${videosOffset - 500}px`;
         }
       } else {
         console.error('Stas silhouette element not found!');
@@ -98,48 +112,53 @@ class ParallaxController {
     
     // Position Cesar relative to press section
     if (pressSection) {
-      const pressOffset = pressSection.offsetTop;
       const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
       
       if (cesarSilhouette) {
-        // Check if mobile (768px or less)
-        const isMobile = window.innerWidth <= 768;
-
         if (isMobile) {
-          // ADJUST HEIGHT HERE for mobile: Move Cesar lower (increase the negative offset)
-          const newTop = pressOffset - 500;
-          cesarSilhouette.style.top = `${newTop}px`; // 500px lower than before
+          // Find the h2 within the press section
+          const pressHeader = pressSection.querySelector('h2');
+          if (pressHeader) {
+            // Position silhouette next to the h2
+            const headerTop = pressHeader.getBoundingClientRect().top + window.pageYOffset;
+            cesarSilhouette.style.top = `${headerTop}px`;
+          } else {
+            // Fallback if h2 not found
+            const pressOffset = pressSection.offsetTop;
+            cesarSilhouette.style.top = `${pressOffset - 500}px`;
+          }
         } else {
-          // ADJUST HEIGHT HERE for desktop: Move Cesar lower (increase the negative offset)
-          const newTop = pressOffset - 700;
-          cesarSilhouette.style.top = `${newTop}px`; // 700px lower than before
+          // Desktop positioning unchanged
+          const pressOffset = pressSection.offsetTop;
+          cesarSilhouette.style.top = `${pressOffset - 700}px`;
         }
       }
     }
     
-
+    // Position Matt relative to contact section
     if (contactSection) {
-      const contactOffset = contactSection.offsetTop;
       const mattSilhouette = document.querySelector('.parallax-silhouette-4');
       
       if (mattSilhouette) {
-        // Check if mobile (768px or less)
-        const isMobile = window.innerWidth <= 768;
-
         if (isMobile) {
-          // ADJUST HEIGHT HERE for mobile: Position Matt much lower relative to contact section
-          const newTop = contactOffset - 500; 
-          mattSilhouette.style.top = `${newTop}px`; 
+          // Find the h2 within the contact section
+          const contactHeader = contactSection.querySelector('h2');
+          if (contactHeader) {
+            // Position silhouette next to the h2
+            const headerTop = contactHeader.getBoundingClientRect().top + window.pageYOffset;
+            mattSilhouette.style.top = `${headerTop}px`;
+          } else {
+            // Fallback if h2 not found
+            const contactOffset = contactSection.offsetTop;
+            mattSilhouette.style.top = `${contactOffset - 500}px`;
+          }
         } else {
-          // ADJUST HEIGHT HERE for desktop: Position Matt much lower relative to contact section
-          const newTop = contactOffset - 1000;
-          mattSilhouette.style.top = `${newTop}px`;
+          // Desktop positioning unchanged
+          const contactOffset = contactSection.offsetTop;
+          mattSilhouette.style.top = `${contactOffset - 1000}px`;
         }
-
       }
     }
-    
-
   }
 }
 
