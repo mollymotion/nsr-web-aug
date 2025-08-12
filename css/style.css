@@ -737,7 +737,7 @@ section {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right top;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
   }
   
@@ -757,7 +757,7 @@ section {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left top;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
   }
   
@@ -777,7 +777,7 @@ section {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right top;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
   }
   
@@ -797,7 +797,7 @@ section {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left top;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
   }
 }
