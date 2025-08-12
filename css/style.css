@@ -789,7 +789,7 @@ section {
   #contact::before {
     content: '';
     position: absolute;
-    top: 10%; /* Change only this value to move Matt down */
+    top: 5%; /* Change only this value to move Matt down */
     left: 0;
     width: 50vw;
     height: 100%;
