@@ -10,14 +10,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Detect if device is mobile
   const isMobile = window.innerWidth <= 768;
   
-  // Initialize the appropriate positioning system
-  if (isMobile) {
-    // Use mobile positioning for silhouettes
-    const mobilePositioner = new MobileSilhouettePositioner();
-  } else {
+  // Initialize positioning system - DESKTOP ONLY now
+  if (!isMobile) {
     // Use parallax effect for desktop
     const parallax = new ParallaxController();
   }
+  // Mobile positioning is now handled entirely by CSS
   
   // Slideshow handling
   const sliceTransition = new SliceTransition();
