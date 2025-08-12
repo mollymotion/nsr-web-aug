@@ -1,15 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Only run on mobile
-  if (window.innerWidth <= 768) {
-    console.log("Mobile detected - positioning silhouettes next to h2 headings");
-    updateHeaderPositions();
+export default class MobileSilhouettePositioner {
+  constructor() {
+    // Only run on mobile
+    if (window.innerWidth <= 768) {
+      this.init();
+    }
+  }
+
+  init() {
+    this.updateHeaderPositions();
     
-    // Update when scrolling or resizing
-    window.addEventListener('resize', updateHeaderPositions);
-    window.addEventListener('scroll', debounceEvent(updateHeaderPositions, 100));
+    // Update positions immediately and when scrolling or resizing
+    window.addEventListener('resize', () => this.updateHeaderPositions());
+    window.addEventListener('scroll', this.debounceEvent(() => this.updateHeaderPositions(), 100));
   }
   
-  function updateHeaderPositions() {
+  updateHeaderPositions() {
     const root = document.documentElement;
     
     // Find h2 elements in each section
@@ -34,11 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  function debounceEvent(func, wait) {
+  debounceEvent(func, wait) {
     let timeout;
     return function() {
       clearTimeout(timeout);
       timeout = setTimeout(func, wait);
     };
   }
-});
+}

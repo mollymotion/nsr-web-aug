@@ -694,7 +694,7 @@ section {
 }
 
 .parallax-silhouette-2 {
-  top: 230vh; /* Around shows header */
+  top: 230vh; /* Around videos header */
   left: 0; /* Stas aligned to left of viewport */
 }
 
@@ -713,43 +713,92 @@ section {
   width: 40vw;
 }
 
-/* Mobile adjustments */
+/* Mobile silhouette approach - use as section backgrounds */
 @media (max-width: 768px) {
+  /* Hide original silhouettes on mobile */
   .parallax-silhouette {
-    width: 40vw; /* Base width for mobile silhouettes */
-    transform: none !important; /* Disable parallax effect on mobile */
+    display: none !important;
   }
   
-  /* Individual silhouette positioning */
-  .parallax-silhouette-1 {
-    right: 0;
-    left: auto;
-    position: absolute !important;
-    top: 120vh !important; /* Position relative to viewport */
+  /* Add backgrounds to sections */
+  /* Shows section - Peter silhouette */
+  #shows {
+    position: relative;
   }
   
-  .parallax-silhouette-2 {
-    left: 0;
-    position: absolute !important;
-    /* Position next to videos section */
-    top: calc(var(--videos-section-top, 230vh) - 50px) !important;
+  #shows::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0; /* Peter on right side */
+    width: 40vw;
+    height: 100%;
+    background-image: url('../images/silhouettes/peter.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right top;
+    z-index: 1;
+    pointer-events: none;
   }
   
-  .parallax-silhouette-3 {
-    right: 0;
-    left: auto;
-    width: 50vw; /* Make Cesar bigger on mobile */
-    position: absolute !important;
-    /* Position next to press section */
-    top: calc(var(--press-section-top, 350vh) - 50px) !important;
+  /* Videos section - Stas silhouette */
+  #videos {
+    position: relative;
   }
   
-  .parallax-silhouette-4 {
-    left: 0;
-    width: 50vw; /* Make Matt bigger on mobile */
-    position: absolute !important;
-    /* Position next to contact section */
-    top: calc(var(--contact-section-top, 500vh) - 50px) !important;
+  #videos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0; /* Stas on left side */
+    width: 40vw;
+    height: 100%;
+    background-image: url('../images/silhouettes/stas.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left top;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* Press section - Cesar silhouette */
+  #press {
+    position: relative;
+  }
+  
+  #press::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0; /* Cesar on right side */
+    width: 50vw;
+    height: 100%;
+    background-image: url('../images/silhouettes/cesar.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right top;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* Contact section - Matt silhouette */
+  #contact {
+    position: relative;
+  }
+  
+  #contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0; /* Matt on left side */
+    width: 50vw;
+    height: 100%;
+    background-image: url('../images/silhouettes/matt.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left top;
+    z-index: 1;
+    pointer-events: none;
   }
 }
 

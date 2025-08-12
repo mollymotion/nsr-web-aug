@@ -1,7 +1,6 @@
 class ParallaxController {
   constructor() {
     this.silhouettes = document.querySelectorAll('.parallax-silhouette');
-    console.log('ParallaxController initialized, found silhouettes:', this.silhouettes.length);
     
     // Check if mobile right away
     this.isMobile = window.innerWidth <= 768;
@@ -9,14 +8,11 @@ class ParallaxController {
     // If mobile, don't interfere with CSS positioning at all
     if (!this.isMobile) {
       this.init();
-    } else {
-      console.log("Mobile detected - using CSS for silhouette positioning");
     }
   }
 
   init() {
     if (!this.silhouettes.length) {
-      console.error('Parallax silhouette elements not found');
       return;
     }
 

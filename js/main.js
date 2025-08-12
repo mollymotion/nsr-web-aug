@@ -4,13 +4,20 @@ import Nav from './sticky-nav.js';
 import ParallaxController from './parallax.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log('DOM Content Loaded');
-  
   // Initialize StickyNav
   const stickyNav = new Nav();
   
-  // Initialize Parallax
-  const parallax = new ParallaxController();
+  // Detect if device is mobile
+  const isMobile = window.innerWidth <= 768;
+  
+  // Initialize the appropriate positioning system
+  if (isMobile) {
+    // Use mobile positioning for silhouettes
+    const mobilePositioner = new MobileSilhouettePositioner();
+  } else {
+    // Use parallax effect for desktop
+    const parallax = new ParallaxController();
+  }
   
   // Slideshow handling
   const sliceTransition = new SliceTransition();
@@ -18,12 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let heroVideo = null; // Add video element reference
   
   if (!heroImage) {
-    console.error('Hero image element not found!');
     return;
   }
-  
-  // Detect if device is mobile
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
   
   // Define array of media with types - use mobile videos on mobile, full videos on desktop
   const media = isMobile ? [
@@ -100,14 +103,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       await sliceTransition.animate(true); // Animate in
       
       setTimeout(cycleImages, 3000);
-
     } catch (error) {
-        console.error('Animation error:', error);
+      // Silent error handling
     }
   }
 
   try {
-    console.log('Starting initialization...');
     updateMedia();
 
     await new Promise((resolve, reject) => {
@@ -115,9 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       let attempts = 0;
       
       const checkInit = () => {
-        console.log('Checking init, attempt:', attempts);
         if (sliceTransition.isInitialized()) {
-          console.log('Initialization successful');
           resolve();
         } else if (attempts >= maxAttempts) {
           reject(new Error('SliceTransition initialization timeout'));
@@ -130,11 +129,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       checkInit();
     });
 
-    console.log('Starting animations...');
     await sliceTransition.animate(true);
     setTimeout(cycleImages, 3000);
   } catch (error) {
-    console.error('Initialization error:', error);
+    // Silent error handling
   }
 });
 
@@ -157,4 +155,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
