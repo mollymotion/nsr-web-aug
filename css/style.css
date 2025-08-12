@@ -789,8 +789,8 @@ section {
   #contact::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0; /* Matt on left side */
+    top: 10%; /* Change only this value to move Matt down */
+    left: 0;
     width: 50vw;
     height: 100%;
     background-image: url('../images/silhouettes/matt.png');
