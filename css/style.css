@@ -806,15 +806,39 @@ section {
 /* ==========================================================================
    FOOTER
    ========================================================================== */
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+/* Overscroll prevention for all devices */
+html, body {
+  overscroll-behavior-y: none; /* Prevents bounce/overscroll effect */
+}
+
+/* Footer positioning */
 footer {
   pointer-events: none;
   z-index: 8;
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Hide overflow content */
+}
+
+/* Add space for footer in main content */
+#smooth-content {
+  padding-bottom: 20vh; /* Prevent content from hiding behind footer */
 }
 
 .footer-copyright {
   font-size: 0.875rem;
   padding: 0.5rem 1rem;
   background: var(--secondary-color-rgb);
+}
+
+/* iOS-specific fix for overscroll */
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    height: -webkit-fill-available;
+  }
 }
 
 /* Footer Media Queries */
