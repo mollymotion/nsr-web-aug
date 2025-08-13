@@ -806,26 +806,29 @@ section {
 /* ==========================================================================
    FOOTER
    ========================================================================== */
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
 /* Overscroll prevention for all devices */
 html, body {
   overscroll-behavior-y: none; /* Prevents bounce/overscroll effect */
 }
 
-/* Footer positioning */
+/* Footer positioning - with fixed image cutoff */
 footer {
   pointer-events: none;
   z-index: 8;
   position: relative;
   width: 100%;
-  overflow: hidden; /* Hide overflow content */
+  overflow: visible; /* Changed from hidden to visible to prevent image cutoff */
 }
 
-/* Add space for footer in main content */
+/* Reduce space between content and footer */
 #smooth-content {
-  padding-bottom: 20vh; /* Prevent content from hiding behind footer */
+  padding-bottom: 5vh; /* Reduced from 20vh to 5vh to fix spacing */
+}
+
+/* Ensure footer images display properly */
+footer img {
+  display: block; /* Ensure block display */
+  max-width: 100%; /* Prevent horizontal overflow */
 }
 
 .footer-copyright {
@@ -841,7 +844,7 @@ footer {
   }
 }
 
-/* Footer Media Queries */
+/* Footer Media Queries - with reduced spacing */
 @media (max-width: 768px) {
   footer .absolute.bottom-0.left-0 {
     width: 100%;
@@ -852,7 +855,7 @@ footer {
   }
   
   footer {
-    padding-top: 9rem !important;
+    padding-top: 3rem !important; /* Reduced from 9rem to 3rem */
     padding-bottom: 8rem !important;
   }
 }
