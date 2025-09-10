@@ -274,8 +274,10 @@
                         </svg>
                         Booking
                       </h3>
-                      <a href="mailto:booking@noneshallremain.com" class="text-lg hover:underline">
-                        booking@noneshallremain.com
+                      <a href="#" class="obfuscated-email text-lg hover:underline" 
+                         data-user="booking" 
+                         data-domain="noneshallremain.com">
+                        [Email Protected]
                       </a>
                     </div>
                     
@@ -286,8 +288,10 @@
                         </svg>
                         General Contact
                       </h3>
-                      <a href="mailto:contact@noneshallremain.com" class="text-lg hover:underline">
-                        contact@noneshallremain.com
+                      <a href="#" class="obfuscated-email text-lg hover:underline" 
+                         data-user="info" 
+                         data-domain="noneshallremain.com">
+                        [Email Protected]
                       </a>
                     </div>
                   </div>
@@ -504,6 +508,28 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.0/lottie.min.js"></script>
+
+  <script>
+    // Email obfuscation - decode emails on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const obfuscatedEmails = document.querySelectorAll('.obfuscated-email');
+      
+      obfuscatedEmails.forEach(link => {
+        const user = link.getAttribute('data-user');
+        const domain = link.getAttribute('data-domain');
+        
+        if (user && domain) {
+          const email = user + '@' + domain;
+          link.href = 'mailto:' + email;
+          link.textContent = email;
+          
+          // Remove the data attributes to clean up
+          link.removeAttribute('data-user');
+          link.removeAttribute('data-domain');
+        }
+      });
+    });
+  </script>
 
   <script>
     // Set --vh custom property for mobile Safari 100vh fix
