@@ -36,12 +36,12 @@ class ParallaxController {
         if (index === 0) {
           parallaxSpeed = 1.2; // 1.2x (unchanged)
         }
-        // Give Stas, Cesar and Matt slower speeds and account for their positioning
+        // Give Stas and Cesar slower speeds and account for their positioning
         else {
           if (index === 1) {
             parallaxSpeed = 1.4; // 1.4x for Stas
           } else {
-            parallaxSpeed = 1.2 + ((index - 2) * 0.1); // 1.2x for Cesar, 1.3x for Matt
+            parallaxSpeed = 1.2; // 1.2x for Cesar
           }
 
           // Get their initial top position set by updateSilhouettePositions
@@ -78,14 +78,13 @@ class ParallaxController {
     // DESKTOP ONLY positioning - no mobile code at all
     const videosSection = document.getElementById('videos');
     const pressSection = document.getElementById('press');
-    const contactSection = document.getElementById('contact');
 
     // Position Stas relative to videos section
     if (videosSection) {
       const videosOffset = videosSection.offsetTop;
       const stasSilhouette = document.querySelector('.parallax-silhouette-2');
       if (stasSilhouette) {
-        stasSilhouette.style.top = `${videosOffset - 500}px`;
+        stasSilhouette.style.top = `${videosOffset - 100}px`;
       }
     }
     
@@ -95,15 +94,6 @@ class ParallaxController {
       const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
       if (cesarSilhouette) {
         cesarSilhouette.style.top = `${pressOffset - 700}px`;
-      }
-    }
-    
-    // Position Matt relative to contact section
-    if (contactSection) {
-      const contactOffset = contactSection.offsetTop;
-      const mattSilhouette = document.querySelector('.parallax-silhouette-4');
-      if (mattSilhouette) {
-        mattSilhouette.style.top = `${contactOffset - 1000}px`;
       }
     }
   }

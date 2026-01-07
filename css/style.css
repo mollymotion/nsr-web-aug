@@ -694,7 +694,7 @@ section {
 }
 
 .parallax-silhouette-2 {
-  top: 230vh; /* Around videos header */
+  top: 430vh; /* Around videos header */
   left: 0; /* Stas aligned to left of viewport */
 }
 
@@ -706,12 +706,7 @@ section {
   width: 40vw;
 }
 
-.parallax-silhouette-4 {
-  /* Position relative to contact section, below press */
-  top: 500vh; /* Initial fallback position - will be overridden by JavaScript */
-  left: 0; /* Matt aligned to left of viewport */
-  width: 40vw;
-}
+
 
 /* Mobile silhouette approach - use as section backgrounds */
 @media (max-width: 768px) {
