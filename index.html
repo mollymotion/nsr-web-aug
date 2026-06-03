@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta property="og:title" content="None Shall Remain - Post-Punk NYC">
   <meta property="og:description" content="Official site of None Shall Remain">
-  <meta property="og:image" content="https://noneshallremain.com/images/preview.png">
+  <meta property="og:image" content="https://noneshallremain.com/images/NSR_og.jpg">
   <meta property="og:url" content="https://noneshallremain.com/">
   <meta property="og:type" content="website">
   <title>None Shall Remain – Post-Punk NYC</title>
@@ -26,15 +26,12 @@
   <!-- Hero Section -->
   <section id="hero" class="h-screen w-full relative hero">
 
-    <img class="hero-image" alt="Hero Image">
-
-    <div id="slice-mask" class="hero-mask"></div>
-
+    <img class="hero-image" src="images/hero.jpg" alt="Hero Image">
 
     <div class="z-10 navbar-nav z-10 w-full absolute flex flex-col justify-between top-0">
       <!-- Logo container -->
       <div id="logo-container" class="logo-container">
-        <img src="./images/logo-splat.svg" alt="NSR Logo" class="logo-container--logo" loading="lazy">
+        <img src="images/logo-pink.png" alt="NSR Logo" class="logo-container--logo" loading="lazy">
       </div>
       <!-- Add social media links -->
       <svg xmlns="http://www.w3.org/2000/svg" class="hidden" style="display: none !important">
@@ -266,7 +263,6 @@
     </div>
 
     <!-- Contact Section -->
-        <div class="h-20"></div> <!-- Spacer before contact -->
         <section id="contact" class="pt-20 sectionbg w-screen relative" role="region" aria-labelledby="contact-heading">
 
           <div class="px-6 sm:px-12 text-white max-w-7xl mx-auto">
@@ -312,9 +308,6 @@
         <div class="h-32"></div> <!-- Spacer after contact -->
       </div>
 
-    <!-- Half page spacing after press section -->
-    <div style="height: 40vh;"></div>
-
   </section>
 
 
@@ -353,33 +346,19 @@
 
   <!-- Footer -->
   <footer class="relative">
-    <div class="absolute bottom-0 left-0 w-3/4">
-      <img src="./images/band-collage-footer-2.svg" alt="Band Collage" class="w-3/4" loading="lazy" />
-    </div>
     <div class="absolute bottom-0 right-0 footer-copyright">
-      &copy; 2025 NSR – All rights reserved.
+      &copy; <span id="footer-year"></span> NSR – All rights reserved.
     </div>
 
     
 
   </footer>
 
-  <!-- Parallax Silhouette -->
-  <!-- Replace the existing parallax-silhouette section with: -->
-<div class="parallax-container">
-  <div class="parallax-silhouette parallax-silhouette-1" id="silhouette-peter">
-    <img src="./images/silhouettes/peter.png" alt="Silhouette 1" loading="lazy" />
-  </div>
-  <div class="parallax-silhouette parallax-silhouette-2" id="silhouette-stas">
-    <img src="./images/silhouettes/stas.png" alt="Silhouette 2" loading="lazy" />
-  </div>
-  <div class="parallax-silhouette parallax-silhouette-3" id="silhouette-cesar">
-    <img src="./images/silhouettes/cesar.png" alt="Silhouette 3" loading="lazy" />
-  </div>
-</div>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
   <script type="module" src="js/main.js"></script>
   <script>
     // GSAP ScrollTrigger Scroll Spy for Navigation (without ScrollSmoother)

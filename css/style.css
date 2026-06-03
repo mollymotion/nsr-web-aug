@@ -669,113 +669,7 @@ section {
   z-index: -1;
 }
 
-.parallax-silhouette {
-  position: absolute;
-  width: 30vw; /* Change from 100vw to 20vw */
-  height: auto; /* Change from 100vh to auto */
-  pointer-events: none;
-  will-change: transform;
 
-  img {
-    width: 100%; /* This will now be 100% of the 20vw container */
-    height: auto; /* Change from 100% to auto to maintain aspect ratio */
-    object-fit: contain; /* Change from cover to contain to prevent cropping */
-    opacity: 1;
-    display: block;
-  }
-}
-
-/* Position each silhouette at different horizontal AND vertical positions */
-/* Position each silhouette at different horizontal AND vertical positions */
-.parallax-silhouette-1 {
-  top: 120vh; /* Around videos header */
-  right: 0; /* Peter at far right of viewport */
-  left: auto;
-}
-
-.parallax-silhouette-2 {
-  top: 430vh; /* Around videos header */
-  left: 0; /* Stas aligned to left of viewport */
-}
-
-.parallax-silhouette-3 {
-  /* Position relative to press section instead of fixed viewport height */
-  top: 350vh; /* Initial fallback position - will be overridden by JavaScript */
-  right: 0; /* Cesar aligned to right of viewport */
-  left: auto;
-  width: 40vw;
-}
-
-
-
-/* Mobile silhouette approach - use as section backgrounds */
-@media (max-width: 768px) {
-  /* Hide original silhouettes on mobile */
-  .parallax-silhouette {
-    display: none !important;
-  }
-  
-  /* Add backgrounds to sections */
-  /* Shows section - Peter silhouette */
-  #shows {
-    position: relative;
-  }
-  
-  #shows::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0; /* Peter on right side */
-    width: 40vw;
-    height: 100%;
-    background-image: url('../images/silhouettes/peter.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right top;
-    z-index: -1;
-    pointer-events: none;
-  }
-  
-  /* Videos section - Stas silhouette */
-  #videos {
-    position: relative;
-  }
-  
-  #videos::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0; /* Stas on left side */
-    width: 40vw;
-    height: 100%;
-    background-image: url('../images/silhouettes/stas.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: left top;
-    z-index: -1;
-    pointer-events: none;
-  }
-  
-  /* Press section - Cesar silhouette */
-  #press {
-    position: relative;
-  }
-  
-  #press::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0; /* Cesar on right side */
-    width: 50vw;
-    height: 100%;
-    background-image: url('../images/silhouettes/cesar.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right top;
-    z-index: -1;
-    pointer-events: none;
-  }
-}
 
 
 /* ==========================================================================
@@ -792,12 +686,13 @@ footer {
   z-index: 8;
   position: relative;
   width: 100%;
-  overflow: visible; /* Changed from hidden to visible to prevent image cutoff */
+  overflow: visible;
+  min-height: 3rem;
 }
 
 /* Reduce space between content and footer */
 #smooth-content {
-  padding-bottom: 5vh; /* Reduced from 20vh to 5vh to fix spacing */
+  padding-bottom: 0;
 }
 
 /* Ensure footer images display properly */
@@ -830,8 +725,8 @@ footer img {
   }
   
   footer {
-    padding-top: 3rem !important; /* Reduced from 9rem to 3rem */
-    padding-bottom: 8rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 2rem !important;
   }
 }
 
