@@ -26,7 +26,10 @@
   <!-- Hero Section -->
   <section id="hero" class="h-screen w-full relative hero">
 
-    <img class="hero-image" src="images/hero.jpg" alt="Hero Image">
+    <picture>
+      <source media="(max-width: 767px) and (orientation: portrait)" srcset="images/hero-mobile.jpg">
+      <img class="hero-image" src="images/hero.jpg" alt="Hero Image">
+    </picture>
 
     <div class="z-10 navbar-nav z-10 w-full absolute flex flex-col justify-between top-0">
       <!-- Logo container -->
